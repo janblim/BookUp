@@ -1,14 +1,9 @@
 from datetime import datetime
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .friend import friends
 
-# many-to-many table for friends, Flask doc recommends using Table rather than Model *shrug*
-
-friends = db.Table('friends',
-                  db.Column('user_id', db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
-                  db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), primary_key=True)
-                  )
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -60,8 +55,6 @@ class User(db.Model, UserMixin):
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
-
-    # friends methods
 
     def add_friend(self, friend):
         if not self.is_friends_with(friend):
