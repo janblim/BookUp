@@ -18,7 +18,7 @@ class Book(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
-    user = db.relationship("User", back_populates='books')
+    user = db.relationship("User", backref='books')
 
     def to_dict(self):
         return {

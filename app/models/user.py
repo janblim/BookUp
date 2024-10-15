@@ -12,8 +12,8 @@ class User(db.Model, UserMixin):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(40), nullable=False)
-    last_name = db.Column(db.String(40), nullable=False)
+    first_name = db.Column(db.String(40), nullable=True)
+    last_name = db.Column(db.String(40), nullable=True)
     address = db.Column(db.String(60), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
@@ -52,9 +52,13 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'picture': self.picture,
+            'friends': self.friends,
+            'ups': self.ups,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
+
+    # add and remove friends functions
 
     def add_friend(self, friend):
         if not self.is_friends_with(friend):
