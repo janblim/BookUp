@@ -13,9 +13,6 @@ class FavBook(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
-    users = db.relationship('User', backref='fav_book')
-    books = db.relationship('Book', backref='fav_book')
-
     def to_dict(self):
         return {
             'id': self.id,

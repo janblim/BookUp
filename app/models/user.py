@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
         lazy='dynamic'
     )
     ups = db.relationship('Up', backref='user', lazy=True)
-    favBooks = db.relationship('favBook', backref='user', lazy=True)
+    favBooks = db.relationship('FavBook', backref='user', lazy=True)
 
     @property
     def password(self):

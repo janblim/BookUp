@@ -4,6 +4,7 @@ from .books import seed_books, undo_books
 from .comments import seed_comments, undo_comments
 from .favBooks import seed_favBooks, undo_favBooks
 from .posts import seed_posts, undo_posts
+from .ups import seed_ups, undo_ups
 
 from app.models.db import db, environment, SCHEMA
 
@@ -25,12 +26,14 @@ def seed():
         undo_comments()
         undo_favBooks()
         undo_posts()
+        undo_ups()
 
     seed_users()
     seed_books()
     seed_comments()
     seed_favBooks()
     seed_posts()
+    seed_ups()
     # Add other seed functions here
 
 
@@ -42,4 +45,5 @@ def undo():
     undo_comments()
     undo_favBooks()
     undo_posts()
+    undo_ups()
     # Add other undo functions here

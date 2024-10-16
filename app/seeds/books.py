@@ -559,6 +559,20 @@ def seed_books():
             'amazon': 'url',
             'genre': 'Fiction',
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/To_Kill_a_Mockingbird.jpg'
+            },
+
+        "Walden":
+            {
+            "user_id": 1,
+            "author": 'Henry David Thoreau',
+            "description": '''
+            Walden, written by Henry David Thoreau and published in 1854, is a reflection on simple living in natural surroundings. The book is based on Thoreau's experiment of spending two years in a small cabin he built near Walden Pond in Concord, Massachusetts. It serves as both a personal narrative and a philosophical treatise, exploring themes of self-reliance, nature, and the critique of materialism. Thoreau's writing emphasizes the importance of solitude and introspection, encouraging readers to disconnect from societal pressures and connect with the natural world. Through his vivid observations of the changing seasons, wildlife, and his own experiences, Thoreau advocates for a life of purpose, mindfulness, and harmony with nature.
+
+            Thoreau's Walden is not just a manifesto for simple living; it also presents a profound critique of contemporary society, particularly its obsession with progress and consumerism. He argues that true wealth comes from personal experience and an understanding of the natural world rather than material possessions. The book delves into philosophical concepts, including transcendentalism, which emphasizes intuition and spirituality as vital to understanding life. Thoreau's lyrical prose and profound insights invite readers to reconsider their values and the impact of modern civilization on their lives, ultimately inspiring a deeper appreciation for the beauty and simplicity of nature.
+            ''',
+            'amazon': 'url',
+            'genre': 'Philosophy',
+            'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Walden.jpg'
             }
 
     }
