@@ -20,10 +20,7 @@ class FavBook(db.Model):
         return {
             'id': self.id,
             'user_id': self.user_id,
-            'product_id': self.product_id,
-            'item_rating': self.item_rating,
-            'shipping_rating': self.shipping_rating,
-            'description': self.description,
+            'book_id': self.book_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
