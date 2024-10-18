@@ -12,6 +12,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id"), ondelete="CASCADE"), nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('books.id'), ondelete="CASCADE"), nullable=False)
     text = db.Column(db.Text, nullable=False)
+    score = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
@@ -24,7 +25,8 @@ class Post(db.Model):
             'user_id': self.user_id,
             'book_id': self.book_id,
             'text' : self.text,
-            'ups' : self.ups,
+            'score': self.score,
+            'ups': [{'user_id': up.user_id} for up in self.ups],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

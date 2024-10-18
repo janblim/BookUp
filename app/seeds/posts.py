@@ -8,6 +8,7 @@ def seed_posts():
         title='How has this book changed the way you live and work?',
         user_id = 1,
         book_id = 1,
+        score = 54,
         text = '''Hello everyone,
         I recently revisited Stephen Covey's classic book, The 7 Habits of Highly Effective People, and I wanted to share some thoughts and insights. This book has had a profound impact on many people, including myself, as it provides a holistic approach to personal and professional effectiveness.
 
@@ -22,6 +23,7 @@ def seed_posts():
         title='Was Star Wars influenced by Dune?',
         user_id = 6,
         book_id = 11,
+        score = 67,
         text = '''Hello everyone,
         The influence of Frank Herbert's Dune on George Lucas's Star Wars is a fascinating topic that reveals the interconnectedness of science fiction literature and cinema. Dune, published in 1965, introduced readers to a rich tapestry of political intrigue, ecological themes, and a messianic hero, all set against the backdrop of the desert planet Arrakis. Lucas drew on these elements to create his own galaxy, incorporating complex narratives about power and the consequences of resource control, seen in both the spice melange of Dune and the various sources of power within the Star Wars universe, such as the Force.
 
@@ -35,6 +37,7 @@ def seed_posts():
         title='Comparing the Recent Dune Movie to the Book',
         user_id = 4,
         book_id = 11,
+        score = 45,
         text = '''Hello everyone,
         As a long-time fan of Frank Herbert's Dune, I was excited to see Denis Villeneuve's recent film adaptation. Overall, I think it captures the essence of the book, but there are notable differences that impact the story and characters. First, the pacing of the film is much faster than the book, which allows for stunning visuals but sacrifices some of the intricate world-building and character development present in the text. In the book, Herbert meticulously builds the socio-political landscape of Arrakis, the significance of spice, and the deep-rooted tensions between different factions. While the film does touch on these themes, it does't explore them in the same detail.
 
@@ -47,6 +50,20 @@ def seed_posts():
     db.session.add(post1)
     db.session.add(post2)
     db.session.add(post3)
+
+    #posts programmatically generated
+
+    for book_id in range(1, 41): #3 posts
+        for user_id in range(2, 13):
+            post = Post(
+                title = 'Lorem Ipsum',
+                user_id = user_id,
+                book_id = book_id,
+                score = 7,
+                text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pretium arcu. In sit amet imperdiet risus, quis consectetur enim. Aenean et posuere nisi. Donec ut metus nec sapien porttitor laoreet ut molestie lacus. Sed molestie tortor vitae pharetra volutpat. Aenean nec erat nisl. Vestibulum eget maximus lacus. Suspendisse placerat, augue id fermentum fringilla, est tellus consectetur justo, in porttitor libero arcu ut dui. Donec arcu nulla, ullamcorper nec lacus et, lacinia aliquam nunc. Nullam venenatis facilisis diam. Donec cursus at lectus vel interdum. Duis facilisis nibh sed egestas malesuada. Proin turpis est, tempus eget quam in, placerat efficitur orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+            db.session.add(post)
+
+
     db.session.commit()
 
 

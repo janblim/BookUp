@@ -12,6 +12,7 @@ class Comment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete='CASCADE'), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id'), ondelete='CASCADE'), nullable=False)
     parent_comment_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('comments.id'), ondelete='CASCADE'), nullable=True)
+    score = db.Column(db.Integer, default=0)
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
@@ -25,8 +26,17 @@ class Comment(db.Model):
             'post_id': self.post_id,
             'text': self.text,
             'parent_comment_id': self.parent_comment_id,
-            'ups': self.ups,
-            'replies': self.replies,
+            'replies': [{
+                'id': reply.id,
+                'text': reply.text,
+                'user_id': reply.user_id,
+                'post_id': reply.post_id,
+                'parent_comment_id': reply.parent_comment_id,
+                'created_at': reply.created_at,
+                'updated_at': reply.updated_at
+            } for reply in self.replies],
+            'score': self.score,
+            'ups': [{'user_id': up.user_id} for up in self.ups],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

@@ -18,8 +18,9 @@ class Book(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
-    user = db.relationship("User", backref='books')
-    favBooks = db.relationship('FavBook', backref='books', lazy=True)
+    user = db.relationship("User", backref='book')
+    posts = db.relationship("Post", backref='book')
+    favBooks = db.relationship('FavBook', backref='book', lazy=True)
 
     def to_dict(self):
         return {
@@ -31,8 +32,8 @@ class Book(db.Model):
             'description': self.description,
             'genre': self.genre,
             'cover': self.cover,
-            'creator': self.user,
-            'favBooks': self.favBooks,
+            'fav_book_users': [{'user_id': favBook.user_id} for favBook in self.favBooks],
+            'posts': [{'id': post.id} for post in self.posts],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
