@@ -441,7 +441,7 @@ def seed_books():
             ''',
             'amazon': 'url',
             'genre': 'History',
-            'cover': 'hhttps://bookup-project.s3.us-east-2.amazonaws.com/The_Creature_from_Jekyll_Island.jpg'
+            'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Creature_from_Jekyll_Island.jpg'
             },
 
         "The Feeling Good Handbook":

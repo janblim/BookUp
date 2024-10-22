@@ -1,0 +1,24 @@
+.cover-box{
+    width: 230px;
+    height: 350px;
+    background-color: grey;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    border: solid lightgray 1px;
+}
+
+.cover-img:hover{
+    opacity: 0.1;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.cover-img {
+    width: 230px;
+    height: 350px;
+    border-radius: 5px
+}
+
+.card {
+    padding: 40px;
+}

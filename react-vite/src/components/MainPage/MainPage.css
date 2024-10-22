@@ -105,7 +105,7 @@
     object-fit: cover;
 }
 
-.bubble-img:hover {
-    filter: brightness(0.7);
-    object-fit: cover;
+#books-container {
+    display: flex;
+    flex-wrap: wrap;
 }

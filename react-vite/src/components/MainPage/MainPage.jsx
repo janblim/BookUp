@@ -1,25 +1,40 @@
 import './MainPage.css'
-import { getBooks } from '../../redux/books';
+import { getAllBooksThunk } from '../../redux/books';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { IoMdStar } from "react-icons/io";
-import { NavLink } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Card from '../Card';
 
 const MainPage = () => {
-    const products = useSelector(state => state.productsReducer.allProducts)
-    const allProducts = products ? Object.values(products) : [];
-
-
+    const books = useSelector(state => state.bookState.books)
+    const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
+
     useEffect(() => {
-        dispatch(getBooks())
+        dispatch(getAllBooksThunk())
         .then(()=> setIsLoaded(true));
     }, []);
 
     return isLoaded && (
-        <div>
-            Main Page
-        </div>
+            <div id='books-container'>
+                {books.map((book) =>
+                {
+                    return (
+                        <div key={`${book.id}-${book.title}`} className='card-holder'>
+                                <Card
+                                id={book.id}
+                                author={book.author}
+                                cover={book.cover}
+                                favBooks={book.fav_book_users}
+                                posts={book.posts}
+                                title={book.title}
+                                ></Card>
+                        </div>
+                    )
+                }
+                )
+                }
+
+            </div>
     )
 }
 
