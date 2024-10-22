@@ -22,16 +22,27 @@ const Card = ({cover, title, author, favBooks, posts, id}) => {
 
 return (
     <div className='card' onClick={(e)=> goToBook(e,id)}>
-        <div className='cover-box'>
-            <img className='cover-img' src={cover} alt={title} />
-        </div>
-        <span>
-            {numFav} <BsPersonHeart />
-        </span>
-        <span>
-            {numPosts} <BiConversation />
-        </span>
 
+        <div className='cover-box'>
+        <div id='info-box'>
+            <div id='title'>{title}</div>
+            <br></br>
+            <div id='author'>{author}</div>
+        </div>
+        </div>
+
+        <img className='cover-img' src={cover} alt={title} />
+
+        <div id='forum-info'>
+
+            <span>
+                {numFav} <BsPersonHeart />
+            </span>
+            <span>
+                {numPosts} <BiConversation />
+            </span>
+
+        </div>
     </div>
 )
 }
