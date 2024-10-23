@@ -4,6 +4,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BsPersonHeart } from "react-icons/bs";
 import { BiConversation } from "react-icons/bi";
+import { useSelector } from 'react-redux';
 
 
 
@@ -12,7 +13,9 @@ const Card = ({cover, title, author, favBooks, posts, id}) => {
 
     const navigate = useNavigate();
     const numFav = favBooks.length;
-    const numPosts = posts.length
+    const numPosts = posts.length;
+    const user = useSelector(state => state.session.user);
+
 
 
     const goToBook = (e, id) => {
@@ -24,11 +27,11 @@ return (
     <div className='card' onClick={(e)=> goToBook(e,id)}>
 
         <div className='cover-box'>
-        <div id='info-box'>
-            <div id='title'>{title}</div>
-            <br></br>
-            <div id='author'>{author}</div>
-        </div>
+            <div id='info-box'>
+                <div id='title'>{title}</div>
+                <br></br>
+                <div id='author'>{author}</div>
+            </div>
         </div>
 
         <img className='cover-img' src={cover} alt={title} />
@@ -42,6 +45,13 @@ return (
                 {numPosts} <BiConversation />
             </span>
 
+            {user && user.id ?
+
+                <span>
+                    <FaRegHeart/>
+                </span>
+
+            : null }
         </div>
     </div>
 )

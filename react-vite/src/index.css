@@ -1,1 +1,7 @@
 /* TODO: Add sitewide styles */
+
+body {
+    background: #2a2438;
+    color: whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

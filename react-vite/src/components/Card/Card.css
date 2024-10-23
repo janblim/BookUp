@@ -1,11 +1,11 @@
 .cover-box{
     width: 230px;
     height: 350px;
-    background-color: grey;
+    background-color: #5c5470;
     border-radius: 5px;
     display: flex;
     justify-content: center;
-    border: solid lightgray 1px;
+    border: solid #dbd8e3 1px;
 }
 
 .cover-img:hover{

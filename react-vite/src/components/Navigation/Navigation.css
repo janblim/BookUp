@@ -1,3 +1,38 @@
 .profile-dropdown {
   position: absolute;
 }
+#nav-bar {
+  border-bottom: 1px solid #5c5470;
+  font-size: 15pt;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+}
+
+#nav-buttons {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#home-button {
+  padding-left: 10px;
+  font-size: 30px;
+  font-family: 'Gill Sans', sans-serif;
+  text-decoration: none;
+  color: whitesmoke;
+  position: relative;
+  bottom: 10px;
+}
+
+#up-logo{
+  color: #d93900
+}
+
+#book-logo{
+  font-size: 40px;
+  position: relative;
+  top: 8px;
+  left: 2px;
+}
