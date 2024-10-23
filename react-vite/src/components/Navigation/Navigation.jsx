@@ -9,7 +9,8 @@ function Navigation() {
   return (
     <div id='nav-bar'>
       <div>
-          <NavLink id='home-button' to="/"> <PiArrowFatLinesUpFill id='up-logo'/> Book<IoMdBook id='book-logo'/>p</NavLink>
+          <NavLink id='home-button' to="/"> <PiArrowFatLinesUpFill id='up-logo'/>
+          Book<IoMdBook id='book-logo'/>p</NavLink>
       </div>
 
       <div id='nav-buttons'>

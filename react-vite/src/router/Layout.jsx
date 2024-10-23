@@ -23,6 +23,7 @@ export default function Layout() {
             {isLoaded && <Outlet />}
             <Modal />
         </div>
+        <Footer />
       </ModalProvider>
     </>
   );

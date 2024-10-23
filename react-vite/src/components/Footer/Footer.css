@@ -1,64 +1,18 @@
 /* Footer Container */
 .footer {
     display: flex;
-    margin-top: 75px;
-    padding: 30px auto;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     width: 100vw;
+    height: 200px;
     position: relative;
     bottom: 0;
-    background-color: rgb(241, 241, 241);
+    border-top: 1px solid #dbd8e3;
+    background-color: #2a2438;
 }
 
-/* Footer Image */
-.img-ftr {
-    width: 50%;
-    margin: 0 25%;
-}
-
-/* Left and Right Footer Sections */
-.left-ftr {
-    width: 45%;
-}
-
-.right-ftr {
-    display: flex;
-    width: 55%;
-}
-
-/* Right Footer List Items */
-.right-ftr li {
-    margin-top: 5px;
-}
-
-/* Footer Header */
-.footer-header {
-    font-weight: 600;
-    margin-bottom: 20px;
-}
-
-/* Right Footer Links */
-.right-ftr a {
-    margin-top: 5px;
-    color: black;
+.jan-links {
     text-decoration: none;
-}
-
-/* Social Media Icons */
-.social {
-    font-size: 20px;
-    color: black;
-}
-
-.social:hover {
-    color: rgb(128, 0, 0);
-}
-
-/* Social Media Section */
-.social-media {
-    margin: 5px 0 0 0;
-    display: flex;
-    gap: 3px;
-    justify-content: start;
-    flex-direction: column;
-    padding: 0;
+    color: whitesmoke
 }
