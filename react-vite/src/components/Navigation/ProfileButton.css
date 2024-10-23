@@ -1,0 +1,17 @@
+#user-pic {
+    height: 50px;
+    border-radius: 50%;
+}
+
+#profile-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#fa-user-circle{
+    font-size: 30pt;
+    color: whitesmoke;
+    position: relative;
+    right: 3px;
+}

@@ -2,4 +2,5 @@
 #books-container {
     display: flex;
     flex-wrap: wrap;
+    background: #352f44;
 }

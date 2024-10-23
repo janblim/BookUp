@@ -11,6 +11,7 @@ function Navigation() {
       <div>
           <NavLink id='home-button' to="/"> <PiArrowFatLinesUpFill id='up-logo'/> Book<IoMdBook id='book-logo'/>p</NavLink>
       </div>
+
       <div id='nav-buttons'>
 
         <span className='button'>

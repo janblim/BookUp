@@ -3,17 +3,25 @@
 }
 #nav-bar {
   border-bottom: 1px solid #5c5470;
+  height: 50px;
   font-size: 15pt;
   display: flex;
   justify-content: space-between;
+  position: sticky;
+  top: 0;
   padding: 10px;
-
+  z-index: 9999;
+  background: #2a2438;
 }
 
 #nav-buttons {
-  width: 300px;
+  width: 260px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding-right: 20px;
+
 }
 
 #home-button {
@@ -23,7 +31,7 @@
   text-decoration: none;
   color: whitesmoke;
   position: relative;
-  bottom: 10px;
+  bottom: 5px;
 }
 
 #up-logo{

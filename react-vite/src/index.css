@@ -1,7 +1,19 @@
 /* TODO: Add sitewide styles */
 
 body {
+    min-height: 100vh;
+    min-height: 100dvh;
     background: #2a2438;
     color: whitesmoke;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#layout{
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+*{
+    margin: 0;
+    padding: 0;
 }
