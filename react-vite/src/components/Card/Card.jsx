@@ -20,6 +20,7 @@ const Card = ({cover, title, author, favBooks, posts, id}) => {
 
     const goToBook = (e, id) => {
         e.stopPropagation();
+        window.scrollTo(0, 0);
         navigate(`/books/${id}`)
     }
 

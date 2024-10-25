@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import './SideBar.css'
 import { FaRegSmile } from "react-icons/fa";
+import { PiHouse } from "react-icons/pi";
 import { GrHomeRounded } from "react-icons/gr";
 import { FaRegHeart } from "react-icons/fa6";
 import { PiBooksBold } from "react-icons/pi";

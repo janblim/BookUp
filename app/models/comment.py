@@ -27,7 +27,10 @@ class Comment(db.Model):
             'text': self.text,
             'parent_comment_id': self.parent_comment_id,
             'score': self.score,
-            'ups': [{'user_id': up.user_id} for up in self.ups],
+            'ups': [{
+                'user_id': up.user_id,
+                'value': up.value
+            } for up in self.ups],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

@@ -26,7 +26,10 @@ class Post(db.Model):
             'book_id': self.book_id,
             'text' : self.text,
             'score': self.score,
-            'ups': [{'user_id': up.user_id} for up in self.ups],
+            'ups': [{
+                'user_id': up.user_id,
+                'value': up.value
+            } for up in self.ups],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }

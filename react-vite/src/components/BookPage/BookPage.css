@@ -86,6 +86,7 @@
 .post-text{
     color:rgb(179, 179, 179);
     max-height: 100px;
+    text-align: justify;
     overflow: hidden;
 }
 
@@ -114,15 +115,47 @@
 }
 
 .up{
-    padding-right: 2px
+    padding-right: 2px;
+}
+.up:hover{
+    cursor: pointer;
+    color: #fe7920;
 }
 
 .down{
     padding-left: 2px
 }
+.down:hover{
+    cursor: pointer;
+    color: #63c5fe
+}
+
+.ar-filled{
+    color: whitesmoke
+}
+
+#voted-up-btn{
+    background: #fe7920;
+}
+
+#voted-down-btn{
+    background: #63c5fe;
+}
+
+#post-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
 
 #op-name{
-    position: relative;
-    left: 10px;
-    bottom: 20px;
+    margin-left: 15px;
+}
+
+#name-date-box{
+    width: 1100px;
+    display: flex;
+    direction: row;
+    justify-content: space-between;
 }
