@@ -89,6 +89,14 @@
     overflow: hidden;
 }
 
+.post-button-box{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 130px;
+}
+
 .post-button{
     display: flex;
     flex-direction: row;
@@ -96,6 +104,8 @@
     align-items: center;
     padding: 10px;
     border-radius: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     background: #5c5470;
 }
 
@@ -109,4 +119,10 @@
 
 .down{
     padding-left: 2px
+}
+
+#op-name{
+    position: relative;
+    left: 10px;
+    bottom: 20px;
 }

@@ -6,6 +6,9 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { PiArrowFatUp } from "react-icons/pi";
 import { PiArrowFatDown } from "react-icons/pi";
+import { IoChatboxOutline } from "react-icons/io5";
+
+
 
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -69,11 +72,15 @@ const BookPage = () => {
                         <div className='post-container'>
 
                             <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic'/>
-                            <br></br>
+                            <span id='op-name'>{post.op_user.username}</span>
+
+                                <br></br>
                             <div className='post-title'>{post.title}</div>
-                            <br></br>
+                                <br></br>
                             <div className='post-text'>{post.text}</div>
+
                             <div className='post-button-box'>
+
                                 <div className='post-button' id='vote-button'>
 
                                     <span className='up'><PiArrowFatUp /></span>
@@ -84,6 +91,12 @@ const BookPage = () => {
                                     &nbsp;
                                     <span className='down'><PiArrowFatDown /></span>
 
+                                </div>
+
+                                <div className='post-button'>
+                                    <span><IoChatboxOutline /></span>
+                                    &nbsp;
+                                    <span>{post.comments.length}</span>
                                 </div>
 
                             </div>
