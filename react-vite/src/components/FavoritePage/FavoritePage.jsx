@@ -7,6 +7,7 @@ import Card from '../Card';
 
 const FavoritePage = () => {
     const books = useSelector(state => state.bookState.favBooks)
+    const user = useSelector(state => state.session.user)
     const [isLoaded, setIsLoaded] = useState(false);
     const dispatch = useDispatch();
 
@@ -20,6 +21,7 @@ const FavoritePage = () => {
                 {books.map(book =>
                 {
                     return (
+                        book.fav_book_users.find(favUser => favUser.user_id === user.id) ?
                         <div key={`${book.id}-${book.title}`} className='card-holder'>
                                 <Card
                                 id={book.id}
@@ -30,6 +32,8 @@ const FavoritePage = () => {
                                 title={book.title}
                                 ></Card>
                         </div>
+                        :
+                        null
                     )
                 }
                 )

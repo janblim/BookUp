@@ -41,7 +41,8 @@ def get_book_by_id(book_id):
 
 #Add to favorites by book ID
 
-@book_route.route('/favorites/<int:book_id>')
+@book_route.route('/favorites/<int:book_id>', methods=['POST'])
+@login_required
 def add_book_favorite(book_id):
     check_fav = db.session.query(FavBook).filter(FavBook.book_id == book_id, FavBook.user_id == current_user.id).first()
     check_book = db.session.query(Book).filter(Book.id == book_id).first()
@@ -57,7 +58,9 @@ def add_book_favorite(book_id):
         db.session.add(new_fav)
         db.session.commit()
 
+        book = db.session.query(Book).filter(Book.id == new_fav.book_id).first()
+
         new_fav.to_dict()
-        return {'message': 'Product added to favorites successfully', 'fav': new_fav.to_dict()}, 201
+        return {'message': 'Product added to favorites successfully', 'fav': book.to_dict()}, 201
     else:
         return {'error': 'Product is already added to favorites'}, 401

@@ -1,5 +1,6 @@
 import './MainPage.css'
 import { getAllBooksThunk } from '../../redux/books';
+import { getAllFavoritesThunk } from '../../redux/books';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Card from '../Card';
@@ -11,7 +12,8 @@ const MainPage = () => {
 
     useEffect(() => {
         dispatch(getAllBooksThunk())
-        .then(()=> setIsLoaded(true));
+        .then(() => dispatch(getAllFavoritesThunk()))
+        .then(() => setIsLoaded(true));
     }, []);
 
     return isLoaded && (

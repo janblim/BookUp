@@ -5,6 +5,7 @@ const GET_BOOKS = 'books/getAll'
 const GET_FAVORITES = 'books/favorites'
 const GET_BOOK_BY_ID = 'books/byId'
 const ADD_BOOK_FAV = 'favorites/bookId'
+const DELETE_FAV = 'favorites/delete'
 
 //Action creators
 const getAllBooks = (books) => ({
@@ -25,6 +26,12 @@ const addBookFavorite = (favorite) => ({
     type: ADD_BOOK_FAV,
     favorite
 })
+const deleteFavorite = (book_id) => ({
+    type: DELETE_FAV,
+    book_id
+})
+
+
 
 //Thunks
 
@@ -74,6 +81,19 @@ export const addBookFavoriteThunk = (book_id) => async(dispatch) => {
     return res.errors
 }
 
+export const deleteFavoriteThunk = (fav_id) => async(dispatch) => {
+    const res = await csrfFetch(`/api/favorites/${fav_id}`, {
+        method: 'DELETE',
+    })
+
+    if(res.ok){
+        const data = await res.json()
+        dispatch(deleteFavorite(fav_id))
+        return data
+    }
+    return res
+}
+
 //Initial state
 const initialState = {
     books: {},
@@ -104,6 +124,14 @@ function booksReducer(state = initialState, action){
         }
         case ADD_BOOK_FAV: {
             new_state = structuredClone(state)
+            new_state['favBooks'][action.favorite.fav.id] = action.favorite.fav
+            console.log(new_state)
+            return new_state
+        }
+        case DELETE_FAV: {
+            new_state = structuredClone(state)
+            delete new_state['favBooks'][action.fav_id]
+            console.log(new_state)
             return new_state
         }
     default:
