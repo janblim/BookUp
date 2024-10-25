@@ -10,6 +10,7 @@
 
 .cover-img:hover{
     opacity: 0.1;
+    cursor: pointer;
     transition: opacity 0.3s ease-in-out;
 }
 
@@ -50,5 +51,19 @@
 
 #forum-info{
     position: relative;
-    bottom: 350px;
+    bottom: 345px;
+}
+
+.data-box {
+    padding: 7px;
+}
+
+.heart {
+    font-size: 15pt;
+    position: relative;
+    left: 110px;
+}
+
+.heart:hover{
+    cursor: pointer;
 }

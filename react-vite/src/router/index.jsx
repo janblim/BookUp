@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import MainPage from '../components/MainPage'
+import BookPage from '../components/BookPage';
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignupFormPage />,
       },
+      {
+        path: "books/:book_id",
+        element: <BookPage />
+      }
     ],
   },
 ]);

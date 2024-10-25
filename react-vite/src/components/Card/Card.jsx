@@ -1,5 +1,7 @@
 import './Card.css'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BsPersonHeart } from "react-icons/bs";
@@ -16,17 +18,17 @@ const Card = ({cover, title, author, favBooks, posts, id}) => {
     const numPosts = posts.length;
     const user = useSelector(state => state.session.user);
 
-
-
     const goToBook = (e, id) => {
         e.stopPropagation();
-        navigate('/')
+        navigate(`/books/${id}`)
     }
 
-return (
-    <div className='card' onClick={(e)=> goToBook(e,id)}>
 
-        <div className='cover-box'>
+
+return (
+    <div className='card' >
+
+        <div className='cover-box' >
             <div id='info-box'>
                 <div id='title'>{title}</div>
                 <br></br>
@@ -34,22 +36,23 @@ return (
             </div>
         </div>
 
-        <img className='cover-img' src={cover} alt={title} />
+        <img className='cover-img' src={cover} alt={title} onClick={(e)=> goToBook(e,id)}/>
 
         <div id='forum-info'>
 
-            <span>
+            <span className='data-box'>
                 {numFav} <BsPersonHeart />
             </span>
-            <span>
+            <span className='data-box'>
                 {numPosts} <BiConversation />
             </span>
 
             {user && user.id ?
 
-                <span>
-                    <FaRegHeart/>
-                </span>
+            favBooks.find( item => item.user_id === user.id) ?
+                <span className='heart'><FaHeart/></span>
+                :
+                <span className='heart'><FaRegHeart/></span>
 
             : null }
         </div>

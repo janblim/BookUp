@@ -18,6 +18,12 @@
 .sidebar-close{
     padding: 5px;
     width: 50px;
+    position: sticky;
+    top: 72px;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
 }
 
 #sidebar ul{
@@ -87,10 +93,10 @@
     transition: 200ms ease;
 }
 .menu-arrow{
-    font-size: 20pt;
+    font-size: 25pt;
 }
 .menu-arrow-rotate{
-    font-size: 20pt;
+    font-size: 25pt;
     rotate: 180deg;
 }
 

@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './SideBar.css'
 import { FaRegSmile } from "react-icons/fa";
 import { GrHomeRounded } from "react-icons/gr";
@@ -16,6 +17,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 const SideBar = () => {
     const [showSubMenu, setShowSubMenu] = useState(false)
     const [sideBarClose, setSideBarClose] = useState(false)
+    const user = useSelector(state => state.session.user);
 
     const toggleSubMenu = (e) => {
         e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -45,12 +47,17 @@ const SideBar = () => {
                 <li>
                     <NavLink to='/'><GrHomeRounded className='icon'/>Home</NavLink>
                 </li>
-                <li>
-                    <NavLink to='/friends'><FaRegSmile className='icon'/>Friends</NavLink>
-                </li>
-                <li>
-                    <NavLink to='/favorites'><FaRegHeart className='icon'/>Favorites</NavLink>
-                </li>
+                { user && user.id ?
+                <>
+                    <li>
+                        <NavLink to='/friends'><FaRegSmile className='icon'/>Friends</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/favorites'><FaRegHeart className='icon'/>Favorites</NavLink>
+                    </li>
+                </>
+                :
+                null}
                 <li>
                     <button onClick={(e)=>toggleSubMenu(e)} class='dropdown-btn'>
                         <PiBooksBold className='icon'/>

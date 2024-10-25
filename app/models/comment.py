@@ -26,15 +26,6 @@ class Comment(db.Model):
             'post_id': self.post_id,
             'text': self.text,
             'parent_comment_id': self.parent_comment_id,
-            'replies': [{
-                'id': reply.id,
-                'text': reply.text,
-                'user_id': reply.user_id,
-                'post_id': reply.post_id,
-                'parent_comment_id': reply.parent_comment_id,
-                'created_at': reply.created_at,
-                'updated_at': reply.updated_at
-            } for reply in self.replies],
             'score': self.score,
             'ups': [{'user_id': up.user_id} for up in self.ups],
             'created_at': self.created_at,
