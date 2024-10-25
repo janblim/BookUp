@@ -23,6 +23,13 @@ const Card = ({cover, title, author, favBooks, posts, id}) => {
         navigate(`/books/${id}`)
     }
 
+    const handleDelete = (e) => {
+        e.preventDefault();
+    }
+
+    const handleAdd = (e) => {
+        e.preventDefault()
+    }
 
 
 return (

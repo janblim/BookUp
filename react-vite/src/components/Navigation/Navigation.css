@@ -15,7 +15,7 @@
 }
 
 #nav-buttons {
-  width: 260px;
+  width: 290px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,4 +43,14 @@
   position: relative;
   top: 8px;
   left: 2px;
+}
+
+#create-book{
+  padding: 10px;
+}
+
+#create-book:hover{
+  cursor: pointer;
+  background-color: #5c5470;
+  border-radius: 20px;
 }

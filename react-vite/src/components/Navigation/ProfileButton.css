@@ -1,8 +1,3 @@
-#user-pic {
-    height: 50px;
-    border-radius: 50%;
-}
-
 #profile-button{
     background: none;
     border: none;
@@ -14,4 +9,9 @@
     color: whitesmoke;
     position: relative;
     right: 3px;
+}
+
+.user-pic {
+    height: 50px;
+    border-radius: 50%;
 }

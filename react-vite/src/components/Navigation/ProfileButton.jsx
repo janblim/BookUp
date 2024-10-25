@@ -45,7 +45,7 @@ function ProfileButton() {
       <button id='profile-button' onClick={toggleMenu}>
 
         {user ? (
-            <img id='user-pic' src={user.picture} alt={user.username}/>
+            <img className='user-pic' src={user.picture} alt={user.username}/>
         ) : (
             <FaUserCircle id='fa-user-circle'/>
         )

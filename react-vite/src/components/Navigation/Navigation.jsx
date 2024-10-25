@@ -15,7 +15,7 @@ function Navigation() {
 
       <div id='nav-buttons'>
 
-        <span className='button'>
+        <span id='create-book'>
           + Create New Book
         </span>
 

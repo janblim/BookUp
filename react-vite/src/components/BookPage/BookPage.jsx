@@ -4,6 +4,9 @@ import { BsPersonHeart } from "react-icons/bs";
 import { BiConversation } from "react-icons/bi";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
+import { PiArrowFatUp } from "react-icons/pi";
+import { PiArrowFatDown } from "react-icons/pi";
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -16,7 +19,6 @@ const BookPage = () => {
     const favBooks = book.fav_book_users || []
     const posts = book.posts
 
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -28,7 +30,7 @@ const BookPage = () => {
 
 
     return isLoaded ? (
-        <>
+        <div id='page-container'>
             <div id='book-info-container'>
                 <div id='left-container'>
                     <img id='book-cover-img' src={book.cover} alt={book.title} />
@@ -44,8 +46,6 @@ const BookPage = () => {
                             <button> Add to Favorite <FaRegHeart/></button>
                     : null
                     }
-
-
                     <span>{favBooks.length} <BsPersonHeart /></span>
                     <span>{Object.keys(posts).length} <BiConversation /></span>
 
@@ -57,11 +57,47 @@ const BookPage = () => {
                 </div>
             </div>
 
-            <div>
 
+
+
+            <div className='posts-container'>
+
+                { posts.length ?
+
+                    posts.map(post => (
+
+                        <div className='post-container'>
+
+                            <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic'/>
+                            <br></br>
+                            <div className='post-title'>{post.title}</div>
+                            <br></br>
+                            <div className='post-text'>{post.text}</div>
+                            <div className='post-button-box'>
+                                <div className='post-button' id='vote-button'>
+
+                                    <span className='up'><PiArrowFatUp /></span>
+                                    &nbsp;
+                                    <span>
+                                        {post.ups.length}
+                                    </span>
+                                    &nbsp;
+                                    <span className='down'><PiArrowFatDown /></span>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    ))
+
+                        :
+                    <div className='no-post'>
+                        No Posts Yet. Be the first to Post!
+                    </div>
+                }
             </div>
-
-        </>
+        </div>
     ) :
     (
             <h1 className="loading">loading...</h1>
