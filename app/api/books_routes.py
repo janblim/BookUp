@@ -38,3 +38,26 @@ def get_book_by_id(book_id):
     book_dict['posts'] = posts_list
 
     return {'Book': book_dict}, 200
+
+#Add to favorites by book ID
+
+@book_route.route('/favorites/<int:book_id>')
+def add_book_favorite(book_id):
+    check_fav = db.session.query(FavBook).filter(FavBook.book_id == book_id, FavBook.user_id == current_user.id).first()
+    check_book = db.session.query(Book).filter(Book.id == book_id).first()
+
+    if not check_book:
+        return {'error': 'Book does not exist'}, 404
+
+    if not check_fav:
+        new_fav = FavBook(
+            user_id = current_user.id,
+            book_id = book_id
+        )
+        db.session.add(new_fav)
+        db.session.commit()
+
+        new_fav.to_dict()
+        return {'message': 'Product added to favorites successfully', 'fav': new_fav.to_dict()}, 201
+    else:
+        return {'error': 'Product is already added to favorites'}, 401

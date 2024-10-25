@@ -13,7 +13,7 @@ def seed_books():
             The latter four habits—Think Win-Win, Seek First to Understand, Then to Be Understood, Synergize, and Sharpen the Saw—center around interpersonal effectiveness and continuous growth. Covey emphasizes the importance of collaboration and empathetic communication, encouraging a mindset that seeks mutual benefits in relationships and values diverse perspectives. The final habit promotes self-renewal in physical, mental, emotional, and spiritual dimensions, underscoring that personal effectiveness is a continuous journey of growth and improvement. Together, these habits provide a holistic approach to achieving success and fulfillment in both personal and professional spheres.
             ''',
             'amazon': 'url',
-            "genre": 'Self Help',
+            "genre_id": 5,
             "cover": 'https://bookup-project.s3.us-east-2.amazonaws.com/7_Habits.jpg'
             }
         ,
@@ -27,7 +27,7 @@ def seed_books():
             The novel explores themes of totalitarianism, psychological manipulation, and the erosion of individuality. Orwell vividly depicts a world where language is distorted through Newspeak, history is rewritten to maintain the Party's dominance, and citizens are constantly monitored through telescreens. As Winston's rebellion intensifies, he discovers the harsh realities of living in a society devoid of freedom, culminating in his tragic confrontation with the Party's relentless power. 1984 serves as a powerful warning about the dangers of unchecked authority, the manipulation of truth, and the fragility of personal autonomy, making it a timeless critique of oppressive regimes.
             ''',
             'amazon': 'url',
-            "genre": 'Science Fiction',
+            "genre_id": 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/1984.jpg'
             },
 
@@ -41,7 +41,7 @@ def seed_books():
             As the story unfolds, Bernard's dissatisfaction leads him to seek out the "Savage Reservation," where he encounters John, a young man born outside the confines of the World State. John's contrasting perspective on life and values poses a profound challenge to the principles of the World State. Through his interactions with Bernard and Lenina, John confronts the emptiness of a society that sacrifices genuine emotions, art, and family for the sake of stability and pleasure. Brave New World serves as a cautionary tale about the potential consequences of technological advancement, social engineering, and the loss of individuality, ultimately questioning the true meaning of happiness and freedom in a conformist world.
             ''',
             'amazon': 'url',
-            'genre': 'Science Fiction',
+            'genre_id': 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/A_Brave_New_World.jpg'
             },
 
@@ -55,7 +55,7 @@ def seed_books():
             Throughout the essay, Woolf advocates for the need for women to reclaim their voice and assert their presence in literature. She critiques the patriarchal structures that have dominated the literary canon and calls for a reevaluation of how women's experiences and contributions are valued. Woolf's work is a rallying cry for gender equality, emphasizing that a woman's ability to write is intimately connected to her economic and social freedom. By blending personal reflection with broader feminist theory, A Room of One's Own remains a seminal text in feminist literature, inspiring generations of women to seek independence and creative expression in their lives.
             ''',
             'amazon': 'url',
-            'genre': 'Feminism',
+            'genre_id': 7,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/A_Room_of_Ones_Own.jpg'
             },
 
@@ -69,7 +69,7 @@ def seed_books():
             The Book of Mormon testifies that Jesus Christ as the Savior of all humanity, revealing His visit to the Americas after His resurrection, where He teaches the people and establishes His gospel among them. The text explores themes of morality, social justice, and the consequences of pride and wickedness, ultimately conveying a message of hope and divine love. Through its complex narrative and doctrinal teachings, The Book of Mormon serves as a companion to the Bible, inviting readers to explore its messages about faith, repentance, and the quest for spiritual truth. As a foundational scripture for millions of believers, it continues to influence the beliefs and practices of members of The Church of Jesus Christ of Latter-day Saints and others who find deep meaning in its teachings.
             ''',
             'amazon': 'url',
-            'genre': 'History',
+            'genre_id': 3,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Brances_Over_the_Wall.jpg'
             },
 
@@ -84,7 +84,7 @@ def seed_books():
             Through a non-linear narrative filled with colorful characters and absurd scenarios, Heller deftly illustrates the madness of war and the moral dilemmas faced by individuals in the face of dehumanizing institutions. The novel employs satire to highlight the hypocrisy of military and political authority, as well as the absurdity of trying to find meaning in a chaotic world. With its sharp wit and poignant observations, Catch-22 remains a powerful commentary on the futility of war and the struggles of the individual against an oppressive system, resonating with readers across generations. Its exploration of existential themes and the quest for agency amid overwhelming odds has solidified its place as a modern literary classic.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Catch_22.jpg'
             },
 
@@ -98,7 +98,7 @@ def seed_books():
             The novel intricately explores themes of destiny, power, and transformation, as Leto II embarks on a path that will irrevocably change him and the future of humanity. Through the introduction of new characters and the deepening of existing relationships, Herbert delves into the complexities of leadership and the struggle for control over one's fate. The desert landscape of Arrakis continues to play a pivotal role, serving as both a physical and symbolic backdrop for the characters' journeys. Children of Dune ultimately examines the consequences of prescience and the sacrifices required for survival, making it a compelling continuation of the Dune saga and a thought-provoking exploration of human potential and the challenges of governance.
             ''',
             'amazon': 'url',
-            'genre': 'Science Fiction',
+            'genre_id': 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Childrend_of_dune.jpg'
             },
 
@@ -113,7 +113,7 @@ def seed_books():
             The book highlights the transformative power of love when combined with mindfulness and understanding. Thich Nhat Hanh discusses various forms of love, including self-love, familial love, and romantic love, and how they can be cultivated through mindful practices such as deep breathing and meditation. He also addresses common obstacles to love, such as fear, anger, and misunderstanding, offering practical insights on how to overcome these barriers. Cultivating the Mind of Love serves as both a spiritual guide and a practical handbook, encouraging readers to embrace love as an active practice that can lead to greater harmony in their lives and the world around them. Through his gentle and compassionate approach, Thich Nhat Hanh inspires readers to cultivate a mind of love that fosters connection, understanding, and joy.
             ''',
             'amazon': 'url',
-            'genre': 'Self Help',
+            'genre_id': 5,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Cultivating_the_mind_of_love.jpg'
             },
 
@@ -127,7 +127,7 @@ def seed_books():
             The novel explores themes of fear, desire, and the clash between modernity and ancient superstition, effectively capturing the anxieties of Victorian society. As the characters, including Dr. John Seward, Arthur Holmwood, and Professor Abraham Van Helsing, unite to confront Dracula, they delve into the darker aspects of human nature and the monstrous potential within. Stoker's vivid imagery and masterful use of suspense create an atmosphere of dread and fascination, making Dracula a cornerstone of Gothic literature. The novel not only established the archetype of the vampire in popular culture but also provoked discussions about sexuality, immigration, and the struggle between good and evil, leaving an enduring impact on literature and horror fiction.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Dracula.jpg'
             },
 
@@ -141,7 +141,7 @@ def seed_books():
             In Dune Messiah, Paul's internal conflict deepens as he struggles with the consequences of his own actions and the violent jihad waged in his name. The narrative introduces new characters, including the enigmatic Scytale, a Face Dancer sent by the Bene Tleilax, who plots against Paul, and Chani, Paul's beloved wife, who faces her own challenges as the mother of his children. As Paul's prescient visions become increasingly troubling, he grapples with his identity and the implications of his role as the Kwisatz Haderach. The novel ultimately serves as a meditation on the cost of power and the complexities of destiny, posing critical questions about free will and the nature of leadership. Through its intricate plot and philosophical underpinnings, Dune Messiah deepens the exploration of the Dune universe, setting the stage for further developments in the epic saga.
             ''',
             'amazon': 'url',
-            'genre': 'Science Fiction',
+            'genre_id': 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Dune_Messiah.jpg'
             },
 
@@ -156,7 +156,7 @@ def seed_books():
             As Paul navigates this perilous landscape, he grapples with his burgeoning abilities and the weight of prophecy, discovering that he may be the Kwisatz Haderach, a superbeing foretold to bring balance to the universe. The novel intricately weaves themes of ecology, religion, and the complex interplay between politics and power, illustrating how the control of spice dictates the fates of entire worlds. Through Paul's journey of self-discovery and transformation, Herbert explores profound questions about destiny, leadership, and the consequences of human ambition. Dune is celebrated not only for its rich world-building and complex characters but also for its commentary on environmentalism and the human condition, establishing it as a cornerstone of the science fiction genre.
             ''',
             'amazon': 'url',
-            'genre': 'Science Fiction',
+            'genre_id': 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Dune.jpg'
             },
 
@@ -170,7 +170,7 @@ def seed_books():
             The collection addresses various themes, including love, friendship, aesthetics, and the nature of happiness. Wilde's epigrams often reveal the superficiality of social conventions and challenge prevailing attitudes toward morality and identity. His ability to distill complex ideas into pithy phrases has cemented his reputation as one of the greatest wit-masters in English literature. Epigrams not only captures Wilde's unique voice and perspective but also serves as a testament to his enduring influence on literature and culture. Readers are invited to appreciate the elegance and depth of his observations, which resonate across time, reminding us of the timeless relevance of humor and insight in understanding the human condition.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Epigrams.jpg'
             },
 
@@ -184,7 +184,7 @@ def seed_books():
             Bradbury's novel explores themes of censorship, the power of knowledge, and the consequences of a society that prioritizes entertainment over critical thought. Through vivid imagery and compelling characters, Fahrenheit 451 critiques the dangers of authoritarianism and the loss of intellectual freedom. Montag's transformation from a conforming fireman to a questioning individual reflects the struggle for personal enlightenment in a world that discourages independent thought. The novel serves as a powerful warning against the perils of complacency and the erosion of civil liberties, making it a timeless and thought-provoking exploration of the importance of literature and the human spirit's resilience against oppression.
             ''',
             'amazon': 'url',
-            'genre': 'Science Fiction',
+            'genre_id': 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/fahrenheit_451.jpg'
             },
 
@@ -198,7 +198,7 @@ def seed_books():
             Zinn's work challenges conventional views of American progress and democracy, asserting that true freedom and justice have often come at the expense of the disenfranchised. He critiques the actions of prominent figures and governments, shedding light on the darker aspects of U.S. history, such as imperialism, racism, and economic exploitation. Through this lens, A People's History of the United States encourages readers to reconsider the foundations of American society and the narratives that shape it. Zinn's engaging writing and commitment to social justice make the book a significant contribution to historical scholarship and a powerful tool for understanding the complexities of the American experience, inspiring readers to reflect on the ongoing struggles for equality and justice.
             ''',
             'amazon': 'url',
-            'genre': 'History',
+            'genre_id': 3,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/A_Peoples_History_of_the_US.jpg'
             },
 
@@ -212,7 +212,7 @@ def seed_books():
             The book is structured around four main themes: the anxiety of faith, the nature of sacrifice, the distinction between the ethical and the religious, and the concept of the "leap of faith." Kierkegaard's writing is rich with philosophical inquiry, as he challenges readers to consider the nature of true faith and the sacrifices it may demand. He contrasts the ethical life, which adheres to societal norms and obligations, with the religious life, which requires a personal commitment that transcends these norms. Fear and Trembling invites readers to confront the complexities of belief, the nature of choice, and the often uncomfortable demands of faith, ultimately asserting that true faith involves a deep, personal commitment that can lead to both profound fulfillment and existential dread. Through this exploration, Kierkegaard lays the groundwork for modern existential thought, emphasizing the importance of individual choice and the subjective experience of faith.
             ''',
             'amazon': 'url',
-            'genre': 'Philosophy',
+            'genre_id': 4,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Fear_and_Trembling.jpg'
             },
 
@@ -226,7 +226,7 @@ def seed_books():
             The book is structured around the thesis that the availability of domesticable plants and animals, along with the geographic factors that influenced the spread of these resources, laid the groundwork for unequal societal development. Diamond discusses how the introduction of guns and steel technology, as well as the spread of germs due to agricultural practices, facilitated European expansion and conquest in the Americas and beyond. By dissecting the interplay of environmental, biological, and cultural factors, Guns, Germs, and Steel challenges traditional narratives of history that focus solely on racial or cultural superiority. Diamond's work not only provides a comprehensive overview of human history but also encourages readers to reconsider the underlying causes of inequality and the complex web of factors that have shaped our world, prompting discussions about how these insights might inform contemporary issues of development and globalization.
             ''',
             'amazon': 'url',
-            'genre': 'History',
+            'genre_id': 3,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Guns_germs_and_Steel.jpg'
             },
 
@@ -240,7 +240,7 @@ def seed_books():
             Atwood's novel is a powerful exploration of the dangers of extremism and the erosion of personal freedoms in the face of authoritarianism. The book critiques patriarchal structures and the objectification of women, portraying how quickly societal norms can shift towards oppression. As Offred reminisces about her past life, including her family and the freedom she once enjoyed, the stark contrast with her present situation serves as a chilling reminder of the fragility of rights and liberties. The Handmaid's Tale resonates strongly in contemporary discussions about women's rights, reproductive freedom, and the impacts of religious fundamentalism. Atwood's chilling narrative, coupled with her keen social critique, makes the novel a thought-provoking exploration of identity, resistance, and the human spirit's resilience against tyranny.
             ''',
             'amazon': 'url',
-            'genre': 'Feminism',
+            'genre_id': 7,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/handmaids_tale.jpg'
             },
 
@@ -254,7 +254,7 @@ def seed_books():
             The story primarily follows the character of Miles Teg, a military genius and descendant of the Atreides lineage, as he becomes embroiled in the conflict between the Bene Gesserit and the Honored Matres. Teg's strategic prowess is pivotal in the sisterhood's quest to preserve their traditions and navigate the complexities of a universe filled with dangers and shifting allegiances. Throughout Heretics of Dune, Herbert explores themes of power, identity, and the cyclical nature of history, emphasizing the delicate balance between preservation and change. The novel is rich with philosophical undertones, examining the consequences of leadership and the struggle for survival in a rapidly evolving society. As the characters confront their past and seek to shape the future, Herbert crafts a compelling narrative that continues to expand the intricate mythology of the Dune universe.
             ''',
             'amazon': 'url',
-            'genre': 'Science Fiction',
+            'genre_id': 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Heretics_of_dune.jpg'
             },
 
@@ -268,7 +268,7 @@ def seed_books():
             Carnegie's insights are illustrated through numerous anecdotes and real-life examples, making the concepts accessible and relatable. He provides readers with actionable strategies for navigating social situations, whether in personal or professional contexts, and stresses the significance of positive reinforcement over criticism. The book's enduring popularity stems from its timeless wisdom, which transcends cultural and generational boundaries. How to Win Friends and Influence People not only equips readers with the tools to enhance their social skills but also inspires a greater sense of compassion and understanding, fostering deeper connections with others. Its emphasis on genuine human interaction continues to resonate in today's increasingly digital and impersonal world, making it a valuable guide for anyone looking to improve their social effectiveness.
             ''',
             'amazon': 'url',
-            'genre': 'Self Help',
+            'genre_id': 5,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/How_to_Win_Friends_and_Influence_People.jpg'
             },
 
@@ -282,7 +282,7 @@ def seed_books():
             In Letters from a Stoic, Seneca not only provides philosophical insights but also addresses the challenges of human emotion and the complexities of moral behavior. He encourages Lucilius—and by extension, his readers—to cultivate resilience, practice mindfulness, and develop a sense of detachment from material possessions. Throughout the letters, Seneca underscores the significance of friendship, the value of solitude, and the importance of engaging in philosophical reflection as tools for personal growth. His teachings resonate with contemporary audiences, as they address universal themes of self-improvement and the search for inner peace. Ultimately, Letters from a Stoic serves as both a philosophical guide and a heartfelt exploration of the Stoic ideal, reminding readers of the enduring relevance of Stoic thought in navigating the challenges of life.
             ''',
             'amazon': 'url',
-            'genre': 'Philosophy',
+            'genre_id': 4,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Letters_From_A_Stoic.jpg'
             },
 
@@ -297,7 +297,7 @@ def seed_books():
             Throughout Man's Search for Meaning, Frankl emphasizes the importance of individual choice and the ability to maintain a sense of purpose despite overwhelming adversity. He illustrates how some individuals could endure unimaginable suffering by finding meaning in their experiences, whether through love for family, personal goals, or spiritual beliefs. Frankl's insights have had a lasting impact on psychology and philosophy, as he highlights the resilience of the human spirit and the significance of personal responsibility in shaping one's destiny. This seminal work not only provides a compelling narrative of survival but also serves as a guide for readers seeking to understand their own lives and find meaning in the face of challenges. Ultimately, Frankl's message is one of hope and empowerment, reminding us that even in the darkest of times, we have the capacity to choose our attitudes and find purpose in our existence.
             ''',
             'amazon': 'url',
-            'genre': 'Self Help',
+            'genre_id': 5,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Mans_Search_for_Meaning.jpg'
             },
 
@@ -311,7 +311,7 @@ def seed_books():
             In Meditations, Aurelius articulates key Stoic principles, such as the significance of maintaining a moral character and acting in accordance with reason. He explores themes of compassion, humility, and the interconnectedness of all people, highlighting the value of accepting challenges as opportunities for growth. His reflections are imbued with a sense of mindfulness, encouraging individuals to live authentically and with purpose. The timeless wisdom found in Meditations resonates deeply with modern readers, offering practical advice for navigating life's challenges and cultivating a sense of tranquility amidst chaos. Ultimately, the work serves not only as a philosophical treatise but also as a source of inspiration for those seeking to develop a resilient and virtuous life.
             ''',
             'amazon': 'url',
-            'genre': 'Philosophy',
+            'genre_id': 4,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Meditations.jpg'
             },
 
@@ -325,7 +325,7 @@ def seed_books():
             In addition to personal anecdotes, Memories, Dreams, Reflections delves into Jung's theoretical contributions, providing insights into concepts such as individuation, the persona, and the shadow. Jung shares his own dreams and visions, illustrating how these experiences contributed to his psychological framework. The book serves as a testament to Jung's belief in the importance of self-discovery and the integration of the unconscious in achieving personal wholeness. His reflections encourage readers to explore their own inner worlds, fostering a deeper understanding of themselves and their place in the universe. Ultimately, this work not only illuminates Jung's life and thought but also offers a rich tapestry of ideas that continue to resonate within the fields of psychology, spirituality, and personal development.
             ''',
             'amazon': 'url',
-            'genre': 'Psychology',
+            'genre_id': 6,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Memories_Dreams_Reflections.jpg'
             },
 
@@ -339,7 +339,7 @@ def seed_books():
             The novel is renowned for its rich character development, particularly that of Elizabeth and Darcy, who undergo significant growth throughout the story. Elizabeth's sharp wit and independence challenge societal norms, while Darcy's journey towards humility and understanding reflects a broader commentary on the importance of character over social status. As the plot unfolds, misunderstandings and societal pressures create tension and conflict, leading to moments of revelation and transformation. Pride and Prejudice remains a timeless exploration of human relationships, highlighting the importance of self-awareness, empathy, and the need to look beyond first impressions. Austen's masterful storytelling, combined with her incisive critique of social mores, has secured the novel's place as a beloved literary work, resonating with readers across generations.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Pride_and_prejudice.jpg'
             },
 
@@ -354,7 +354,7 @@ def seed_books():
             Throughout the novel, Hesse explores themes of self-discovery, the search for enlightenment, and the nature of existence. Siddhartha encounters a range of characters who influence his journey, including the Buddha, whom he ultimately respects but chooses not to follow. Instead, he learns that true wisdom comes from personal experience rather than doctrine. The narrative emphasizes the importance of listening to one's inner voice and finding one's own path. Through Siddhartha's experiences, Hesse illustrates the idea that enlightenment is not a destination but a continuous journey of growth and self-awareness. Siddhartha remains a timeless exploration of spirituality and the human experience, resonating with readers seeking to understand their place in the world and the nature of fulfillment.
             ''',
             'amazon': 'url',
-            'genre': 'Philosophy',
+            'genre_id': 4,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Siddartha.jpg'
             },
 
@@ -368,7 +368,7 @@ def seed_books():
             In addition to his critique of pseudoscience, Sagan passionately advocates for scientific literacy as a means of empowering individuals and fostering a more informed society. He discusses the scientific method, the importance of skepticism, and the value of inquiry, urging readers to adopt a curious and open-minded approach to the world around them. Sagan also reflects on the human capacity for wonder and the need to understand our place in the cosmos, encouraging readers to appreciate the beauty of scientific discovery while remaining vigilant against the seductive allure of unreasoned beliefs. The Demon-Haunted World serves as both a defense of science and a clarion call for a more rational and scientifically informed society, inspiring readers to cultivate a sense of inquiry and skepticism that can illuminate the darkest corners of human thought and culture.
             ''',
             'amazon': 'url',
-            'genre': 'Science',
+            'genre_id': 8,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Demon_Haunted_World.jpg'
             },
 
@@ -382,7 +382,7 @@ def seed_books():
             Vonnegut employs a mix of humor, irony, and poignant reflection to critique the glorification of war and the futility of violence. The novel's iconic phrase, "so it goes," punctuates moments of death and destruction, highlighting the inevitability of mortality and the randomness of life. As Billy navigates his experiences, including encounters with extraterrestrial beings known as Tralfamadorians, the narrative delves into themes of fatalism, free will, and the cyclical nature of time. Slaughterhouse-Five stands as a powerful commentary on the human condition, urging readers to confront the impacts of war and the complexities of existence. Through its innovative structure and profound insights, the novel remains a significant work in American literature, resonating with audiences who grapple with the consequences of conflict and the search for meaning in an often chaotic world.
             ''',
             'amazon': 'url',
-            'genre': 'Science Fiction',
+            'genre_id': 2,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/slaughterhouse_five.jpg'
             },
 
@@ -397,7 +397,7 @@ def seed_books():
             Throughout the novel, Morrison addresses the impact of history and trauma on individual lives and relationships. Milkman's exploration leads him back to his ancestral home in Pennsylvania, where he discovers the rich legacy of his ancestors, particularly the stories surrounding his grandfather, Solomon, who is said to have flown back to Africa. This journey not only helps Milkman understand his familial ties but also prompts deeper reflections on the nature of belonging and the connection to one's roots. Song of Solomon is celebrated for its lyrical prose and profound insights into the African American experience, as well as its exploration of universal themes of love, loss, and the quest for meaning. Through Milkman's transformative journey, Morrison illuminates the importance of understanding one's heritage in the pursuit of personal and collective identity.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Song-of-Solomon.jpg'
             },
 
@@ -411,7 +411,7 @@ def seed_books():
             Mitchell's Tao Te Ching invites readers to reflect on the interconnectedness of all things and the significance of embracing life's mysteries rather than seeking to control them. The work encourages a deep appreciation for simplicity and spontaneity, challenging conventional notions of power and success. Through its profound aphorisms and evocative imagery, the text encourages individuals to cultivate inner stillness and awareness, allowing them to align with the rhythms of nature and the universe. Tao Te Ching remains a beloved and influential work, resonating with readers seeking spiritual insight and guidance in navigating the complexities of life, making Mitchell's translation a cherished rendition of this classic philosophical masterpiece.
             ''',
             'amazon': 'url',
-            'genre': 'Philosophy',
+            'genre_id': 4,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Tao_Te_Ching.jpg'
             },
 
@@ -426,7 +426,7 @@ def seed_books():
             Walker's novel is celebrated for its rich character development and exploration of themes such as love, empowerment, and the quest for self-identity. The title itself, referring to the color purple, symbolizes the beauty and richness of life that Celie learns to embrace despite her suffering. The book also addresses broader social issues, including gender inequality and the intersectionality of race and class, making it a seminal work in feminist and African American literature. Through its heartfelt storytelling and authentic voices, The Color Purple resonates with readers by illustrating the transformative power of resilience, love, and sisterhood. Ultimately, Walker's novel serves as a testament to the strength of the human spirit in the face of adversity, inspiring generations to advocate for justice and equality.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_color_purple.jpg'
             },
 
@@ -440,7 +440,7 @@ def seed_books():
             Griffin critiques the Federal Reserve's impact on the American economy, suggesting that its policies lead to inflation, economic instability, and the erosion of individual liberties. He delves into the complexities of monetary policy and the implications of a fiat currency system, where money is not backed by a physical commodity like gold. Through a combination of historical analysis, economic theory, and political commentary, The Creature from Jekyll Island challenges the conventional understanding of the Federal Reserve, positing that it operates more like a private cartel than a government institution. The book has sparked considerable debate and discussion among readers interested in economics, politics, and the implications of central banking, making it a provocative work that encourages critical thinking about financial systems and their influence on society.
             ''',
             'amazon': 'url',
-            'genre': 'History',
+            'genre_id': 3,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Creature_from_Jekyll_Island.jpg'
             },
 
@@ -454,7 +454,7 @@ def seed_books():
             In addition to addressing the symptoms of depression, The Feeling Good Handbook emphasizes the importance of self-compassion and the development of a positive mindset. Dr. Burns introduces concepts such as "thought records" and "mood logs," which help individuals track their emotions and the thoughts associated with them, facilitating a deeper understanding of their mental health. The book also includes discussions on interpersonal relationships, assertiveness, and the influence of self-esteem on overall well-being. With its accessible language and actionable advice, The Feeling Good Handbook has resonated with countless readers, establishing itself as a seminal work in the field of self-help and psychotherapy, ultimately empowering individuals to cultivate a more positive and fulfilling life.
             ''',
             'amazon': 'url',
-            'genre': 'Psychology',
+            'genre_id': 6,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Feeling_Good_Handbook.jpg'
             },
 
@@ -469,7 +469,7 @@ def seed_books():
             Steinbeck's novel delves into themes of social justice, family, and community, emphasizing the importance of solidarity in the face of oppression. The narrative intertwines the personal and the political, revealing the systemic inequalities that exacerbate the plight of the impoverished and disenfranchised. As the Joads encounter numerous challenges, including poverty, hunger, and exploitation by large agribusinesses, they form connections with other migrant families, illustrating the strength found in unity. The Grapes of Wrath serves as a poignant critique of capitalism and its impact on society, while also celebrating the enduring hope and resilience of individuals in their quest for dignity and belonging. The novel remains a significant work in American literature, resonating with readers for its timeless exploration of human suffering and the search for justice.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Grapes_of_Wrath.jpg'
             },
 
@@ -484,7 +484,7 @@ def seed_books():
             Through its vivid characters and rich symbolism, The Great Gatsby critiques the moral decay and superficiality of the 1920s, revealing the darker sides of wealth and privilege. Fitzgerald masterfully portrays the Jazz Age as a time of excess, yet also of profound disillusionment, as individuals grapple with their unfulfilled desires and the consequences of their choices. The green light at the end of Daisy's dock serves as a powerful symbol of Gatsby's unattainable dreams, encapsulating the longing for a future that is perpetually out of reach. With its exploration of love, identity, and the fragility of dreams, The Great Gatsby has secured its place as a classic of American literature, offering timeless insights into human nature and the societal forces that shape our lives.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Great_Gatsby.jpg'
             },
 
@@ -498,7 +498,7 @@ def seed_books():
             Tolkien's narrative is rich with themes of adventure, bravery, and self-discovery, as Bilbo learns to embrace the unexpected challenges that arise. The novel is notable for its imaginative world-building, featuring a diverse array of characters, including elves, trolls, and giant spiders, as well as the enchanting and sometimes perilous settings of Middle-earth. The story also introduces the One Ring, an object of immense power that plays a crucial role in Tolkien's later work, The Lord of the Rings. With its whimsical tone, engaging plot, and profound moral lessons, The Hobbit has captivated generations of readers, establishing itself as a beloved cornerstone of fantasy literature and a timeless tale of courage and personal growth.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Hobbit.jpg'
             },
 
@@ -513,7 +513,7 @@ def seed_books():
             The Republic also delves into topics such as the nature of the soul, education, and the organization of society. Plato proposes a tripartite model of the soul, consisting of the rational, spirited, and appetitive parts, each corresponding to different classes in his ideal city: rulers, warriors, and producers. He emphasizes the importance of education in achieving a just society, arguing that the cultivation of virtue is essential for both individuals and the state. Through its rigorous examination of ethics, politics, and philosophy, Plato's Republic remains a seminal work that has profoundly influenced Western thought, prompting ongoing discussions about justice, governance, and the nature of reality. Its exploration of the interplay between individual morality and social structure continues to resonate in contemporary philosophical and political discourse.
             ''',
             'amazon': 'url',
-            'genre': 'Philosophy',
+            'genre_id': 4,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Republic_Plato.jpg'
             },
 
@@ -527,7 +527,7 @@ def seed_books():
             Dawkins also delves into the implications of this gene-centric perspective for understanding human behavior and culture. He posits that human actions, social structures, and even cultural phenomena can be viewed through the lens of genetic imperatives, suggesting that our behaviors may be influenced by the evolutionary strategies of our genes. The book introduces the idea of "memes" as units of cultural evolution that replicate and evolve in a manner analogous to genes, expanding the discussion of evolution beyond biology to include cultural transmission. The Selfish Gene has had a significant impact on both the field of biology and popular understanding of evolutionary theory, prompting readers to reconsider the nature of evolution, the motives behind behavior, and the intricate relationships between genes, organisms, and society.
             ''',
             'amazon': 'url',
-            'genre': 'Science',
+            'genre_id': 8,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The_Selfish_Gene.jpg'
             },
 
@@ -542,7 +542,7 @@ def seed_books():
             Salinger's novel is renowned for its exploration of themes such as identity, loneliness, and the quest for authenticity. Holden's desire to protect the innocence of children is symbolized in his fantasy of being "the catcher in the rye," where he imagines himself standing in a field of rye, saving children from falling off a cliff into the harsh realities of adulthood. The novel's candid portrayal of teenage angst and its critique of societal expectations resonate with readers of all ages, contributing to its status as a seminal work in American literature. The Catcher in the Rye remains a poignant exploration of the struggles of youth, capturing the complexities of growing up and the universal search for meaning and belonging in an often confusing and alienating world.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/The-Catcher-in-the-Rye.jpg'
             },
 
@@ -557,7 +557,7 @@ def seed_books():
             Harper Lee's novel is celebrated for its rich character development and exploration of themes such as racial injustice, class, and moral growth. Atticus Finch emerges as a moral beacon, embodying integrity and courage as he stands up against the deep-rooted racism in Maycomb, teaching his children the importance of understanding others and standing up for what is right. The novel also introduces memorable characters such as Boo Radley, the enigmatic neighbor who ultimately symbolizes the idea of true goodness. To Kill a Mockingbird not only addresses the social issues of its time but also invites readers to reflect on their own moral compass and the impact of prejudice in society. It remains a timeless classic, resonating with audiences for its powerful commentary on humanity and the ongoing struggle for justice and equality.
             ''',
             'amazon': 'url',
-            'genre': 'Fiction',
+            'genre_id': 1,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/To_Kill_a_Mockingbird.jpg'
             },
 
@@ -571,7 +571,7 @@ def seed_books():
             Thoreau's Walden is not just a manifesto for simple living; it also presents a profound critique of contemporary society, particularly its obsession with progress and consumerism. He argues that true wealth comes from personal experience and an understanding of the natural world rather than material possessions. The book delves into philosophical concepts, including transcendentalism, which emphasizes intuition and spirituality as vital to understanding life. Thoreau's lyrical prose and profound insights invite readers to reconsider their values and the impact of modern civilization on their lives, ultimately inspiring a deeper appreciation for the beauty and simplicity of nature.
             ''',
             'amazon': 'url',
-            'genre': 'Philosophy',
+            'genre_id': 4,
             'cover': 'https://bookup-project.s3.us-east-2.amazonaws.com/Walden.jpg'
             }
 

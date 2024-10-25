@@ -25,7 +25,7 @@ def upgrade():
     sa.Column('author', sa.String(length=50), nullable=True),
     sa.Column('amazon', sa.String(length=255), nullable=True),
     sa.Column('description', sa.Text(), nullable=True),
-    sa.Column('genre', sa.String(length=40), nullable=True),
+    sa.Column('genre_id', sa.Integer(), nullable=False),
     sa.Column('cover', sa.String(length=255), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=False),

@@ -13,7 +13,7 @@ class Book(db.Model):
     author = db.Column(db.String(50))
     amazon = db.Column(db.String(255))
     description = db.Column(db.Text)
-    genre = db.Column(db.String(40))
+    genre_id = db.Column(db.Integer, nullable=False)
     cover = db.Column(db.String(255))
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
@@ -30,7 +30,7 @@ class Book(db.Model):
             'author': self.author,
             'amazon': self.amazon,
             'description': self.description,
-            'genre': self.genre,
+            'genre_id': self.genre_id,
             'cover': self.cover,
             'fav_book_users': [{'user_id': favBook.user_id} for favBook in self.favBooks],
             'posts': [{'id': post.id} for post in self.posts],

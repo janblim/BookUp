@@ -5,12 +5,20 @@ from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User
+
+#routes
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.books_routes import book_route
+from .api.posts_routes import post_route
+from .api.comments_routes import comment_route
+from .api.favBook_routes import fav_route
+
+
 from .seeds import seed_commands
 from .config import Config
 
-from .api.books_routes import book_route
+
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
 
@@ -31,6 +39,10 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(book_route, url_prefix='/api/books' )
+app.register_blueprint(post_route, url_prefix='/api/posts')
+app.register_blueprint(comment_route, url_prefix='/api/comments')
+app.register_blueprint(fav_route, url_prefix='/api/favorites')
+
 db.init_app(app)
 Migrate(app, db)
 

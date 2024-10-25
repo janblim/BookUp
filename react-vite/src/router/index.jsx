@@ -2,9 +2,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
-import MainPage from '../components/MainPage'
+import MainPage from '../components/MainPage';
 import BookPage from '../components/BookPage';
-
+import SortedPage from '../components/SortedPage';
+import FavoritePage from '../components/FavoritePage';
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,14 @@ export const router = createBrowserRouter([
       {
         path: "books/:book_id",
         element: <BookPage />
+      },
+      {
+        path: "sorted/:sorted_by",
+        element: <SortedPage />
+      },
+      {
+        path: "books/favorites",
+        element: <FavoritePage />
       }
     ],
   },

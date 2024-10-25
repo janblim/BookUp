@@ -54,7 +54,7 @@ const SideBar = () => {
                         <NavLink to='/friends'><FaRegSmile className='icon'/>Friends</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/favorites'><FaRegHeart className='icon'/>Favorites</NavLink>
+                        <NavLink to='/books/favorites'><FaRegHeart className='icon'/>Favorites</NavLink>
                     </li>
                 </>
                 :
@@ -69,38 +69,43 @@ const SideBar = () => {
                             <div>
 
                                 <li>
-                                    <NavLink to='/genres/1'>
+                                    <NavLink to='/sorted/1' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
                                         Fiction
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/genres/2'>
+                                    <NavLink to='/sorted/2' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
                                         Science Fiction
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/genres/3'>
+                                    <NavLink to='/sorted/3' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
                                         History
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/genres/4'>
+                                    <NavLink to='/sorted/4' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
                                         Philosophy
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/genres/5'>
+                                    <NavLink to='/sorted/5' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
                                         Self Help
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/genres/6'>
+                                    <NavLink to='/sorted/6' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
                                         Psychology
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/genres/7'>
+                                    <NavLink to='/sorted/7' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
                                         Feminism
+                                    </NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/sorted/8' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                        Science
                                     </NavLink>
                                 </li>
                             </div>
