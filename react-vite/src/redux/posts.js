@@ -2,6 +2,8 @@ import { csrfFetch } from './csrf'
 
 //Action types
 const GET_POSTS = 'posts/getAllById'
+const POST_UP = 'posts/up'
+const DELETE_POST_UP = 'posts/up/delete'
 
 
 //Action creators
@@ -10,6 +12,14 @@ const getAllPosts = (posts) => ({
     posts
 })
 
+const postUp = (post) => ({
+    type: POST_UP,
+    post
+})
+
+const deletePostUp = () => ({
+    type: DELETE_POST_UP,
+})
 
 
 
@@ -24,6 +34,32 @@ export const getAllPostsThunk = (book_id) => async(dispatch) => {
         const posts = await res.json()
         dispatch(getAllPosts(posts))
         return posts
+    }
+    return res
+}
+
+export const postUpThunk = (post_id, value) => async(dispatch) => {
+    const res = await csrfFetch(`/api/posts/${post_id}/up/${value}`, {
+        method: 'POST',
+        body: JSON.stringify({})
+    })
+    if(res.ok){
+        const post = await res.json()
+        dispatch(postUp(post))
+        return post
+    }
+    return res.errors
+}
+
+export const deletePostUpThunk = (post_id) => async(dispatch) => {
+    const res = await csrfFetch(`/api/posts/${post_id}/up/delete`, {
+        method: 'DELETE'
+    })
+
+    if(res.ok){
+        const data = await res.json()
+        dispatch(deletePostUp())
+        return data
     }
     return res
 }
@@ -87,6 +123,16 @@ function postsReducer(state = initialState, action){
         case GET_POSTS: {
             new_state = {...state}
             new_state.posts = action.posts.Posts
+            console.log(new_state)
+            return new_state
+        }
+        case POST_UP: {
+            new_state = {...state}
+            console.log(new_state)
+            return new_state
+        }
+        case DELETE_POST_UP: {
+            new_state = {...state}
             console.log(new_state)
             return new_state
         }

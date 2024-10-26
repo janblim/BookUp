@@ -16,7 +16,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { getBookByIdThunk } from "../../redux/books";
-import { getAllPostsThunk } from "../../redux/posts";
+import { deletePostUpThunk, getAllPostsThunk } from "../../redux/posts";
+import { postUpThunk } from "../../redux/posts";
 
 const BookPage = () => {
     const { book_id } = useParams();
@@ -34,6 +35,42 @@ const BookPage = () => {
             .then(() => dispatch(getAllPostsThunk(book_id)))
             .then(() => setIsLoaded(true));
     }, [book_id, dispatch]);
+
+    const handleVote = (e, post_id, value) => {
+        e.preventDefault();
+
+        const post = posts.find(post => post.id === post_id)
+        const currentValue = post.ups.find(up => up.user_id === user.id)?.value
+
+        if(currentValue){ //if up entry found
+            //already voted up
+            if(value === 1 && currentValue === 1){ //if vote up again, delete
+                console.log('Here at one')
+                dispatch(deletePostUpThunk(post_id))
+                .then(() => dispatch(getAllPostsThunk(book_id)))
+            }
+            if (value === 0 && currentValue === -1) {
+                console.log('Here at two')
+                dispatch(deletePostUpThunk(post_id))
+                .then(() => dispatch(getAllPostsThunk(book_id)))
+            }
+            if (value === 0 && currentValue === 1){
+                console.log('Here at three')
+                dispatch(postUpThunk(post_id, value))
+                .then(() => dispatch(getAllPostsThunk(book_id)))
+            }
+            if (value === 1 && currentValue === -1){
+                console.log('Here at four')
+                dispatch(postUpThunk(post_id, value))
+                .then(() => dispatch(getAllPostsThunk(book_id)))
+            }
+        }
+        else {
+                console.log('Here at five')
+                dispatch(postUpThunk(post_id, value))
+                .then(() => dispatch(getAllPostsThunk(book_id)))
+            }
+    }
 
 
     return isLoaded ? (
@@ -94,13 +131,14 @@ const BookPage = () => {
 
                                     <div className='post-button' id={post.ups.find(up => up.user_id === user.id)?.value > 0 ? 'voted-up-btn' : 'voted-down-btn'}>
 
-                                        <span className='ar-filled'><PiArrowFatUpFill /></span>
+                                        <span className='ar-filled' onClick={(e) => handleVote(e, post.id, 1)}><PiArrowFatUpFill />
+                                        </span>
                                         &nbsp;
                                         <span>
                                             {post.ups.reduce((sum, up) => sum + up.value, 0)}
                                         </span>
                                         &nbsp;
-                                        <span className='ar-filled'><PiArrowFatDownFill /></span>
+                                        <span className='ar-filled' onClick={(e) => handleVote(e, post.id, 0)}><PiArrowFatDownFill /></span>
 
                                     </div>
 
@@ -108,13 +146,13 @@ const BookPage = () => {
 
                                     <div className='post-button' id='vote-button'>
 
-                                            <span className='up'><PiArrowFatUp /></span>
+                                            <span className='up' onClick={(e) => handleVote(e, post.id, 1)}><PiArrowFatUp /></span>
                                         &nbsp;
                                             <span>
                                                 {post.ups.reduce((sum, up) => sum + up.value, 0)}
                                             </span>
                                         &nbsp;
-                                            <span className='down'><PiArrowFatDown /></span>
+                                            <span className='down'><PiArrowFatDown onClick={(e) => handleVote(e, post.id, 0)}/></span>
 
                                     </div>
 

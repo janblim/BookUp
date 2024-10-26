@@ -135,11 +135,13 @@
 }
 
 #voted-up-btn{
-    background: #fe7920;
+    background: #fc5e0f;
+    cursor: pointer;
 }
 
 #voted-down-btn{
-    background: #63c5fe;
+    background: #0d5af5;
+    cursor: pointer;
 }
 
 #post-header{
