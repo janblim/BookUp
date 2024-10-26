@@ -1,0 +1,27 @@
+
+#friends-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    background: #352f44;
+}
+
+.friend-picture{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+
+}
+
+.friend-holder{
+    height: 220px;
+    width: 220px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

@@ -13,6 +13,8 @@ from .api.books_routes import book_route
 from .api.posts_routes import post_route
 from .api.comments_routes import comment_route
 from .api.favBook_routes import fav_route
+from .api.friend_routes import friend_route
+
 
 
 from .seeds import seed_commands
@@ -42,6 +44,7 @@ app.register_blueprint(book_route, url_prefix='/api/books' )
 app.register_blueprint(post_route, url_prefix='/api/posts')
 app.register_blueprint(comment_route, url_prefix='/api/comments')
 app.register_blueprint(fav_route, url_prefix='/api/favorites')
+app.register_blueprint(friend_route, url_prefix='/api/friends')
 
 db.init_app(app)
 Migrate(app, db)

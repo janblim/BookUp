@@ -108,7 +108,7 @@ const BookPage = () => {
 
                 { posts.length ?
 
-                    posts.map(post => (
+                    posts.reverse().map(post => (
 
                         <div className='post-container'>
                             <div id='post-header'>

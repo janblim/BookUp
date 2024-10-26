@@ -6,6 +6,8 @@ import MainPage from '../components/MainPage';
 import BookPage from '../components/BookPage';
 import SortedPage from '../components/SortedPage';
 import FavoritePage from '../components/FavoritePage';
+import FriendPage from '../components/FriendPage';
+import AboutPage from '../components/AboutPage';
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +36,16 @@ export const router = createBrowserRouter([
       {
         path: "books/favorites",
         element: <FavoritePage />
+      },
+      {
+        path: "friends",
+        element: <FriendPage />
+      },
+      {
+        path: 'about',
+        element: <AboutPage />
       }
+
     ],
   },
 ]);

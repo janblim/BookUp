@@ -51,10 +51,10 @@ const SideBar = () => {
                 { user && user.id ?
                 <>
                     <li>
-                        <NavLink to='/friends'><FaRegSmile className='icon'/>Friends</NavLink>
+                        <NavLink to='/friends' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}><FaRegSmile className='icon'/>Friends</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/books/favorites'><FaRegHeart className='icon'/>Favorites</NavLink>
+                        <NavLink to='/books/favorites' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}><FaRegHeart className='icon'/>Favorites</NavLink>
                     </li>
                 </>
                 :
