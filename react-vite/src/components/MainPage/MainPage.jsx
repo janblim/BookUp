@@ -8,11 +8,12 @@ import Card from '../Card';
 const MainPage = () => {
     const books = useSelector(state => state.bookState.books)
     const [isLoaded, setIsLoaded] = useState(false);
+    const user = useSelector(state => state.session.user)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllBooksThunk())
-        .then(() => dispatch(getAllFavoritesThunk()))
+        .then(() => {if(user){dispatch(getAllFavoritesThunk())}})
         .then(() => setIsLoaded(true));
     }, []);
 

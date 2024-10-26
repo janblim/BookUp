@@ -16,13 +16,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { getBookByIdThunk } from "../../redux/books";
+import { getAllPostsThunk } from "../../redux/posts";
 
 const BookPage = () => {
     const { book_id } = useParams();
     const book = useSelector(state => state.bookState.book)
     const user = useSelector(state => state.session.user)
+    const posts = useSelector(state => state.postState.posts)
     const favBooks = book.fav_book_users || []
-    const posts = book.posts
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const BookPage = () => {
 
     useEffect(() => {
         dispatch(getBookByIdThunk(book_id))
+            .then(() => dispatch(getAllPostsThunk(book_id)))
             .then(() => setIsLoaded(true));
     }, [book_id, dispatch]);
 
