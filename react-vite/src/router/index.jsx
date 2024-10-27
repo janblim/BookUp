@@ -8,6 +8,7 @@ import SortedPage from '../components/SortedPage';
 import FavoritePage from '../components/FavoritePage';
 import FriendPage from '../components/FriendPage';
 import AboutPage from '../components/AboutPage';
+import ProfilePage from '../components/ProfilePage';
 
 export const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: 'about',
         element: <AboutPage />
+      },
+      {
+        path: 'profile/:user_id',
+        element: <ProfilePage/>
       }
 
     ],

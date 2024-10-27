@@ -15,7 +15,7 @@
     width: 500px;
     border-radius: 10px;
 }
-p {
+#about-container p {
     text-align: justify;
     text-indent: 10%;
     font-size: 16pt;

@@ -3,9 +3,12 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
 import { IoMdBook } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 
 function Navigation() {
+  const user = useSelector( state => state.session.user)
+
   return (
     <div id='nav-bar'>
       <div>
@@ -15,10 +18,12 @@ function Navigation() {
 
       <div id='nav-buttons'>
 
+        {user ?
         <span id='create-book'>
           + Create New Book
         </span>
-
+        :
+        null}
         <span className='button'>
           <ProfileButton />
         </span>
