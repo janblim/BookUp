@@ -1,7 +1,5 @@
 import './Card.css'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { BsPersonHeart } from "react-icons/bs";

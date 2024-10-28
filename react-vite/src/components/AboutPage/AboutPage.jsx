@@ -11,8 +11,8 @@ const AboutPage = () => {
                     <p>
                         BookUp is a social-media platform for people who love to read
                         and discuss their favorite books. Make new friends, start a
-                        new book club, or share your insights with others. You'll be
-                        amazed at what you'll learn!
+                        new book club, or share your insights with others. You&apos;ll be
+                        amazed at what you&apos;ll learn!
                     </p>
                     <br></br>
                     <p>

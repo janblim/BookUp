@@ -145,7 +145,7 @@ const BookPage = () => {
 
                     posts.reverse().map(post => (
 
-                        <div className='post-container'>
+                        <div className='post-container' key={`${post.id}-${post.op_user.id}`}>
                             <div id='post-header'>
                             <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic' onClick={(e)=> goToProfile(e, post.op_user.id)}/>
 

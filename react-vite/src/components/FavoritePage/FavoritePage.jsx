@@ -1,5 +1,4 @@
 import './FavoritePage.css'
-import { useParams } from 'react-router-dom';
 import { getAllFavoritesThunk } from '../../redux/books';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -14,7 +13,7 @@ const FavoritePage = () => {
     useEffect(() => {
         dispatch(getAllFavoritesThunk())
         .then(()=> setIsLoaded(true));
-    }, []);
+    }, [dispatch]);
 
     return isLoaded && (
             <div id='books-container'>

@@ -14,7 +14,7 @@ const SortedPage = () => {
     useEffect(() => {
         dispatch(getAllBooksThunk())
         .then(()=> setIsLoaded(true));
-    }, []);
+    }, [dispatch]);
 
     return isLoaded && (
             <div id='books-container'>

@@ -15,7 +15,7 @@ const MainPage = () => {
         dispatch(getAllBooksThunk())
         .then(() => {if(user){dispatch(getAllFavoritesThunk())}})
         .then(() => setIsLoaded(true));
-    }, []);
+    });
 
     return isLoaded && (
             <div id='books-container'>

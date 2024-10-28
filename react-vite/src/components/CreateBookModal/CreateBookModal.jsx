@@ -1,5 +1,5 @@
 import "./CreateBookModal.css"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,6 @@ import { addBookThunk } from "../../redux/books";
 import { getAllPostsThunk } from "../../redux/posts"
 
 function CreateBookModal() {
-    const user = useSelector( state => state.session.user);
     const book = useSelector( state => state.bookState.book)
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");

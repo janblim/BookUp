@@ -1,9 +1,8 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import './SideBar.css'
 import { FaRegSmile } from "react-icons/fa";
-import { PiHouse } from "react-icons/pi";
 import { GrHomeRounded } from "react-icons/gr";
 import { FaRegHeart } from "react-icons/fa6";
 import { PiBooksBold } from "react-icons/pi";
@@ -60,7 +59,7 @@ const SideBar = () => {
                 :
                 null}
                 <li>
-                    <button onClick={(e)=>toggleSubMenu(e)} class='dropdown-btn'>
+                    <button onClick={(e)=>toggleSubMenu(e)} className='dropdown-btn'>
                         <PiBooksBold className='icon'/>
                         <span>Genres</span>
                         <RiArrowDropDownLine className={ showSubMenu ? 'menu-arrow-rotate' : 'menu-arrow'}/>

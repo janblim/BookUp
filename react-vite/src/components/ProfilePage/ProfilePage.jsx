@@ -2,10 +2,6 @@ import './ProfilePage.css'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { FaHeart } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { BsPersonHeart } from "react-icons/bs";
-import { BiConversation } from "react-icons/bi";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserFriendsThunk, getUserThunk } from '../../redux/friends';
 
@@ -14,7 +10,6 @@ import { getUserFriendsThunk, getUserThunk } from '../../redux/friends';
 const ProfilePage = () => {
     const {user_id} = useParams();
     const user = useSelector(state => state.friendState.user)
-    const current_user = useSelector(state => state.session.user)
     const friends = useSelector(state => state.friendState.userFriends)
     const navigate = useNavigate();
     const dispatch = useDispatch();

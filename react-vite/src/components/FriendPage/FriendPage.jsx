@@ -20,7 +20,7 @@ const FriendPage = () => {
     useEffect(() => {
         dispatch(getFriendsThunk(user.id))
         .then(() => setIsLoaded(true));
-    }, [dispatch]);
+    });
 
     return isLoaded && (
             <div id='friends-container'>
