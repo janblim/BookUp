@@ -1,6 +1,8 @@
 from datetime import datetime
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+
+
 class Up(db.Model):
     __tablename__= 'ups'
 
@@ -16,3 +18,5 @@ class Up(db.Model):
 
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
+
+    comment = db.relationship('Comment', backref='ups', foreign_keys=[comment_id], lazy=True)
