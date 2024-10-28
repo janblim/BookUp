@@ -2,7 +2,7 @@ from app.models import db, Comment, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-def seed_comments():
+# def seed_comments():
 
     # #7 Habits post 1
     # comment1 = Comment(
@@ -150,10 +150,10 @@ def seed_comments():
 
     # db.session.commit()
 
-def undo_comments():
-    if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
-    else:
-        db.session.execute(text("DELETE FROM comments"))
+# def undo_comments():
+#     if environment == "production":
+#         db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
+#     else:
+#         db.session.execute(text("DELETE FROM comments"))
 
-    db.session.commit()
+#     db.session.commit()
