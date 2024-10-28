@@ -45,6 +45,7 @@ function CreateBookModal() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const lastBook = books[books.length - 1]
+        const lastBookId = lastBook.id
 
         if (validateData()) {
 
@@ -59,7 +60,7 @@ function CreateBookModal() {
             })
           )
           .then(() => {closeModal()})
-          .then(() => {navigate(`/books/${lastBook.id + 1}`)})
+          .then(() => {navigate(`/books/${lastBookId + 1}`)})
           }
 
         }
