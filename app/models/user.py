@@ -3,10 +3,6 @@ from .db import db, environment, SCHEMA
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .friend import friends
-from .up import Up
-from .favBook import FavBook
-from .comment import Comment
-from .post import Post
 
 
 class User(db.Model, UserMixin):
@@ -33,10 +29,10 @@ class User(db.Model, UserMixin):
         backref=db.backref('friends_backref', lazy='dynamic'),
         lazy='dynamic'
     )
-    ups = db.relationship('Up', backref='user', foreign_keys=[Up.user_id], lazy=True)
-    favBooks = db.relationship('FavBook', backref='user', foreign_keys=[FavBook.user_id], lazy=True)
-    comments = db.relationship('Comment', backref='user', foreign_keys=[Comment.user_id], lazy=True)
-    posts = db.relationship('Post', backref='user', foreign_keys=[Post.user_id], lazy=True)
+    ups = db.relationship('Up', backref='user', lazy=True)
+    favBooks = db.relationship('FavBook', backref='user', lazy=True)
+    comments = db.relationship('Comment', backref='user', lazy=True)
+    posts = db.relationship('Post', backref='user', lazy=True)
 
     @property
     def password(self):
