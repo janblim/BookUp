@@ -8,6 +8,10 @@ Create Date: 2024-10-12 18:10:18.729773
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
+
 
 # revision identifiers, used by Alembic.
 revision = '4d5a78de9ac4'
@@ -33,6 +37,9 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE books SET SCHEMA {SCHEMA};")
+
     op.create_table('friends',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('friend_id', sa.Integer(), nullable=False),
@@ -40,6 +47,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'friend_id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE friends SET SCHEMA {SCHEMA};")
+
     op.create_table('fav_books',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -50,6 +60,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE fav_books SET SCHEMA {SCHEMA};")
+
     op.create_table('posts',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
@@ -63,6 +76,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE posts SET SCHEMA {SCHEMA};")
+
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('text', sa.Text(), nullable=True),
@@ -77,6 +93,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
+
     op.create_table('ups',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('value', sa.Integer(), nullable=False),
@@ -90,6 +109,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE ups SET SCHEMA {SCHEMA};")
+
+
     with op.batch_alter_table('users', schema=None) as batch_op:
         batch_op.add_column(sa.Column('first_name', sa.String(length=40), nullable=True))
         batch_op.add_column(sa.Column('last_name', sa.String(length=40), nullable=True))
