@@ -45,7 +45,7 @@ function EditBookModal() {
 
         if (validateData()) {
 
-          const res = dispatch(
+          dispatch(
             editBookThunk({
                 title: title,
                 author: author,
@@ -54,16 +54,12 @@ function EditBookModal() {
                 genre_id: genreId,
                 cover: cover
             }, book.id)
-          );
-          if (res.errors){
-            setErrors((err) => ({...err, ...res.errors}))
-          } else {
-          dispatch(getAllPostsThunk(book.id))
+          ).then(() => {dispatch(getAllPostsThunk(book.id))})
           .then(() => {closeModal()})
           .then(() => {navigate(`/books/${book.id}`)})
           }
 
-        }
+
       }
 
     useEffect(() => {

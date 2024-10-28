@@ -47,7 +47,7 @@ function CreateBookModal() {
 
         if (validateData()) {
 
-          return dispatch(
+          dispatch(
             addBookThunk({
                 title: title,
                 author: author,
@@ -56,16 +56,9 @@ function CreateBookModal() {
                 genre_id: genreId,
                 cover: cover
             })
-          )
-          .then(() => {dispatch(getAllPostsThunk(book.id))})
+          ).then(() => {dispatch(getAllPostsThunk(book.id))})
           .then(() => {closeModal()})
           .then(() => {navigate(`/books/${book.id}`)})
-          .catch(async(res) => {
-            const data = await res
-            if (data && data.errors){
-              setErrors(data.errors);
-            } else setErrors(data)
-          })
           }
 
         }
