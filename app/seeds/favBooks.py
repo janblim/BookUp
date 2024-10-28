@@ -48,8 +48,8 @@ def seed_favBooks():
 
 def undo_favBooks():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.favBooks RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.fav_books RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM favBooks"))
+        db.session.execute(text("DELETE FROM fav_books"))
 
     db.session.commit()
