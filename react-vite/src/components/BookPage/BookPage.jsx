@@ -201,7 +201,7 @@ const BookPage = () => {
                                 <div className='post-button'>
                                     <span><IoChatboxOutline /></span>
                                     &nbsp;
-                                    <span>{post.comments.length}</span>
+                                    <span>{post.comments?.length}</span>
                                 </div>
 
                             </div>

@@ -15,13 +15,13 @@ def get_posts_by_id(book_id):
         post_dict = post.to_dict()
 
         op_user = db.session.query(User).filter(User.id == post.user_id).first()
-        comments = db.session.query(Comment).filter(Comment.post_id == post.id)
+        # comments = db.session.query(Comment).filter(Comment.post_id == post.id)
 
-        comments_list = [] #create list of comments for the post
-        for comment in comments:
-            comments_list.append(comment.to_dict())
+        # comments_list = [] #create list of comments for the post
+        # for comment in comments:
+        #     comments_list.append(comment.to_dict())
 
-        post_dict['comments'] = comments_list
+        # post_dict['comments'] = comments_list
         post_dict['op_user'] = op_user.to_dict()
         posts_list.append(post_dict)
 

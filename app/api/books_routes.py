@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app import db
-from app.models import Book, Comment, Post, User, FavBook
+from app.models import Book, FavBook
 from app.forms import CreateBookForm
 from flask_login import current_user, login_required
 
