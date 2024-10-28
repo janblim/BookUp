@@ -15,7 +15,7 @@ const FavoritePage = () => {
         .then(()=> setIsLoaded(true));
     }, [dispatch]);
 
-    return isLoaded && (
+    return isLoaded ? (
             <div id='books-container'>
                 {books.map(book =>
                 {
@@ -39,7 +39,7 @@ const FavoritePage = () => {
                 }
 
             </div>
-    )
+    ) : <h1 className="loading">loading...</h1>
 }
 
 export default FavoritePage;

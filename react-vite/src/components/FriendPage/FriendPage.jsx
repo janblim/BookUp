@@ -22,7 +22,7 @@ const FriendPage = () => {
         .then(() => setIsLoaded(true));
     });
 
-    return isLoaded && (
+    return isLoaded ? (
             <div id='friends-container'>
                 {friends.map((friend) =>
                 {
@@ -42,7 +42,7 @@ const FriendPage = () => {
                 }
 
             </div>
-    )
+    ) : <h1 className="loading">loading...</h1>
 }
 
 export default FriendPage;
