@@ -51,10 +51,10 @@ const SideBar = () => {
                 { user && user.id ?
                 <>
                     <li>
-                        <NavLink to='/friends' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}><FaRegSmile className='icon'/>Friends</NavLink>
+                        <NavLink to='/friends' onClick={() => window.scrollTo({top : 0})}><FaRegSmile className='icon'/>Friends</NavLink>
                     </li>
                     <li>
-                        <NavLink to='/books/favorites' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}><FaRegHeart className='icon'/>Favorites</NavLink>
+                        <NavLink to='/books/favorites' onClick={() => window.scrollTo({top : 0})}><FaRegHeart className='icon'/>Favorites</NavLink>
                     </li>
                 </>
                 :
@@ -69,42 +69,42 @@ const SideBar = () => {
                             <div>
 
                                 <li>
-                                    <NavLink to='/sorted/1' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/1' onClick={() => window.scrollTo({top : 0})}>
                                         Fiction
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/sorted/2' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/2' onClick={() => window.scrollTo({top : 0})}>
                                         Science Fiction
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/sorted/3' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/3' onClick={() => window.scrollTo({top : 0})}>
                                         History
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/sorted/4' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/4' onClick={() => window.scrollTo({top : 0})}>
                                         Philosophy
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/sorted/5' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/5' onClick={() => window.scrollTo({top : 0})}>
                                         Self Help
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/sorted/6' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/6' onClick={() => window.scrollTo({top : 0})}>
                                         Psychology
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/sorted/7' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/7' onClick={() => window.scrollTo({top : 0})}>
                                         Feminism
                                     </NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/sorted/8' onClick={() => window.scrollTo({top : 0, behavior: "smooth"})}>
+                                    <NavLink to='/sorted/8' onClick={() => window.scrollTo({top : 0})}>
                                         Science
                                     </NavLink>
                                 </li>
