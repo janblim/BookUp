@@ -7,7 +7,7 @@ import { addBookThunk } from "../../redux/books";
 import { getAllPostsThunk } from "../../redux/posts"
 
 function CreateBookModal() {
-    const book = useSelector( state => state.bookState.book)
+    const books = useSelector( state => state.bookState.books)
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [description, setDescription] = useState("");
@@ -44,6 +44,7 @@ function CreateBookModal() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const lastBook = books[books.length - 1]
 
         if (validateData()) {
 
@@ -56,9 +57,9 @@ function CreateBookModal() {
                 genre_id: genreId,
                 cover: cover
             })
-          ).then(() => {dispatch(getAllPostsThunk(book.id))})
+          )
           .then(() => {closeModal()})
-          .then(() => {navigate(`/books/${book.id}`)})
+          .then(() => {navigate(`/books/${lastBook.id + 1}`)})
           }
 
         }
