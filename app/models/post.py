@@ -18,7 +18,7 @@ class Post(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
     ups = db.relationship('Up', backref='post', lazy=True)
-    comments = db.relationship('Comment', backref='post', lazy=True)
+    # comments = db.relationship('Comment', backref='post', lazy=True)
 
     def to_dict(self):
         return {
@@ -32,9 +32,9 @@ class Post(db.Model):
                 'user_id': up.user_id,
                 'value': up.value
             } for up in self.ups],
-            'comments': [{
-                'id': comment.id
-            } for comment in self.comments],
+            # 'comments': [{
+            #     'id': comment.id
+            # } for comment in self.comments],
             'created_at': self.created_at,
             'updated_at': self.updated_at
         }
