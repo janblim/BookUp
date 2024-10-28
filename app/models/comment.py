@@ -18,7 +18,7 @@ class Comment(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
     ups = db.relationship('Up', backref='comment', lazy=True)
-    replies = db.relationship('Comment', backref='parent', remote_side=[id], lazy=True)
+    # replies = db.relationship('Comment', backref='parent', remote_side=[id], lazy=True)
 
     def to_dict(self):
         return {
