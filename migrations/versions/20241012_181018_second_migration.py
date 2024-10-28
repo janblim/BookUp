@@ -104,7 +104,7 @@ def upgrade():
     sa.Column('comment_id', sa.Integer(), nullable=True),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
     sa.Column('updated_at', sa.DateTime(timezone=True), nullable=False),
-    # sa.ForeignKeyConstraint(['comment_id'], ['comments.id'], ),
+    sa.ForeignKeyConstraint(['comment_id'], ['comments.id'], ),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
