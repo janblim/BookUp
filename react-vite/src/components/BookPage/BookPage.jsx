@@ -20,6 +20,7 @@ import { deletePostUpThunk, getAllPostsThunk } from "../../redux/posts";
 import { postUpThunk } from "../../redux/posts";
 import DeleteBookModal from "../DeleteBookModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import EditBookModal from "../EditBookModal";
 
 const BookPage = () => {
     const { book_id } = useParams();
@@ -115,10 +116,17 @@ const BookPage = () => {
                         }
 
                         { user && user.id === book.user_id ?
+                        <>
+                        <OpenModalButton
+                        modalComponent={<EditBookModal/>}
+                        buttonText='Edit Book'
+                        />
                         <OpenModalButton
                         modalComponent={<DeleteBookModal/>}
                         buttonText='Delete Book'
-                        /> : null}
+                        />
+                        </>
+                        : null}
                     </div>
 
                     <div id='stats'>

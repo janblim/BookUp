@@ -72,6 +72,44 @@ def create_book():
         return {'book': new_book}, 201
     return {'errors': form.errors}, 400
 
+@book_route.route('/<int:book_id>', methods=['PUT'])
+@login_required
+def editBook(book_id):
+
+    user = current_user.to_dict()
+
+    book = db.session.query(Book).filter(Book.id == book_id).first()
+
+    if not book:
+        return {'errors': {'message': 'Book does not exist'}}, 404
+
+    if book.user_id != user['id']:
+        return {'errors': {'message': 'Unauthorized to edit this book'}}, 403
+
+    form = CreateBookForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        if form.data.get('title'):
+            book.title = form.data['title']
+        if form.data.get('author'):
+            book.author = form.data['author']
+        if form.data.get('description'):
+            book.description = form.data['description']
+        if form.data.get('amazon'):
+            book.amazon = form.data['amazon']
+        if form.data.get('genre_id'):
+            book.genre_id = form.data['genre_id']
+
+        db.session.commit()
+
+        updated_book = book.to_dict()
+
+        return {'book': updated_book}, 200
+
+    return form.errors, 400
+
 @book_route.route('/<int:book_id>', methods=['DELETE'])
 @login_required
 def deleteBook(book_id):

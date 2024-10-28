@@ -8,6 +8,7 @@ const ADD_BOOK_FAV = 'favorites/bookId'
 const DELETE_FAV = 'favorites/delete'
 const ADD_BOOK = 'books/new'
 const DELETE_BOOK = 'books/delete'
+const EDIT_BOOK = 'books/edit'
 
 //Action creators
 const getAllBooks = (books) => ({
@@ -39,6 +40,10 @@ const addBook = (book) => ({
 const deleteBook = (book_id) => ({
     type: DELETE_BOOK,
     book_id
+})
+const editBook = (book) => ({
+    type: EDIT_BOOK,
+    book
 })
 
 
@@ -136,6 +141,37 @@ export const deleteBookThunk = (book_id) => async (dispatch) => {
     }
 }
 
+export const editBookThunk = (book, book_id) => async (dispatch) => {
+    let res;
+
+    let newBook = {
+        title: book.title,
+        author: book.author,
+        amazon: book.amazon,
+        description: book.description,
+        genre_id: book.genre_id,
+        cover: book.cover
+    };
+
+    try {
+        res = await csrfFetch(`/api/books/${book_id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newBook)
+        });
+    } catch (error) {
+        return await error.json();
+    }
+
+    if (res.ok) {
+        const editedBook = await res.json();
+        dispatch(editBook(editedBook));
+        return editedBook;
+    } else {
+        return res
+    }
+};
+
 //Initial state
 const initialState = {
     books: {},
@@ -184,6 +220,11 @@ function booksReducer(state = initialState, action){
         case DELETE_BOOK: {
             new_state = {...state}
             new_state.book = {}
+            return new_state
+        }
+        case EDIT_BOOK: {
+            new_state = {...state}
+            new_state.book = action.book.book
             return new_state
         }
     default:

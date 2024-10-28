@@ -1,12 +1,12 @@
-import "./CreateBookModal.css"
-import { useState } from "react";
+import "./EditBookModal.css"
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
-import { addBookThunk } from "../../redux/books";
+import { editBookThunk } from "../../redux/books";
 import { getAllPostsThunk } from "../../redux/posts"
 
-function CreateBookModal() {
+function EditBookModal() {
     const book = useSelector( state => state.bookState.book)
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
@@ -27,8 +27,6 @@ function CreateBookModal() {
           return false;
       }
     }
-
-
     const validateData = () => {
         const err ={}
         if(description.length < 4) err["description"] = "Description must be longer than 4 characters"
@@ -47,32 +45,40 @@ function CreateBookModal() {
 
         if (validateData()) {
 
-          return dispatch(
-            addBookThunk({
+          const res = dispatch(
+            editBookThunk({
                 title: title,
                 author: author,
                 amazon: "url",
                 description: description,
                 genre_id: genreId,
                 cover: cover
-            })
-          )
-          .then(() => {dispatch(getAllPostsThunk(book.id))})
+            }, book.id)
+          );
+          if (res.errors){
+            setErrors((err) => ({...err, ...res.errors}))
+          } else {
+          dispatch(getAllPostsThunk(book.id))
           .then(() => {closeModal()})
           .then(() => {navigate(`/books/${book.id}`)})
-          .catch(async(res) => {
-            const data = await res
-            if (data && data.errors){
-              setErrors(data.errors);
-            } else setErrors(data)
-          })
           }
 
         }
+      }
+
+    useEffect(() => {
+      if (book){
+        setTitle(book.title || '');
+        setAuthor(book.author || '');
+        setDescription(book.description|| '');
+        setGenreId(book.genre_id || '');
+        setCover(book.cover || '');
+      }
+    }, [book])
 
     return (
         <div className="new-book-modal">
-        <h1>Create New Book</h1>
+        <h1>Edit Book</h1>
         {errors.server && <p className='error'>{errors.server}</p>}
         <form onSubmit={handleSubmit} className="new-book-form">
 
@@ -96,7 +102,7 @@ function CreateBookModal() {
               />
 
 
-          <h2>Description of Book</h2>
+          <h2>Edit Description of Book</h2>
           <p>What is this book about? Please write 1-2 paragraphs.</p>
           {errors.description && <p className='error'>{errors.description}</p>}
             <textarea
@@ -107,7 +113,7 @@ function CreateBookModal() {
               ></textarea>
 
           <h2>Genre</h2>
-          {errors.address && <p className='error'>{errors.address}</p>}
+          {errors.genre_id && <p className='error'>{errors.genre_id}</p>}
             <select id='genre' value={genreId} onChange={(e) => setGenreId(e.target.value)} required>
                 <option value=''>--Please choose an option</option>
                 <option value='1'>Fiction</option>
@@ -122,7 +128,7 @@ function CreateBookModal() {
 
 
           <h2>Cover</h2>
-          <p>Please add a link to the image of the book cover.</p>
+          <p>Link to the image of the book cover.</p>
           {errors.cover && <p className='error'>{errors.cover}</p>}
             <input
               type="text"
@@ -133,11 +139,11 @@ function CreateBookModal() {
 
 
           <div>
-            <button type="submit">Create Book</button>
+            <button type="submit">Save Book</button>
           </div>
         </form>
       </div>
     )
 }
 
-export default CreateBookModal
+export default EditBookModal

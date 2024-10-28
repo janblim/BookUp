@@ -1,3 +1,3 @@
-import CreateReviewModal from "./CreateReviewModal";
+import CreateBookModal from "./CreateBookModal";
 
-export default CreateReviewModal
+export default CreateBookModal
