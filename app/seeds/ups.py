@@ -8,10 +8,10 @@ def seed_ups():
             up = Up(value = 1, user_id = user_id, post_id = post_id, comment_id = None)
             db.session.add(up)
 
-    for comment_id in range(1, 16):
-        for user_id in range(4, 13):
-            up = Up(value = 1, user_id = user_id, post_id = None, comment_id = comment_id)
-            db.session.add(up)
+    # for comment_id in range(1, 16):
+    #     for user_id in range(4, 13):
+    #         up = Up(value = 1, user_id = user_id, post_id = None, comment_id = comment_id)
+    #         db.session.add(up)
 
     db.session.commit()
 
