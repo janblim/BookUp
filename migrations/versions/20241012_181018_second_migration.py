@@ -91,8 +91,8 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     with op.batch_alter_table('users', schema=None) as batch_op:
-        batch_op.add_column(sa.Column('first_name', sa.String(length=40), nullable=False))
-        batch_op.add_column(sa.Column('last_name', sa.String(length=40), nullable=False))
+        batch_op.add_column(sa.Column('first_name', sa.String(length=40), nullable=True))
+        batch_op.add_column(sa.Column('last_name', sa.String(length=40), nullable=True))
         batch_op.add_column(sa.Column('address', sa.String(length=60), nullable=False))
         batch_op.add_column(sa.Column('picture', sa.String(length=255), nullable=True))
         batch_op.add_column(sa.Column('created_at', sa.DateTime(timezone=True), nullable=False))
