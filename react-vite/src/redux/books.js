@@ -110,7 +110,7 @@ export const deleteFavoriteThunk = (fav_id) => async(dispatch) => {
 }
 
 export const addBookThunk = (book) => async(dispatch) => {
-    console.log(book)
+
     const res = await csrfFetch(`/api/books/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -118,9 +118,9 @@ export const addBookThunk = (book) => async(dispatch) => {
     });
 
     if(res.ok){
-        const data = await res.json()
-        dispatch(addBook(data));
-        return data;
+        const newBook = await res.json()
+        dispatch(addBook(newBook));
+        return newBook;
 
     } else if (res.status < 500) {
         const errorMessages = await res.json();
