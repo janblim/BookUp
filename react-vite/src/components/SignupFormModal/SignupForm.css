@@ -1,0 +1,41 @@
+#sign-up-modal {
+    background: #352f44;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sign-up-modal form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+    width: 300px
+}
+#sign-up-modal form label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin: 5px;
+}
+
+#sign-up-modal h1 {
+    margin: 20px;
+}
+
+#sign-up-modal form button {
+    margin: 20px
+}
+
+#sign-up-modal form p {
+    color: orange
+}
+
+#demo-button {
+    background: rgb(27, 85, 143);
+}

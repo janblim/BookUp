@@ -1,59 +1,41 @@
-input[type=radio] {
-    display: none;
-}
 
-.create-modal {
+.new-book-modal{
+    padding: 10px;
+    border-radius: 10px;
+    background: #2a2438;
     display: flex;
     flex-direction: column;
-    margin: 20px
-}
-
-#modal-content {
-    position: absolute;
-    top: 150px;
-    border-radius: 20px;
-    height: auto;
-    width: 450px;
-
-}
-
-.rev-prod-img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-}
-
-.prod-name {
-    font-weight: bold;
-    font-size: large;
-}
-
-.prod-info {
-    display: flex;
-    flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
-.prod-name-shopname {
-    margin: 5px ;
-}
-
-.label {
-    margin-top: 10px;
-}
-
-.new-rev-desc {
-    height: 100px;
-    width: 90%;
-    border-radius: 5%;
-    resize: none;
-}
-
-.review-button {
+.new-book-form{
+    padding: 10px;
     display: flex;
-    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.review-button:disabled {
-    cursor:default;
+.new-book-form h2{
+    margin-top: 20px;
+}
+
+.new-book-form p {
+    margin: 10px;
+}
+
+.new-book-form textarea {
+    height: 180px;
+    width: 350px;
+}
+
+.new-book-form input {
+    width: 350px
+}
+
+.new-book-form button {
+    margin-top: 30px;
+    font-size: 16pt;
+    padding: 10px 125px 10px;
 }

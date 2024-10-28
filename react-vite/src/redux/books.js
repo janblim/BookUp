@@ -6,6 +6,8 @@ const GET_FAVORITES = 'books/favorites'
 const GET_BOOK_BY_ID = 'books/byId'
 const ADD_BOOK_FAV = 'favorites/bookId'
 const DELETE_FAV = 'favorites/delete'
+const ADD_BOOK = 'books/new'
+const DELETE_BOOK = 'books/delete'
 
 //Action creators
 const getAllBooks = (books) => ({
@@ -28,6 +30,14 @@ const addBookFavorite = (favorite) => ({
 })
 const deleteFavorite = (book_id) => ({
     type: DELETE_FAV,
+    book_id
+})
+const addBook = (book) => ({
+    type: ADD_BOOK,
+    book
+})
+const deleteBook = (book_id) => ({
+    type: DELETE_BOOK,
     book_id
 })
 
@@ -94,6 +104,38 @@ export const deleteFavoriteThunk = (fav_id) => async(dispatch) => {
     return res
 }
 
+export const addBookThunk = (book) => async(dispatch) => {
+    console.log(book)
+    const res = await csrfFetch(`/api/books/new`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(book)
+    });
+
+    if(res.ok){
+        const data = await res.json()
+        dispatch(addBook(data));
+        return data;
+
+    } else if (res.status < 500) {
+        const errorMessages = await res.json();
+        return errorMessages
+      } else {
+        return { server: "Something went wrong. Please try again" }
+      }
+}
+
+export const deleteBookThunk = (book_id) => async (dispatch) => {
+    const res = await csrfFetch(`/api/books/${book_id}`, {
+        method: "DELETE"
+    })
+
+    if (res.ok) {
+        dispatch(deleteBook(book_id))
+        return res
+    }
+}
+
 //Initial state
 const initialState = {
     books: {},
@@ -132,6 +174,16 @@ function booksReducer(state = initialState, action){
             new_state = structuredClone(state)
             delete new_state['favBooks'][action.fav_id]
             console.log(new_state)
+            return new_state
+        }
+        case ADD_BOOK: {
+            new_state = {...state}
+            new_state.book = action.book.book
+            return new_state
+        }
+        case DELETE_BOOK: {
+            new_state = {...state}
+            new_state.book = {}
             return new_state
         }
     default:

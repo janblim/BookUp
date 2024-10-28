@@ -25,8 +25,26 @@
 
 #right-container {
     margin-right: 50px;
-    margin-top: 50px
+    margin-top: 50px;
 }
+
+#header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#button-container button {
+    margin-right: 10px;
+}
+#stats {
+    margin-left: 30px;
+}
+#stats span {
+    margin-right: 10px;
+}
+
 
 #book-texts{
     max-width: 600px;
@@ -70,6 +88,9 @@
 .post-container:hover{
     background: #4c465e;
     border-radius: 20px;
+}
+#post-header img {
+    cursor: pointer;
 }
 
 .no-post{

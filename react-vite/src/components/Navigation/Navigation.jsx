@@ -4,6 +4,8 @@ import "./Navigation.css";
 import { PiArrowFatLinesUpFill } from "react-icons/pi";
 import { IoMdBook } from "react-icons/io";
 import { useSelector } from "react-redux";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import CreateBookModal from "../CreateBookModal/CreateBookModal";
 
 
 function Navigation() {
@@ -20,7 +22,10 @@ function Navigation() {
 
         {user ?
         <span id='create-book'>
-          + Create New Book
+          <OpenModalButton
+          modalComponent={<CreateBookModal/>}
+          buttonText='+ Create New Book'
+          />
         </span>
         :
         null}

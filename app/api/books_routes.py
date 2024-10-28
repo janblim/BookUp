@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from app import db
 from app.models import Book, Comment, Post, User, FavBook
+from app.forms import CreateBookForm
 from flask_login import current_user, login_required
 
 book_route = Blueprint('books', __name__)
@@ -44,3 +45,46 @@ def add_book_favorite(book_id):
         return {'message': 'Product added to favorites successfully', 'fav': book.to_dict()}, 201
     else:
         return {'error': 'Product is already added to favorites'}, 401
+
+#Create new book, then redirect to new book
+@book_route.route('/new', methods=['POST'])
+@login_required
+def create_book():
+    userId = current_user.id
+    form = CreateBookForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        book = Book(
+            user_id = userId,
+            title = form.data['title'],
+            author = form.data['author'],
+            amazon = 'url',
+            description = form.data['description'],
+            genre_id = form.data['genre_id'],
+            cover = form.data['cover']
+        )
+
+        db.session.add(book)
+        db.session.commit()
+        new_book = book.to_dict()
+
+        return {'book': new_book}, 201
+    return {'errors': form.errors}, 400
+
+@book_route.route('/<int:book_id>', methods=['DELETE'])
+@login_required
+def deleteBook(book_id):
+
+    user = current_user.to_dict()
+    book = db.session.query(Book).filter(Book.id == book_id).first()
+
+    if not book:
+        return {'error': 'Book not found'}, 404
+
+    if book.user_id == user['id']:
+        db.session.delete(book)
+        db.session.commit()
+        return {'message': 'Book deleted successfully'}, 200
+
+    return {'error': 'Unauthorized to delete this book.'}, 401

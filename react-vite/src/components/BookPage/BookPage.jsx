@@ -1,5 +1,4 @@
 import "./BookPage.css"
-import OpenModalButton from "../OpenModalButton/OpenModalButton"
 import { BsPersonHeart } from "react-icons/bs";
 import { BiConversation } from "react-icons/bi";
 import { FaHeart } from "react-icons/fa";
@@ -10,31 +9,29 @@ import { PiArrowFatUpFill } from "react-icons/pi";
 import { PiArrowFatDownFill } from "react-icons/pi";
 import { IoChatboxOutline } from "react-icons/io5";
 
-
-
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { getBookByIdThunk } from "../../redux/books";
+import { deleteFavoriteThunk } from '../../redux/books';
+import { addBookFavoriteThunk } from '../../redux/books';
+import { getAllFavoritesThunk } from '../../redux/books';
 import { deletePostUpThunk, getAllPostsThunk } from "../../redux/posts";
 import { postUpThunk } from "../../redux/posts";
+import DeleteBookModal from "../DeleteBookModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 const BookPage = () => {
     const { book_id } = useParams();
     const book = useSelector(state => state.bookState.book)
     const user = useSelector(state => state.session.user)
     const posts = useSelector(state => state.postState.posts)
+    const navigate = useNavigate()
     const favBooks = book.fav_book_users || []
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
-
-    useEffect(() => {
-        dispatch(getBookByIdThunk(book_id))
-            .then(() => dispatch(getAllPostsThunk(book_id)))
-            .then(() => setIsLoaded(true));
-    }, [book_id, dispatch]);
+    const [favTrigger, setFavTrigger] = useState(false)
 
     const handleVote = (e, post_id, value) => {
         e.preventDefault();
@@ -72,6 +69,30 @@ const BookPage = () => {
             }
     }
 
+    const handleDelete = (e) => {
+        e.preventDefault()
+        dispatch(deleteFavoriteThunk(book_id))
+        .then(() => setFavTrigger(favTrigger ? false : true));
+    }
+
+    const handleAdd = (e) => {
+        e.preventDefault()
+        dispatch(addBookFavoriteThunk(book_id))
+        .then(() => setFavTrigger(favTrigger ? false : true));
+    }
+
+    const goToProfile = (e, id) => {
+        e.stopPropagation();
+        window.scrollTo(0, 0)
+        navigate(`/profile/${id}`)
+    }
+
+    useEffect(() => {
+        dispatch(getBookByIdThunk(book_id))
+            .then(() => dispatch(getAllPostsThunk(book_id)))
+            .then(() => dispatch(getAllFavoritesThunk()))
+            .then(() => setIsLoaded(true));
+    }, [book_id, dispatch, favTrigger]);
 
     return isLoaded ? (
         <div id='page-container'>
@@ -80,18 +101,32 @@ const BookPage = () => {
                     <img id='book-cover-img' src={book.cover} alt={book.title} />
                 </div>
                 <div id='right-container'>
+                <div id='header'>
+                    <div id='button-container'>
 
-                    { user ? <button> + Add Post</button> : null }
+                        { user ? <button> + Add Post</button> : null }
 
-                    { user ?
-                        favBooks.find( item => item.user_id === user.id) ?
-                            <button> Remove Favorite <FaHeart/></button>
-                        :
-                            <button> Add to Favorite <FaRegHeart/></button>
-                    : null
-                    }
-                    <span>{favBooks.length} <BsPersonHeart /></span>
-                    <span>{Object.keys(posts).length} <BiConversation /></span>
+                        { user ?
+                            favBooks.find( item => item.user_id === user.id) ?
+                            <button onClick={(e) => handleDelete(e)}> Remove Favorite <FaHeart/></button>
+                            :
+                            <button onClick={(e) => handleAdd(e)}> Add to Favorite <FaRegHeart/></button>
+                            : null
+                        }
+
+                        { user && user.id === book.user_id ?
+                        <OpenModalButton
+                        modalComponent={<DeleteBookModal/>}
+                        buttonText='Delete Book'
+                        /> : null}
+                    </div>
+
+                    <div id='stats'>
+                        <span>{favBooks.length} <BsPersonHeart /></span>
+                        <span>{Object.keys(posts).length} <BiConversation /></span>
+                    </div>
+                </div>
+
 
                     <div id='book-texts'>
                         <h1 id='book-title'>{book.title}</h1>
@@ -112,7 +147,7 @@ const BookPage = () => {
 
                         <div className='post-container'>
                             <div id='post-header'>
-                            <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic'/>
+                            <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic' onClick={(e)=> goToProfile(e, post.op_user.id)}/>
 
                             <div id='name-date-box'>
                                 <span id='op-name'>{post.op_user.username}</span><span id='post-date'>{post.created_at}</span>
