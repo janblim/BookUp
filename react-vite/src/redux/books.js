@@ -213,7 +213,7 @@ function booksReducer(state = initialState, action){
             return new_state
         }
         case ADD_BOOK: {
-            new_state = {...state}
+            new_state = structuredClone(state)
             new_state.book = action.book.book
             return new_state
         }
@@ -223,7 +223,7 @@ function booksReducer(state = initialState, action){
             return new_state
         }
         case EDIT_BOOK: {
-            new_state = {...state}
+            new_state = structuredClone(state)
             new_state.book = action.book.book
             return new_state
         }
