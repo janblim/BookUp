@@ -19,5 +19,5 @@ class Up(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
-    comment = db.relationship('Comment', backref='ups', foreign_keys=[comment_id], lazy=True)
-    post = db.relationship('Post', backref='ups', foreign_keys=[post_id], lazy=True)
+    comment = db.relationship('Comment', back_populates='ups')
+    post = db.relationship('Post', back_populates='ups')
