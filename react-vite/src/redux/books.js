@@ -215,6 +215,7 @@ function booksReducer(state = initialState, action){
         case ADD_BOOK: {
             new_state = structuredClone(state)
             new_state.book = action.book.book
+            console.log(new_state)
             return new_state
         }
         case DELETE_BOOK: {

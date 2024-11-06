@@ -1,19 +1,18 @@
 import "./CreateBookModal.css"
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState} from "react";
+import { useDispatch, useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useNavigate } from "react-router-dom";
 import { addBookThunk } from "../../redux/books";
-import { getAllPostsThunk } from "../../redux/posts"
 
 function CreateBookModal() {
-    const books = useSelector( state => state.bookState.books)
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [description, setDescription] = useState("");
     const [genreId, setGenreId] = useState("");
     const [cover, setCover] = useState("");
     const navigate = useNavigate()
+    const book = useSelector(state => state.bookState.book)
 
     const [errors, setErrors] = useState({})
     const {closeModal} = useModal()
@@ -44,8 +43,6 @@ function CreateBookModal() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const lastBook = books[books.length - 1]
-        const lastBookId = lastBook.id
 
         if (validateData()) {
 
@@ -60,7 +57,7 @@ function CreateBookModal() {
             })
           )
           .then(() => {closeModal()})
-          .then(() => {navigate(`/books/${lastBookId + 1}`)})
+          .then(() => {navigate(`/books/${book.id}`)})
           }
 
         }
