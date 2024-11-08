@@ -85,4 +85,7 @@ def delete_post_up(post_id):
 
     db.session.delete(up)
     db.session.commit()
-    return {'message': 'up was successfully deleted'}, 200
+
+    #return entire post to update state
+    post = db.session.query(Post).filter(Post.id == post_id).first()
+    return {'message': 'up was successfully deleted', 'post': post.to_dict()}, 200

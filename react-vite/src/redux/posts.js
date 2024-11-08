@@ -23,8 +23,9 @@ const postUp = (post) => ({
     post
 })
 
-const deletePostUp = () => ({
+const deletePostUp = (post) => ({
     type: DELETE_POST_UP,
+    post
 })
 
 
@@ -74,9 +75,9 @@ export const deletePostUpThunk = (post_id) => async(dispatch) => {
     })
 
     if(res.ok){
-        const data = await res.json()
-        dispatch(deletePostUp())
-        return data
+        const post = await res.json()
+        dispatch(deletePostUp(post))
+        return post
     }
     return res
 }
@@ -97,12 +98,14 @@ function postsReducer(state = initialState, action){
             return new_state
         }
         case POST_UP: {
-            new_state = {...state}
+            new_state = structuredClone(state)
+            new_state.posts[new_state.posts.map(e => e.id).indexOf(action.post.post.id)].ups = action.post.post.ups
             console.log(new_state)
             return new_state
         }
         case DELETE_POST_UP: {
-            new_state = {...state}
+            new_state = structuredClone(state)
+            new_state.posts[new_state.posts.map(e => e.id).indexOf(action.post.post.id)].ups = action.post.post.ups
             console.log(new_state)
             return new_state
         }

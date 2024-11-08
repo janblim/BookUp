@@ -3,11 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPostThunk } from '../../redux/posts';
+import { PiArrowFatUp } from "react-icons/pi";
+import { PiArrowFatDown } from "react-icons/pi";
+import { PiArrowFatUpFill } from "react-icons/pi";
+import { PiArrowFatDownFill } from "react-icons/pi";
+import { IoChatboxOutline } from "react-icons/io5";
 
 const PostPage = () => {
     const { post_id } = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
     const post = useSelector(state => state.postState.post)
+    const user = useSelector(state => state.session.user)
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
@@ -47,6 +53,83 @@ const PostPage = () => {
                 <div id='post-title'>{post.title}</div>
                 <div id='post-text'>{post.text}</div>
             </div>
+
+        <div id='comments-container'>
+
+        { post.comments.length ?
+
+            post.comments.map(comment => (
+
+                <div id='comment-container' key={`${comment.id}`}>
+                    <div id='comment-header'>
+                    <img src={comment.op_user.picture} alt={post.op_user.username} className='user-pic' onClick={(e)=> goToProfile(e, post.op_user.id)}/>
+
+                    <div id='name-date-box'>
+                        <span id='op-name'>{post.op_user.username}</span><span className='post-date'>{post.created_at}</span>
+                    </div>
+                    </div>
+
+                    <div className='post-title-small'>{post.title}</div>
+                        <br></br>
+                    <div className='post-text'>{post.text}</div>
+
+                    <div className='post-button-box'>
+
+                        {
+                        user && user.id ?
+                            post.ups.find(up => up.user_id === user.id) ?
+
+                            <div className='post-button' id={post.ups.find(up => up.user_id === user.id)?.value > 0 ? 'voted-up-btn' : 'voted-down-btn'}>
+
+                                <span className='ar-filled'><PiArrowFatUpFill />
+                                </span>
+                                &nbsp;
+                                <span>
+                                    {post.ups.reduce((sum, up) => sum + up.value, 0)}
+                                </span>
+                                &nbsp;
+                                <span className='ar-filled'><PiArrowFatDownFill /></span>
+
+                            </div>
+
+                            :
+
+                            <div className='post-button' id='vote-button'>
+
+                                    <span className='up' ><PiArrowFatUp /></span>
+                                &nbsp;
+                                    <span>
+                                        {post.ups.reduce((sum, up) => sum + up.value, 0)}
+                                    </span>
+                                &nbsp;
+                                    <span className='down'><PiArrowFatDown /></span>
+
+                            </div>
+
+                        :
+
+                        <span className='post-button'>{post.ups.reduce((sum, up) => sum + up.value, 0)}</span>
+
+                        }
+
+
+                        <div className='post-button'>
+                            <span><IoChatboxOutline /></span>
+                            &nbsp;
+                            <span>{post.comments?.length}</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            ))
+
+                :
+            <div className='no-post'>
+                No Comments Yet. Be the first to Post!
+            </div>
+        }
+        </div>
         </div>
     ) : <h1 className="loading">loading...</h1>
 }

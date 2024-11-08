@@ -44,28 +44,28 @@ const BookPage = () => {
             //already voted up
             if(value === 1 && currentValue === 1){ //if vote up again, delete
                 console.log('Here at one')
-                dispatch(deletePostUpThunk(post_id))
-                .then(() => dispatch(getAllPostsThunk(book_id)))
+                dispatch(deletePostUpThunk(post_id, user.id))
+                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
             if (value === 0 && currentValue === -1) {
                 console.log('Here at two')
-                dispatch(deletePostUpThunk(post_id))
-                .then(() => dispatch(getAllPostsThunk(book_id)))
+                dispatch(deletePostUpThunk(post_id, user.id))
+                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
             if (value === 0 && currentValue === 1){
                 console.log('Here at three')
                 dispatch(postUpThunk(post_id, value))
-                .then(() => dispatch(getAllPostsThunk(book_id)))
+                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
             if (value === 1 && currentValue === -1){
                 console.log('Here at four')
                 dispatch(postUpThunk(post_id, value))
-                .then(() => dispatch(getAllPostsThunk(book_id)))
+                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
         }
         else {
                 console.log('Here at five')
-                dispatch(postUpThunk(post_id, value))
+                dispatch(postUpThunk(post_id, value, user.id))
                 .then(() => dispatch(getAllPostsThunk(book_id)))
             }
     }
@@ -157,9 +157,9 @@ const BookPage = () => {
 
                 { posts.length ?
 
-                    posts.reverse().map(post => (
+                    posts.map((post) => (
 
-                        <div className='post-container' onClick={(e) => handlePostClick(e, post.id)} key={`${post.id}-${post.op_user.id}`}>
+                        <div className='post-container' key={`${post.id}-${post.op_user.id}`}>
                             <div id='post-header'>
                             <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic' onClick={(e)=> goToProfile(e, post.op_user.id)}/>
 
@@ -167,10 +167,11 @@ const BookPage = () => {
                                 <span id='op-name'>{post.op_user.username}</span><span className='post-date'>{post.created_at}</span>
                             </div>
                             </div>
-
-                            <div className='post-title-small'>{post.title}</div>
-                                <br></br>
-                            <div className='post-text'>{post.text}</div>
+                            <div onClick={(e) => handlePostClick(e, post.id)}>
+                                <div className='post-title-small'>{post.title}</div>
+                                    <br></br>
+                                <div className='post-text'>{post.text}</div>
+                            </div>
 
                             <div className='post-button-box'>
 
