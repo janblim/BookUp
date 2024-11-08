@@ -164,11 +164,11 @@ const BookPage = () => {
                             <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic' onClick={(e)=> goToProfile(e, post.op_user.id)}/>
 
                             <div id='name-date-box'>
-                                <span id='op-name'>{post.op_user.username}</span><span id='post-date'>{post.created_at}</span>
+                                <span id='op-name'>{post.op_user.username}</span><span className='post-date'>{post.created_at}</span>
                             </div>
                             </div>
 
-                            <div className='post-title'>{post.title}</div>
+                            <div className='post-title-small'>{post.title}</div>
                                 <br></br>
                             <div className='post-text'>{post.text}</div>
 
