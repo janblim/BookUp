@@ -9,6 +9,7 @@ import FavoritePage from '../components/FavoritePage';
 import FriendPage from '../components/FriendPage';
 import AboutPage from '../components/AboutPage';
 import ProfilePage from '../components/ProfilePage';
+import PostPage from '../components/PostPage';
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: 'profile/:user_id',
         element: <ProfilePage/>
+      },
+      {
+        path: 'post/:post_id',
+        element: <PostPage />
       }
 
     ],

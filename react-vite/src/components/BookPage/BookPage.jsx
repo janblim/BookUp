@@ -88,6 +88,12 @@ const BookPage = () => {
         navigate(`/profile/${id}`)
     }
 
+    const handlePostClick = (e, post_id) => {
+        e.preventDefault();
+        window.scrollTo(0, 0)
+        navigate(`/post/${post_id}`)
+    }
+
     useEffect(() => {
         dispatch(getBookByIdThunk(book_id))
             .then(() => dispatch(getAllPostsThunk(book_id)))
@@ -153,7 +159,7 @@ const BookPage = () => {
 
                     posts.reverse().map(post => (
 
-                        <div className='post-container' key={`${post.id}-${post.op_user.id}`}>
+                        <div className='post-container' onClick={(e) => handlePostClick(e, post.id)} key={`${post.id}-${post.op_user.id}`}>
                             <div id='post-header'>
                             <img src={post.op_user.picture} alt={post.op_user.username} className='user-pic' onClick={(e)=> goToProfile(e, post.op_user.id)}/>
 

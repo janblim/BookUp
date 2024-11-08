@@ -1,7 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .books import seed_books, undo_books
-# from .comments import seed_comments, undo_comments
+from .comments import seed_comments, undo_comments
 from .favBooks import seed_favBooks, undo_favBooks
 from .posts import seed_posts, undo_posts
 from .ups import seed_ups, undo_ups
@@ -34,7 +34,7 @@ def seed():
     seed_books()
     seed_favBooks()
     seed_posts()
-    # seed_comments()
+    seed_comments()
     seed_ups()
 
 
@@ -46,7 +46,7 @@ def seed():
 def undo():
     undo_ups()
     undo_posts()
-    # undo_comments()
+    undo_comments()
     undo_favBooks()
     undo_books()
     undo_users()

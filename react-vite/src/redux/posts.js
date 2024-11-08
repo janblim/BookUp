@@ -12,6 +12,11 @@ const getAllPosts = (posts) => ({
     posts
 })
 
+const getPost = (post) => ({
+    type: GET_POST,
+    post
+})
+
 const postUp = (post) => ({
     type: POST_UP,
     post
@@ -20,6 +25,7 @@ const postUp = (post) => ({
 const deletePostUp = () => ({
     type: DELETE_POST_UP,
 })
+
 
 
 
@@ -36,6 +42,10 @@ export const getAllPostsThunk = (book_id) => async(dispatch) => {
         return posts
     }
     return res
+}
+
+export const getPostThunk = (post_id) => async(dispatch) => {
+    const res = await csrfFetch(`/api/posts/post/${post_id}`)
 }
 
 export const postUpThunk = (post_id, value) => async(dispatch) => {

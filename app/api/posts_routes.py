@@ -15,18 +15,31 @@ def get_posts_by_id(book_id):
         post_dict = post.to_dict()
 
         op_user = db.session.query(User).filter(User.id == post.user_id).first()
-        # comments = db.session.query(Comment).filter(Comment.post_id == post.id)
 
-        # comments_list = [] #create list of comments for the post
-        # for comment in comments:
-        #     comments_list.append(comment.to_dict())
-
-        # post_dict['comments'] = comments_list
         post_dict['op_user'] = op_user.to_dict()
         posts_list.append(post_dict)
 
 
     return {'Posts': posts_list}, 200
+
+@post_route.route('/post/<int:post_id>')
+def get_post(post_id):
+    post = db.session.query(Post).filter(Post.id == post_id).first()
+    post_dict = post.to_dict()
+
+    op_user = db.session.query(User).filter(User.id == post.user_id).first()
+
+    comments = db.session.query(Comment).filter(Comment.post_id == post.id)
+
+    comments_list = [] #create list of comments for the post
+    for comment in comments:
+         comments_list.append(comment.to_dict())
+
+    post_dict['op_user'] = op_user.to_dict()
+    post_dict['comments'] = comments_list
+
+    return {'Post': post_dict}, 200
+
 
 @post_route.route('/<int:post_id>/up/<int:value>', methods=['Post'])
 @login_required

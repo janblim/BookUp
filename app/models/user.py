@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
     )
     ups = db.relationship('Up', backref='user', lazy=True)
     favBooks = db.relationship('FavBook', backref='user', lazy=True)
-    # comments = db.relationship('Comment', backref='user', lazy=True)
+    comments = db.relationship('Comment', backref='user', lazy=True)
     posts = db.relationship('Post', backref='user', lazy=True)
 
     @property

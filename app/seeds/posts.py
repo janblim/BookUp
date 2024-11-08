@@ -53,7 +53,7 @@ def seed_posts():
 
     #posts programmatically generated
 
-    for book_id in range(1, 41): #3 posts
+    for book_id in range(2, 10): #3 posts
         for user_id in range(2, 13):
             post = Post(
                 title = 'Lorem Ipsum',
@@ -63,6 +63,15 @@ def seed_posts():
                 text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pretium arcu. In sit amet imperdiet risus, quis consectetur enim. Aenean et posuere nisi. Donec ut metus nec sapien porttitor laoreet ut molestie lacus. Sed molestie tortor vitae pharetra volutpat. Aenean nec erat nisl. Vestibulum eget maximus lacus. Suspendisse placerat, augue id fermentum fringilla, est tellus consectetur justo, in porttitor libero arcu ut dui. Donec arcu nulla, ullamcorper nec lacus et, lacinia aliquam nunc. Nullam venenatis facilisis diam. Donec cursus at lectus vel interdum. Duis facilisis nibh sed egestas malesuada. Proin turpis est, tempus eget quam in, placerat efficitur orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
             db.session.add(post)
 
+    for book_id in range(13, 41): #3 posts
+        for user_id in range(2, 13):
+            post = Post(
+                title = 'Lorem Ipsum',
+                user_id = user_id,
+                book_id = book_id,
+                score = 7,
+                text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel pretium arcu. In sit amet imperdiet risus, quis consectetur enim. Aenean et posuere nisi. Donec ut metus nec sapien porttitor laoreet ut molestie lacus. Sed molestie tortor vitae pharetra volutpat. Aenean nec erat nisl. Vestibulum eget maximus lacus. Suspendisse placerat, augue id fermentum fringilla, est tellus consectetur justo, in porttitor libero arcu ut dui. Donec arcu nulla, ullamcorper nec lacus et, lacinia aliquam nunc. Nullam venenatis facilisis diam. Donec cursus at lectus vel interdum. Duis facilisis nibh sed egestas malesuada. Proin turpis est, tempus eget quam in, placerat efficitur orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit.')
+            db.session.add(post)
 
     db.session.commit()
 

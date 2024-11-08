@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from app import db
 from app.models import Comment
-from flask_login import current_user, login_required
+from flask_login import current_user
 
 comment_route = Blueprint('comments', __name__)
 
