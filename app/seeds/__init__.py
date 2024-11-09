@@ -22,9 +22,9 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
 
-        undo_ups()
-        # undo_comments()
+        undo_comments()
         undo_posts()
+        undo_ups()
         undo_favBooks()
         undo_books()
         undo_users()
@@ -33,9 +33,10 @@ def seed():
     seed_users()
     seed_books()
     seed_favBooks()
+    seed_ups()
     seed_posts()
     seed_comments()
-    seed_ups()
+
 
 
     # Add other seed functions here
@@ -44,9 +45,9 @@ def seed():
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
-    undo_ups()
     undo_posts()
     undo_comments()
+    undo_ups()
     undo_favBooks()
     undo_books()
     undo_users()
