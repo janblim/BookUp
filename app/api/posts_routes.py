@@ -33,7 +33,10 @@ def get_post(post_id):
 
     comments_list = [] #create list of comments for the post
     for comment in comments:
-         comments_list.append(comment.to_dict())
+         user = db.session.query(User).filter(User.id == comment.user_id).first()
+         comment_dict = comment.to_dict()
+         comment_dict['user'] = user.to_dict()
+         comments_list.append(comment_dict)
 
     post_dict['op_user'] = op_user.to_dict()
     post_dict['comments'] = comments_list

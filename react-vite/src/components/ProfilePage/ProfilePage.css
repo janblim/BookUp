@@ -28,3 +28,16 @@
     align-items: center;
     align-content: flex-start;
 }
+
+#friend-name{
+    display: flex;
+
+}
+#friend-name span {
+    font-size: 30px;
+    margin-left: 15px;
+}
+
+#friend-name button {
+    margin-left: 15px
+}

@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 
 friend_route = Blueprint('friends', __name__)
 
-#Get all friends of user (broken)
+#Get all friends of user
 @friend_route.route('/current')
 @login_required
 def get_friends():
@@ -15,6 +15,7 @@ def get_friends():
     for friend in friends:
         friend = db.session.query(User).filter(User.id == friend['friend_id']).first()
         friends_list.append(friend.to_dict())
+
     return {'friends': friends_list}, 200
 
 @friend_route.route('<int:user_id>')

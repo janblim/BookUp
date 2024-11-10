@@ -3,12 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserFriendsThunk, getUserThunk } from '../../redux/friends';
-
+import { getUserFriendsThunk, getUserThunk, getFriendsThunk } from '../../redux/friends';
+import { FaRegSmile } from "react-icons/fa";
 
 
 const ProfilePage = () => {
     const {user_id} = useParams();
+    const currentUser = useSelector(state => state.session.user)
+    const currentFriends = useSelector(state => state.friendState.friends)
     const user = useSelector(state => state.friendState.user)
     const friends = useSelector(state => state.friendState.userFriends)
     const navigate = useNavigate();
@@ -24,15 +26,23 @@ const ProfilePage = () => {
     useEffect(() => {
         dispatch(getUserThunk(user_id))
         .then(() => {dispatch(getUserFriendsThunk(user_id))})
+        .then(() => {dispatch(getFriendsThunk(currentUser.id))})
         .then(() => {setIsLoaded(true)})
-    }, [dispatch, user_id])
+    }, [dispatch, currentUser.id, user_id])
 
-return isLoaded && Array.isArray(friends) && user ? (
+return isLoaded && Array.isArray(friends) && Array.isArray(currentFriends) && user ? (
     <div id='profile-page' >
         <div id='profile-head'>
             <img src={user.picture} alt={user.username} id='profile-pic'/>
             <div>
+                <div id='friend-name'>
                 <h1>{user.username}</h1>
+                {currentFriends?.find((friend) => friend.id === user.id) ?
+                <span><FaRegSmile/></span>
+                :
+                <button>Add Friend</button>
+                }
+                </div>
                 <br></br>
                 <h3>{user.first_name} {user.last_name}</h3>
                 <br></br>

@@ -65,13 +65,19 @@ class User(db.Model, UserMixin):
     # add and remove friends functions
 
     def add_friend(self, friend):
+        if not self or not friend:
+            raise ValueError('User or friend does not exist')
         if not self.is_friends_with(friend):
             self.friends.append(friend)
+            friend.friends.append(self)
             db.session.commit()
 
     def remove_friend(self, friend):
+        if not self or not friend:
+            raise ValueError('User or friend does not exist')
         if self.is_friends_with(friend):
             self.friends.remove(friend)
+            friend.friends.remove(self)
             db.session.commit()
 
     def is_friends_with(self, friend):

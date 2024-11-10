@@ -15,7 +15,6 @@ import { useState, useEffect } from "react";
 import { getBookByIdThunk } from "../../redux/books";
 import { deleteFavoriteThunk } from '../../redux/books';
 import { addBookFavoriteThunk } from '../../redux/books';
-import { getAllFavoritesThunk } from '../../redux/books';
 import { deletePostUpThunk, getAllPostsThunk } from "../../redux/posts";
 import { postUpThunk } from "../../redux/posts";
 import DeleteBookModal from "../DeleteBookModal";
@@ -45,22 +44,18 @@ const BookPage = () => {
             if(value === 1 && currentValue === 1){ //if vote up again, delete
                 console.log('Here at one')
                 dispatch(deletePostUpThunk(post_id, user.id))
-                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
             if (value === 0 && currentValue === -1) {
                 console.log('Here at two')
                 dispatch(deletePostUpThunk(post_id, user.id))
-                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
             if (value === 0 && currentValue === 1){
                 console.log('Here at three')
                 dispatch(postUpThunk(post_id, value))
-                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
             if (value === 1 && currentValue === -1){
                 console.log('Here at four')
                 dispatch(postUpThunk(post_id, value))
-                // .then(() => dispatch(getAllPostsThunk(book_id)))
             }
         }
         else {
@@ -97,7 +92,6 @@ const BookPage = () => {
     useEffect(() => {
         dispatch(getBookByIdThunk(book_id))
             .then(() => dispatch(getAllPostsThunk(book_id)))
-            .then(() => dispatch(getAllFavoritesThunk()))
             .then(() => setIsLoaded(true));
     }, [book_id, dispatch, favTrigger]);
 
@@ -157,7 +151,7 @@ const BookPage = () => {
 
                 { posts.length ?
 
-                    posts.map((post) => (
+                    posts.toReversed().map((post) => (
 
                         <div className='post-container' key={`${post.id}-${post.op_user.id}`}>
                             <div id='post-header'>
