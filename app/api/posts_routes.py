@@ -6,7 +6,7 @@ from flask_login import current_user, login_required
 
 post_route = Blueprint('posts', __name__)
 
-#Get all posts by book ID. Also gets op info, for username and picture. Also gets comments.
+#Get all posts by book ID. Also gets op info, for username and picture (for book page)
 @post_route.route('/<int:book_id>')
 def get_posts_by_id(book_id):
     posts = db.session.query(Post).filter(Post.book_id == book_id)
@@ -23,6 +23,7 @@ def get_posts_by_id(book_id):
 
     return {'Posts': posts_list}, 200
 
+#get post with op info and comments (for post page)
 @post_route.route('/post/<int:post_id>')
 def get_post(post_id):
     post = db.session.query(Post).filter(Post.id == post_id).first()
@@ -45,7 +46,7 @@ def get_post(post_id):
 
     return {'Post': post_dict}, 200
 
-
+#add up, or change up if already exists
 @post_route.route('/<int:post_id>/up/<int:value>', methods=['Post'])
 @login_required
 def add_post_up(post_id, value):
@@ -78,7 +79,7 @@ def add_post_up(post_id, value):
     return {'message': 'Successfully voted', 'post': post.to_dict()}, 201
 
 
-
+#delete up
 @post_route.route('/<int:post_id>/up/delete', methods = ['DELETE'])
 @login_required
 def delete_post_up(post_id):
@@ -94,6 +95,7 @@ def delete_post_up(post_id):
     post = db.session.query(Post).filter(Post.id == post_id).first()
     return {'message': 'up was successfully deleted', 'post': post.to_dict()}, 200
 
+#add post
 @post_route.route('/new/<int:book_id>', methods=['POST'])
 @login_required
 def create_post(book_id):
@@ -119,3 +121,19 @@ def create_post(book_id):
 
         return {'post': new_post}, 201
     return {'errors': form.errors}, 400
+
+#delete post
+@post_route.route('/<int:post_id>', methods=['DELETE'])
+@login_required
+def deletePost(post_id):
+    user = current_user.to_dict()
+    post = db.session.query(Post).filter(Post.id == post_id).first()
+
+    if not post:
+        return {'error': 'Post not found'}, 404
+
+    if post.user_id == user['id']: #checks if post belongs to current user
+        db.session.delete(post)
+        db.session.commit()
+        return {'message': 'Post deleted successfully'}, 200
+    return {'error': 'Unauthorized to delete this post'}, 401

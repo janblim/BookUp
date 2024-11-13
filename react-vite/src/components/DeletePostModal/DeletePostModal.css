@@ -1,0 +1,27 @@
+#delete-modal {
+    width: 500px;
+    background: #352f44;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#delete-modal h2 {
+    margin: 30px;
+}
+
+#delete-modal button {
+    margin-bottom: 20px;
+}
+
+#keep-book {
+    background: rgb(36, 71, 127);
+}
+
+#butt-box button{
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

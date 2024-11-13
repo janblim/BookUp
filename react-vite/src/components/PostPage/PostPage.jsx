@@ -7,6 +7,9 @@ import { PiArrowFatUp } from "react-icons/pi";
 import { PiArrowFatDown } from "react-icons/pi";
 import { PiArrowFatUpFill } from "react-icons/pi";
 import { PiArrowFatDownFill } from "react-icons/pi";
+import { IoChatboxOutline } from "react-icons/io5";
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import DeletePostModal from '../DeletePostModal';
 
 const PostPage = () => {
     const { post_id } = useParams();
@@ -33,7 +36,7 @@ const PostPage = () => {
                 <div id='post-header-box'>
                     <div id='post-header'>
                         <div id='book-button'>
-                            <img src={post.book.cover} alt={post.book.title}></img>
+                            <img src={post.book.cover} alt={post.book?.title}></img>
                         </div>
                         <div id='post-info-box'>
                             <div id='post-book-title-box'>
@@ -47,7 +50,20 @@ const PostPage = () => {
                             </div>
                         </div>
                     </div>
-                    <button id='edit-post-button'>Edit Post</button>
+
+                    {   user && user.id == post.user_id ?
+
+                        <div id='post-buttons'>
+                            &nbsp;
+                        <OpenModalButton
+                        modalComponent={<DeletePostModal/>}
+                        buttonText={'Delete'}
+                        /> &nbsp;
+                        <button>Edit</button>
+                        </div>
+                        : null
+                    }
+
                 </div>
                 <div id='post-title'>{post.title}</div>
                 <div id='post-text'>{post.text}</div>
@@ -79,7 +95,12 @@ const PostPage = () => {
                         :
                         <span className='post-button'>{post.ups.reduce((sum, up) => sum + up.value, 0)}</span>
                         }
-                        {user && user.id ? <div className='post-button' id='add-comment-button'>Comment</div> : null}
+                        {user && user.id ?
+                        <div className='post-button'>
+                            <span><IoChatboxOutline /></span>
+                            &nbsp;
+                            <span>{post.comments?.length}</span>
+                        </div> : null}
                 </div>
 
             </div>

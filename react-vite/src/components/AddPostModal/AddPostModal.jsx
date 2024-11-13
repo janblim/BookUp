@@ -3,12 +3,14 @@ import { useState} from "react";
 import { useDispatch, useSelector} from "react-redux";
 import { useModal } from "../../context/Modal";
 import { addPostThunk } from "../../redux/posts";
+import { useNavigate } from "react-router-dom";
 
 function AddPostModal() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState('');
     const book = useSelector(state => state.bookState.book)
-
+    const post = useSelector(state => state.postState.post)
+    const navigate = useNavigate()
     const [errors, setErrors] = useState({})
     const {closeModal} = useModal()
     const dispatch = useDispatch()
@@ -37,7 +39,7 @@ function AddPostModal() {
             }, book.id)
           )
           .then(() => {closeModal()})
-          // .then(() => {window.scroll(0, 0)})
+          .then(() => navigate(`/post/${post.id}`))
           }
 
         }
@@ -56,7 +58,7 @@ function AddPostModal() {
               onChange={(e) => setTitle(e.target.value)}
               required
               />
-
+          <h2>Post</h2>
           {errors.text && <p className='error'>{errors.text}</p>}
             <textarea
               type="text"
@@ -66,7 +68,7 @@ function AddPostModal() {
               ></textarea>
 
           <div>
-            <button type="submit">Post</button>
+            <button type="submit">Add Post</button>
           </div>
         </form>
       </div>

@@ -6,6 +6,7 @@ const POST_UP = 'posts/up'
 const DELETE_POST_UP = 'posts/up/delete'
 const GET_POST = 'posts/getPostById'
 const ADD_POST = 'posts/addPostByBookId'
+const DELETE_POST = 'post/delete'
 
 
 //Action creators
@@ -32,6 +33,10 @@ const deletePostUp = (post) => ({
 const addPost =  (post) => ({
     type: ADD_POST,
     post
+})
+const deletePost = (post_id) => ({
+    type: DELETE_POST,
+    post_id
 })
 
 
@@ -107,6 +112,17 @@ export const addPostThunk = (post, book_id) => async(dispatch) => {
     }
 }
 
+export const deletePostThunk = (post_id) => async (dispatch) => {
+    const res = await csrfFetch(`/api/posts/${post_id}`, {
+        method: 'DELETE'
+    })
+
+    if (res.ok){
+        dispatch(deletePost(post_id))
+        return res
+    }
+}
+
 //Initial state
 const initialState = {
     posts: {},
@@ -143,9 +159,15 @@ function postsReducer(state = initialState, action){
         case ADD_POST: {
             new_state = structuredClone(state)
             new_state.posts.push(action.post.post)
+            new_state.post = action.post.post
+            console.log(new_state)
             return new_state
         }
-
+        case DELETE_POST: {
+            new_state = {...state}
+            new_state.post = {}
+            return new_state
+        }
     default:
         return state;
     }
