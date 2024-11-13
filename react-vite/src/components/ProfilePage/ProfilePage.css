@@ -37,7 +37,13 @@
     font-size: 30px;
     margin-left: 15px;
 }
+#friend-name span:hover{
+    cursor: pointer;
+    color: rgb(253, 45, 45);
+}
 
 #friend-name button {
     margin-left: 15px
 }
+
+#remove-friend-button{}

@@ -5,6 +5,7 @@ const GET_POSTS = 'posts/getAllById'
 const POST_UP = 'posts/up'
 const DELETE_POST_UP = 'posts/up/delete'
 const GET_POST = 'posts/getPostById'
+const ADD_POST = 'posts/addPostByBookId'
 
 
 //Action creators
@@ -25,6 +26,11 @@ const postUp = (post) => ({
 
 const deletePostUp = (post) => ({
     type: DELETE_POST_UP,
+    post
+})
+
+const addPost =  (post) => ({
+    type: ADD_POST,
     post
 })
 
@@ -82,6 +88,25 @@ export const deletePostUpThunk = (post_id) => async(dispatch) => {
     return res
 }
 
+export const addPostThunk = (post, book_id) => async(dispatch) => {
+    const res = await csrfFetch(`/api/posts/new/${book_id}`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(post)
+    });
+
+    if(res.ok){
+        const newPost = await res.json()
+        dispatch(addPost(newPost));
+        return newPost;
+    } else if (res.status < 500){
+        const errorMessages = await res.json();
+        return errorMessages
+    } else {
+        return { server: "Something went wrong. Please try again"}
+    }
+}
+
 //Initial state
 const initialState = {
     posts: {},
@@ -113,6 +138,11 @@ function postsReducer(state = initialState, action){
             new_state = {...state}
             new_state.post = action.post.Post
             console.log(new_state)
+            return new_state
+        }
+        case ADD_POST: {
+            new_state = structuredClone(state)
+            new_state.posts.push(action.post.post)
             return new_state
         }
 

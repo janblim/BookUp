@@ -40,7 +40,7 @@ return isLoaded && Array.isArray(friends) && Array.isArray(currentFriends) && us
                 {currentFriends?.find((friend) => friend.id === user.id) ?
                 <span><FaRegSmile/></span>
                 :
-                <button>Add Friend</button>
+                currentUser.id === user.id ? null : <button>Add Friend</button>
                 }
                 </div>
                 <br></br>

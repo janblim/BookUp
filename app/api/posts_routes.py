@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from app import db
 from app.models import Post, Comment, User, Up, Book
+from app.forms import PostForm
 from flask_login import current_user, login_required
 
 post_route = Blueprint('posts', __name__)
@@ -92,3 +93,29 @@ def delete_post_up(post_id):
     #return entire post to update state
     post = db.session.query(Post).filter(Post.id == post_id).first()
     return {'message': 'up was successfully deleted', 'post': post.to_dict()}, 200
+
+@post_route.route('/new/<int:book_id>', methods=['POST'])
+@login_required
+def create_post(book_id):
+    user_id = current_user.id
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        post = Post(
+            title = form.data['title'],
+            user_id = user_id,
+            book_id = book_id,
+            text = form.data['text'],
+            score = 0
+        )
+
+        db.session.add(post)
+        db.session.commit()
+        new_post = post.to_dict()
+
+        op_user = db.session.query(User).filter(User.id == user_id).first()
+        new_post['op_user'] = op_user.to_dict()
+
+        return {'post': new_post}, 201
+    return {'errors': form.errors}, 400

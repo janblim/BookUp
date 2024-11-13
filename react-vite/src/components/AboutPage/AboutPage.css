@@ -1,7 +1,7 @@
 #about-background{
     background-image: url('https://bookup-project.s3.us-east-2.amazonaws.com/A-wallpaper-displaying-a-reclaimed-wood-bookshelf-adorned-with-vintage-books-and-knick-knacks.jpg');
     background-repeat: no-repeat;
-    background-size: 1600px;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;

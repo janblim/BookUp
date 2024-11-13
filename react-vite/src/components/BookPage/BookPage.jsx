@@ -20,6 +20,7 @@ import { postUpThunk } from "../../redux/posts";
 import DeleteBookModal from "../DeleteBookModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import EditBookModal from "../EditBookModal";
+import AddPostModal from "../AddPostModal";
 
 const BookPage = () => {
     const { book_id } = useParams();
@@ -42,24 +43,20 @@ const BookPage = () => {
         if(currentValue){ //if up entry found
             //already voted up
             if(value === 1 && currentValue === 1){ //if vote up again, delete
-                console.log('Here at one')
                 dispatch(deletePostUpThunk(post_id, user.id))
             }
             if (value === 0 && currentValue === -1) {
-                console.log('Here at two')
                 dispatch(deletePostUpThunk(post_id, user.id))
             }
             if (value === 0 && currentValue === 1){
-                console.log('Here at three')
                 dispatch(postUpThunk(post_id, value))
             }
             if (value === 1 && currentValue === -1){
-                console.log('Here at four')
+
                 dispatch(postUpThunk(post_id, value))
             }
         }
         else {
-                console.log('Here at five')
                 dispatch(postUpThunk(post_id, value, user.id))
                 .then(() => dispatch(getAllPostsThunk(book_id)))
             }
@@ -105,7 +102,7 @@ const BookPage = () => {
                 <div id='header'>
                     <div id='button-container'>
 
-                        { user ? <button> + Add Post</button> : null }
+                        { user ? <OpenModalButton modalComponent={<AddPostModal/>} buttonText='+ Add Post'/> : null }
 
                         { user ?
                             favBooks.find( item => item.user_id === user.id) ?
