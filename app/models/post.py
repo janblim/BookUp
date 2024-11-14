@@ -17,7 +17,7 @@ class Post(db.Model):
     created_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
-    ups = db.relationship('Up', backref='post', lazy=True)
+    ups = db.relationship('Up', cascade='all,delete', backref='post', lazy=True)
     comments = db.relationship('Comment', cascade='all,delete', backref='post', lazy=True)
 
     def to_dict(self):

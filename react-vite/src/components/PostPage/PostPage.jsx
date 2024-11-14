@@ -107,7 +107,7 @@ const PostPage = () => {
                         <div className='post-button'>
                             <span><IoChatboxOutline /></span>
                             &nbsp;
-                            <span>{post.comments?.length}</span>
+                            <span>{comments?.length}</span>
                         </div> : null}
 
                 </div>
