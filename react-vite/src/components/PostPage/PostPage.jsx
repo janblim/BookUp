@@ -37,14 +37,14 @@ const PostPage = () => {
                 <div id='post-header-box'>
                     <div id='post-header'>
                         <div id='book-button'>
-                            <img src={post.book?.cover} alt={post.book?.title}></img>
+                            <img src={post.book.cover} alt={post.book.title}></img>
                         </div>
                         <div id='post-info-box'>
                             <div id='post-book-title-box'>
                                 <div>{post.book.title}</div><div className='post-date'>&nbsp;•&nbsp;{post.created_at}</div>
                             </div>
                             <div id='op-box'>
-                                <img className='user-pic' src={post.op_user.picture} alt={post.op_user.username}></img>
+                                <img className='user-pic' src={post.op_user.picture} alt={post.op_user.username} onClick={(e)=> goToProfile(e, post.op_user.id)}></img>
                                 <span>
                                     {post.op_user.username}
                                 </span>
@@ -101,19 +101,23 @@ const PostPage = () => {
                         </div> : null}
 
                 </div>
+
                 <div id='comments-container'>
                 { post.comments.length ?
                         post.comments.map(comment => (
-                            <CommentCard
-                                comment={comment}
-                            ></CommentCard>
+                            <div key={`${comment.id}-${comment.user.id}`}>
+                                <CommentCard
+                                    comment={comment}
+                                ></CommentCard>
+                            </div>
                         ))
                         :
-                     <div className='no-post'>
+                     <div className='no-comment'>
                              No Comments Yet. Be the first to Comment!
                     </div>
                 }
                 </div>
+
             </div>
         </div>
     ) : <h1 className="loading">loading...</h1>

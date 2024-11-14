@@ -9,12 +9,14 @@ import sessionReducer from "./session";
 import booksReducer from "./books";
 import postsReducer from "./posts";
 import friendsReducer from "./friends";
+import commentsReducer from "./comments";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   bookState: booksReducer,
   postState: postsReducer,
   friendState: friendsReducer,
+  commentState: commentsReducer
 });
 
 let enhancer;
