@@ -13,6 +13,7 @@ import { IoChatboxOutline } from "react-icons/io5";
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeletePostModal from '../DeletePostModal';
 import CommentCard from '../CommentCard';
+import AddCommentModal from '../AddCommentModal';
 
 
 const PostPage = () => {
@@ -57,7 +58,11 @@ const PostPage = () => {
                         </div>
                     </div>
                     <div id='post-buttons'>
-                        { user ? <button>+ Comment</button> : null}
+                        { user ?
+                             <OpenModalButton
+                             modalComponent={<AddCommentModal/>}
+                             buttonText={'+ Comment'}
+                             /> : null}
                             &nbsp;
                         { user && user.id == post.user_id ?
                             <OpenModalButton
