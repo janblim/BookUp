@@ -6,6 +6,8 @@ import { PiArrowFatUpFill } from "react-icons/pi";
 import { PiArrowFatDownFill } from "react-icons/pi";
 import { useDispatch, useSelector } from 'react-redux';
 import { commentUpThunk, deleteCommentUpThunk } from '../../redux/comments';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import DeleteCommentModal from '../DeleteCommentModal';
 
 
 const CommentCard = ({comment}) => {
@@ -53,7 +55,18 @@ const CommentCard = ({comment}) => {
             <img src={comment.user.picture} alt={comment.user.username} className='user-pic' onClick={(e)=> goToProfile(e, comment.user_id)}/>
 
             <div id='name-date-box'>
-                <span id='op-name'>{comment.user.username}</span><span className='post-date'>{comment.created_at}</span>
+                <span id='op-name'>{comment.user.username}</span>
+                <span>
+                    <span className='post-date'>{comment.created_at}</span>
+                    <span id='comment-button-box'>
+                        { user && comment.user.id === user.id ?
+                        <OpenModalButton
+                            modalComponent={<DeleteCommentModal comment={comment}/>}
+                            buttonText={'Delete'}
+                        /> : null }
+                        { user && comment.user.id === user.id ? <button>Edit</button> : null }
+                    </span>
+                </span>
             </div>
             </div>
 

@@ -43,3 +43,9 @@
 #add-comment-button:hover {
     cursor: pointer;
 }
+#comment-button-box button {
+    margin-right: 5px
+}
+#comment-button-box {
+    margin-left: 20px;
+}

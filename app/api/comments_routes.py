@@ -92,3 +92,19 @@ def delete_comment_up(comment_id):
     #return entire post to update state
     comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
     return {'message': 'up was successfully deleted', 'comment': comment.to_dict()}, 200
+
+#delete comment
+@comment_route.route('/<int:comment_id>', methods=['DELETE'])
+@login_required
+def delete_comment(comment_id):
+    user = current_user.to_dict()
+    comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
+
+    if not comment:
+        return {'error': 'Comment not found'}, 404
+
+    if comment.user_id == user['id']: #checks if post belongs to current user
+        db.session.delete(comment)
+        db.session.commit()
+        return {'message': 'Comment deleted successfully'}, 200
+    return {'error': 'Unauthorized to delete this comment'}, 401

@@ -98,6 +98,17 @@ export const deleteCommentUpThunk = (comment_id) => async(dispatch) => {
     return res
 }
 
+export const deleteCommentThunk = (comment_id) => async (dispatch) => {
+    const res = await csrfFetch(`/api/comments/${comment_id}`, {
+        method: 'DELETE'
+    })
+
+    if (res.ok){
+        dispatch(deleteComment(comment_id))
+        return res
+    }
+}
+
 //Initial state
 const initialState = {
     comments: {},
@@ -131,6 +142,11 @@ function commentsReducer(state = initialState, action){
             Object.keys(new_state.comment).length ? new_state.comment.ups = action.comment.comment.ups : null //checks if post is empty first, if not updates ups
             Object.keys(new_state.comments).length ? new_state.comments[new_state.comments.map(e => e.id).indexOf(action.comment.comment.id)].ups = action.comment.comment.ups : null
             console.log(new_state)
+            return new_state
+        }
+        case DELETE_COMMENT: {
+            new_state = structuredClone(state)
+            delete new_state.comments[new_state.comments.map(e => e.id).indexOf(action.comment_id)] //deletes where index is object with id of comment_id
             return new_state
         }
     default:
