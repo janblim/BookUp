@@ -5,6 +5,7 @@ import { PiArrowFatDown } from "react-icons/pi";
 import { PiArrowFatUpFill } from "react-icons/pi";
 import { PiArrowFatDownFill } from "react-icons/pi";
 import { useDispatch, useSelector } from 'react-redux';
+import { commentUpThunk, deleteCommentUpThunk } from '../../redux/comments';
 
 
 const CommentCard = ({comment}) => {
@@ -18,6 +19,32 @@ const CommentCard = ({comment}) => {
         e.stopPropagation();
         window.scrollTo(0, 0)
         navigate(`/profile/${id}`)
+    }
+
+    const handleVote = (e, comment_id, value) => {
+        e.preventDefault();
+
+        const currentValue = comment.ups.find(up => up.user_id === user.id)?.value
+
+        if(currentValue){ //if up entry found
+            //already voted up
+            if(value === 1 && currentValue === 1){ //if vote up again, delete
+                dispatch(deleteCommentUpThunk(comment_id, user.id))
+            }
+            if (value === 0 && currentValue === -1) {
+                dispatch(deleteCommentUpThunk(comment_id, user.id))
+            }
+            if (value === 0 && currentValue === 1){
+                dispatch(commentUpThunk(comment_id, value))
+            }
+            if (value === 1 && currentValue === -1){
+
+                dispatch(commentUpThunk(comment_id, value))
+            }
+        }
+        else {
+                dispatch(commentUpThunk(comment_id, value, user.id))
+            }
     }
 
     return (
@@ -37,24 +64,24 @@ const CommentCard = ({comment}) => {
                 user && user.id ?
                     comment.ups.find(up => up.user_id === user.id) ?
                     <div className='comment-button' id={comment.ups.find(up => up.user_id === user.id)?.value > 0 ? 'voted-up-btn' : 'voted-down-btn'}>
-                        <span className='ar-filled'><PiArrowFatUpFill />
+                        <span className='ar-filled' onClick={(e) => handleVote(e, comment.id, 1)}><PiArrowFatUpFill />
                         </span>
                         &nbsp;
                         <span>
                             {comment.ups.reduce((sum, up) => sum + up.value, 0)}
                         </span>
                         &nbsp;
-                        <span className='ar-filled'><PiArrowFatDownFill /></span>
+                        <span className='ar-filled' onClick={(e) => handleVote(e, comment.id, 0)}><PiArrowFatDownFill /></span>
                     </div>
                     :
                     <div className='comment-button' id='vote-button'>
-                            <span className='up' ><PiArrowFatUp /></span>
+                            <span className='up' onClick={(e) => handleVote(e, comment.id, 1)}><PiArrowFatUp /></span>
                         &nbsp;
                             <span>
                                 {comment.ups.reduce((sum, up) => sum + up.value, 0)}
                             </span>
                         &nbsp;
-                            <span className='down'><PiArrowFatDown /></span>
+                            <span className='down' onClick={(e) => handleVote(e, comment.id, 0)}><PiArrowFatDown /></span>
                     </div>
                 :
                 <span className='comment-button'>{comment.ups.reduce((sum, up) => sum + up.value, 0)}</span>

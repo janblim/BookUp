@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app import db
-from app.models import Comment, User
+from app.models import Comment, User, Up
 from app.forms import CommentForm
 from flask_login import current_user, login_required
 
@@ -43,3 +43,52 @@ def create_comment(post_id):
 
         return {'comment': new_comment}, 201
     return {'errors': form.errors}, 400
+
+#add up, or change up if already exists
+@comment_route.route('/<int:comment_id>/up/<int:value>', methods=['Post'])
+@login_required
+def add_comment_up(comment_id, value):
+    #check to see if 'up' entry already exists
+    up = db.session.query(Up).filter(Up.comment_id == comment_id, Up.user_id == current_user.id).first()
+
+    posOrNeg = 0
+
+    if value == 0:
+        posOrNeg = -1
+    if value == 1:
+        posOrNeg = 1
+
+
+    if up:
+        up.value = posOrNeg
+
+    else :
+        new_up = Up(
+            value = posOrNeg,
+            user_id = current_user.id,
+            comment_id = comment_id
+        )
+        db.session.add(new_up)
+
+    db.session.commit()
+
+    #return entire post to update state
+    comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
+    return {'message': 'Successfully voted', 'comment': comment.to_dict()}, 201
+
+
+#delete up
+@comment_route.route('/<int:comment_id>/up/delete', methods = ['DELETE'])
+@login_required
+def delete_comment_up(comment_id):
+    up = db.session.query(Up).filter(Up.comment_id == comment_id, Up.user_id == current_user.id).first()
+
+    if not up:
+        return {'error': 'up entry was not found'}, 404
+
+    db.session.delete(up)
+    db.session.commit()
+
+    #return entire post to update state
+    comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
+    return {'message': 'up was successfully deleted', 'comment': comment.to_dict()}, 200

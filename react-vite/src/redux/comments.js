@@ -72,6 +72,32 @@ export const addCommentThunk = (comment, post_id) => async(dispatch) => {
     }
 }
 
+export const commentUpThunk = (comment_id, value) => async(dispatch) => {
+    const res = await csrfFetch(`/api/comments/${comment_id}/up/${value}`, {
+        method: 'POST',
+        body: JSON.stringify({})
+    })
+    if(res.ok){
+        const comment = await res.json()
+        dispatch(commentUp(comment))
+        return comment
+    }
+    return res.errors
+}
+
+export const deleteCommentUpThunk = (comment_id) => async(dispatch) => {
+    const res = await csrfFetch(`/api/comments/${comment_id}/up/delete`, {
+        method: 'DELETE'
+    })
+
+    if(res.ok){
+        const comment = await res.json()
+        dispatch(deleteCommentUp(comment))
+        return comment
+    }
+    return res
+}
+
 //Initial state
 const initialState = {
     comments: {},
@@ -90,6 +116,20 @@ function commentsReducer(state = initialState, action){
         case ADD_COMMENT: {
             new_state = structuredClone(state)
             new_state.comments.push(action.comment.comment)
+            console.log(new_state)
+            return new_state
+        }
+        case COMMENT_UP: {
+            new_state = structuredClone(state)
+            Object.keys(new_state.comment).length ? new_state.comment.ups = action.comment.comment.ups : null //checks if post is empty first, if not updates ups
+            Object.keys(new_state.comments).length ? new_state.comments[new_state.comments.map(e => e.id).indexOf(action.comment.comment.id)].ups = action.comment.comment.ups : null
+            console.log(new_state)
+            return new_state
+        }
+        case DELETE_COMMENT_UP: {
+            new_state = structuredClone(state)
+            Object.keys(new_state.comment).length ? new_state.comment.ups = action.comment.comment.ups : null //checks if post is empty first, if not updates ups
+            Object.keys(new_state.comments).length ? new_state.comments[new_state.comments.map(e => e.id).indexOf(action.comment.comment.id)].ups = action.comment.comment.ups : null
             console.log(new_state)
             return new_state
         }
