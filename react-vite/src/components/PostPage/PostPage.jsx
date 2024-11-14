@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPostThunk } from '../../redux/posts';
+import { getCommentsThunk } from '../../redux/comments';
+
 import { PiArrowFatUp } from "react-icons/pi";
 import { PiArrowFatDown } from "react-icons/pi";
 import { PiArrowFatUpFill } from "react-icons/pi";
@@ -12,11 +14,13 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeletePostModal from '../DeletePostModal';
 import CommentCard from '../CommentCard';
 
+
 const PostPage = () => {
     const { post_id } = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
     const post = useSelector(state => state.postState.post)
     const user = useSelector(state => state.session.user)
+    const comments = useSelector(state => state.commentState.comments)
     const dispatch = useDispatch();
     const navigate = useNavigate()
 
@@ -28,6 +32,7 @@ const PostPage = () => {
 
     useEffect(() => {
         dispatch(getPostThunk(post_id))
+        .then(() => dispatch(getCommentsThunk(post_id)))
         .then(() => setIsLoaded(true));
     }, [dispatch, post_id]);
 
@@ -103,8 +108,8 @@ const PostPage = () => {
                 </div>
 
                 <div id='comments-container'>
-                { post.comments.length ?
-                        post.comments.map(comment => (
+                { comments.length ?
+                        comments.map(comment => (
                             <div key={`${comment.id}-${comment.user.id}`}>
                                 <CommentCard
                                     comment={comment}

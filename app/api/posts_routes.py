@@ -31,17 +31,17 @@ def get_post(post_id):
 
     op_user = db.session.query(User).filter(User.id == post.user_id).first()
     book = db.session.query(Book).filter(Book.id == post.book_id).first()
-    comments = db.session.query(Comment).filter(Comment.post_id == post.id)
+    # comments = db.session.query(Comment).filter(Comment.post_id == post.id)
 
-    comments_list = [] #create list of comments for the post
-    for comment in comments:
-         user = db.session.query(User).filter(User.id == comment.user_id).first()
-         comment_dict = comment.to_dict()
-         comment_dict['user'] = user.to_dict()
-         comments_list.append(comment_dict)
+    # comments_list = [] #create list of comments for the post
+    # for comment in comments:
+    #      user = db.session.query(User).filter(User.id == comment.user_id).first()
+    #      comment_dict = comment.to_dict()
+    #      comment_dict['user'] = user.to_dict()
+    #      comments_list.append(comment_dict)
 
     post_dict['op_user'] = op_user.to_dict()
-    post_dict['comments'] = comments_list
+    # post_dict['comments'] = comments_list
     post_dict['book'] = book.to_dict()
 
     return {'Post': post_dict}, 200

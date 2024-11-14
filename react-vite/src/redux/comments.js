@@ -41,6 +41,18 @@ const deleteComment = (comment_id) => ({
 
 //Thunks
 
+//get all comments by post id
+export const getCommentsThunk = (post_id) => async(dispatch) => {
+    const res = await csrfFetch(`/api/comments/${post_id}`)
+
+    if(res.ok){
+        const comments = await res.json()
+        dispatch(getComments(comments))
+        return comments
+    }
+    return res
+}
+
 export const addCommentThunk = (comment, post_id) => async(dispatch) => {
     const res = await csrfFetch(`/api/comments/new/${post_id}`, {
         method: 'POST',

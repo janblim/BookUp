@@ -6,11 +6,17 @@ from flask_login import current_user, login_required
 
 comment_route = Blueprint('comments', __name__)
 
-#Get comment by ID
-@comment_route.route('/<int:comment_id>')
-def get_comment_by_id(comment_id):
-    comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
-    return {'Comment': comment.to_dict()}, 200
+#Get comments by post id
+@comment_route.route('/<int:post_id>')
+def get_comments(post_id):
+    comments = db.session.query(Comment).filter(Comment.post_id == post_id)
+    comments_list = [] #create list of comments for the post
+    for comment in comments:
+         user = db.session.query(User).filter(User.id == comment.user_id).first()
+         comment_dict = comment.to_dict()
+         comment_dict['user'] = user.to_dict()
+         comments_list.append(comment_dict)
+    return {'comments': comments_list}, 200
 
 #Add Comment
 @comment_route.route('/new/<int:post_id>', methods=['POST'])
