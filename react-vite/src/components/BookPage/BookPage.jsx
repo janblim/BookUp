@@ -102,7 +102,7 @@ const BookPage = () => {
                 <div id='header'>
                     <div id='button-container'>
 
-                        { user ? <OpenModalButton modalComponent={<AddPostModal/>} buttonText='+ Add Post'/> : null }
+                        { user ? <OpenModalButton modalComponent={<AddPostModal/>} buttonText='+ Post'/> : null }
 
                         { user ?
                             favBooks.find( item => item.user_id === user.id) ?

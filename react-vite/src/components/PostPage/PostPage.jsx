@@ -10,6 +10,7 @@ import { PiArrowFatDownFill } from "react-icons/pi";
 import { IoChatboxOutline } from "react-icons/io5";
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeletePostModal from '../DeletePostModal';
+import CommentCard from '../CommentCard';
 
 const PostPage = () => {
     const { post_id } = useParams();
@@ -50,20 +51,17 @@ const PostPage = () => {
                             </div>
                         </div>
                     </div>
-
-                    {   user && user.id == post.user_id ?
-
-                        <div id='post-buttons'>
+                    <div id='post-buttons'>
+                        { user ? <button>+ Comment</button> : null}
                             &nbsp;
-                        <OpenModalButton
-                        modalComponent={<DeletePostModal/>}
-                        buttonText={'Delete'}
-                        /> &nbsp;
-                        <button>Edit</button>
-                        </div>
-                        : null
-                    }
-
+                        { user && user.id == post.user_id ?
+                            <OpenModalButton
+                            modalComponent={<DeletePostModal/>}
+                            buttonText={'Delete'}
+                            /> : null }
+                            &nbsp;
+                        { user && user.id == post.user_id ? <button>Edit</button> : null}
+                    </div>
                 </div>
                 <div id='post-title'>{post.title}</div>
                 <div id='post-text'>{post.text}</div>
@@ -101,65 +99,22 @@ const PostPage = () => {
                             &nbsp;
                             <span>{post.comments?.length}</span>
                         </div> : null}
+
                 </div>
-
-            </div>
-
-        <div id='comments-container'>
-
-        { post.comments.length ?
-
-            post.comments.map(comment => (
-
-                <div id='comment-container' key={`${comment.id}`}>
-                    <div id='comment-header'>
-                    <img src={comment.user.picture} alt={comment.user.username} className='user-pic' onClick={(e)=> goToProfile(e, comment.user_id)}/>
-
-                    <div id='name-date-box'>
-                        <span id='op-name'>{comment.user.username}</span><span className='post-date'>{comment.created_at}</span>
-                    </div>
-                    </div>
-
-                    <div className='comment-text'>{comment.text}</div>
-
-                    <div className='comment-button-box'>
-                        {
-                        user && user.id ?
-                            comment.ups.find(up => up.user_id === user.id) ?
-                            <div className='comment-button' id={comment.ups.find(up => up.user_id === user.id)?.value > 0 ? 'voted-up-btn' : 'voted-down-btn'}>
-                                <span className='ar-filled'><PiArrowFatUpFill />
-                                </span>
-                                &nbsp;
-                                <span>
-                                    {comment.ups.reduce((sum, up) => sum + up.value, 0)}
-                                </span>
-                                &nbsp;
-                                <span className='ar-filled'><PiArrowFatDownFill /></span>
-                            </div>
-                            :
-                            <div className='comment-button' id='vote-button'>
-                                    <span className='up' ><PiArrowFatUp /></span>
-                                &nbsp;
-                                    <span>
-                                        {comment.ups.reduce((sum, up) => sum + up.value, 0)}
-                                    </span>
-                                &nbsp;
-                                    <span className='down'><PiArrowFatDown /></span>
-                            </div>
+                <div id='comments-container'>
+                { post.comments.length ?
+                        post.comments.map(comment => (
+                            <CommentCard
+                                comment={comment}
+                            ></CommentCard>
+                        ))
                         :
-                        <span className='comment-button'>{comment.ups.reduce((sum, up) => sum + up.value, 0)}</span>
-                        }
+                     <div className='no-post'>
+                             No Comments Yet. Be the first to Comment!
                     </div>
+                }
                 </div>
-
-            ))
-
-                :
-            <div className='no-post'>
-                No Comments Yet. Be the first to Comment!
             </div>
-        }
-        </div>
         </div>
     ) : <h1 className="loading">loading...</h1>
 }
