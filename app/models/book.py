@@ -19,8 +19,8 @@ class Book(db.Model):
     updated_at = db.Column(db.DateTime(timezone=True), default=datetime.now(), nullable=False)
 
     user = db.relationship("User", backref='book')
-    posts = db.relationship("Post", backref='book')
-    favBooks = db.relationship('FavBook', backref='book', lazy=True)
+    posts = db.relationship("Post", cascade='all,delete', backref='book')
+    favBooks = db.relationship('FavBook', cascade='all,delete', backref='book', lazy=True)
 
     def to_dict(self):
         return {
