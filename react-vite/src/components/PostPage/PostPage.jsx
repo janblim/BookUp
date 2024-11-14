@@ -30,13 +30,13 @@ const PostPage = () => {
         .then(() => setIsLoaded(true));
     }, [dispatch, post_id]);
 
-    return isLoaded ? (
+    return isLoaded && post.book && user ? (
         <div id='post-background'>
             <div id='post-container'>
                 <div id='post-header-box'>
                     <div id='post-header'>
                         <div id='book-button'>
-                            <img src={post.book.cover} alt={post.book?.title}></img>
+                            <img src={post.book?.cover} alt={post.book?.title}></img>
                         </div>
                         <div id='post-info-box'>
                             <div id='post-book-title-box'>

@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
-    text = TextAreaField('Text', validators=[validators.InputRequired(), validators.Length(min=4, max=500)])
+    text = TextAreaField('Text', validators=[validators.InputRequired(), validators.Length(min=2, max=500)])

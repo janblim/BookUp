@@ -9,7 +9,6 @@ function AddPostModal() {
     const [title, setTitle] = useState("");
     const [text, setText] = useState('');
     const book = useSelector(state => state.bookState.book)
-    const post = useSelector(state => state.postState.post)
     const navigate = useNavigate()
     const [errors, setErrors] = useState({})
     const {closeModal} = useModal()
@@ -38,10 +37,11 @@ function AddPostModal() {
                 text: text,
             }, book.id)
           )
+          .then((post) => {
+            navigate(`post/${post.post.id}`)
+          })
           .then(() => {closeModal()})
-          .then(() => navigate(`/post/${post.id}`))
           }
-
         }
 
     return (

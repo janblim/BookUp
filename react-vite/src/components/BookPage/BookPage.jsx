@@ -92,7 +92,7 @@ const BookPage = () => {
             .then(() => setIsLoaded(true));
     }, [book_id, dispatch, favTrigger]);
 
-    return isLoaded ? (
+    return isLoaded && book ? (
         <div id='page-container'>
             <div id='book-info-container'>
                 <div id='left-container'>
