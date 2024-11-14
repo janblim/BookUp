@@ -2,7 +2,7 @@ import './PostPage.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getPostThunk } from '../../redux/posts';
+import { getPostThunk, postUpThunk, deletePostUpThunk } from '../../redux/posts';
 import { getCommentsThunk } from '../../redux/comments';
 
 import { PiArrowFatUp } from "react-icons/pi";
@@ -29,6 +29,32 @@ const PostPage = () => {
         e.stopPropagation();
         window.scrollTo(0, 0)
         navigate(`/profile/${id}`)
+    }
+
+    const handleVote = (e, post_id, value) => {
+        e.preventDefault();
+
+        const currentValue = post.ups.find(up => up.user_id === user.id)?.value
+
+        if(currentValue){ //if up entry found
+            //already voted up
+            if(value === 1 && currentValue === 1){ //if vote up again, delete
+                dispatch(deletePostUpThunk(post_id, user.id))
+            }
+            if (value === 0 && currentValue === -1) {
+                dispatch(deletePostUpThunk(post_id, user.id))
+            }
+            if (value === 0 && currentValue === 1){
+                dispatch(postUpThunk(post_id, value))
+            }
+            if (value === 1 && currentValue === -1){
+
+                dispatch(postUpThunk(post_id, value))
+            }
+        }
+        else {
+                dispatch(postUpThunk(post_id, value, user.id))
+            }
     }
 
     useEffect(() => {
@@ -80,24 +106,24 @@ const PostPage = () => {
                         user && user.id ?
                             post.ups.find(up => up.user_id === user.id) ?
                             <div className='post-button' id={post.ups.find(up => up.user_id === user.id)?.value > 0 ? 'voted-up-btn' : 'voted-down-btn'}>
-                                <span className='ar-filled'><PiArrowFatUpFill />
+                                <span className='ar-filled' onClick={(e) => handleVote(e, post.id, 1)}><PiArrowFatUpFill />
                                 </span>
                                 &nbsp;
                                 <span>
                                     {post.ups.reduce((sum, up) => sum + up.value, 0)}
                                 </span>
                                 &nbsp;
-                                <span className='ar-filled'><PiArrowFatDownFill /></span>
+                                <span className='ar-filled' onClick={(e) => handleVote(e, post.id, 0)}><PiArrowFatDownFill /></span>
                             </div>
                             :
                             <div className='post-button' id='vote-button'>
-                                    <span className='up' ><PiArrowFatUp /></span>
+                                    <span className='up' onClick={(e) => handleVote(e, post.id, 1)}><PiArrowFatUp /></span>
                                 &nbsp;
                                     <span>
                                         {post.ups.reduce((sum, up) => sum + up.value, 0)}
                                     </span>
                                 &nbsp;
-                                    <span className='down'><PiArrowFatDown /></span>
+                                    <span className='down'onClick={(e) => handleVote(e, post.id, 0)}><PiArrowFatDown /></span>
                             </div>
 
                         :

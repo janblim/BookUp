@@ -199,7 +199,7 @@ const BookPage = () => {
 
                                 :
 
-                                <span className='post-button'>{post.ups.reduce((sum, up) => sum + up.value, 0)}</span>
+                                <span className='post-button'>{post.ups?.reduce((sum, up) => sum + up.value, 0)}</span>
 
                                 }
 

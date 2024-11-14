@@ -140,13 +140,15 @@ function postsReducer(state = initialState, action){
         }
         case POST_UP: {
             new_state = structuredClone(state)
-            new_state.posts[new_state.posts.map(e => e.id).indexOf(action.post.post.id)].ups = action.post.post.ups
+            Object.keys(new_state.post).length ? new_state.post.ups = action.post.post.ups : null //checks if post is empty first, if not updates ups
+            Object.keys(new_state.posts).length ? new_state.posts[new_state.posts.map(e => e.id).indexOf(action.post.post.id)].ups = action.post.post.ups : null
             console.log(new_state)
             return new_state
         }
         case DELETE_POST_UP: {
             new_state = structuredClone(state)
-            new_state.posts[new_state.posts.map(e => e.id).indexOf(action.post.post.id)].ups = action.post.post.ups
+            Object.keys(new_state.post).length ? new_state.post.ups = action.post.post.ups : null //checks if post is empty first, if not updates ups
+            Object.keys(new_state.posts).length ? new_state.posts[new_state.posts.map(e => e.id).indexOf(action.post.post.id)].ups = action.post.post.ups : null
             console.log(new_state)
             return new_state
         }
