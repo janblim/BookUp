@@ -137,3 +137,36 @@ def deletePost(post_id):
         db.session.commit()
         return {'message': 'Post deleted successfully'}, 200
     return {'error': 'Unauthorized to delete this post'}, 401
+
+#edit post
+@post_route.route('/<int:post_id>', methods=['PUT'])
+@login_required
+def editPost(post_id):
+
+    user = current_user.to_dict()
+
+    post = db.session.query(Post).filter(Post.id == post_id).first()
+
+    if not post:
+        return {'errors': {'message': 'Post does not exist'}}, 404
+
+    if post.user_id != user['id']:
+        return {'errors': {'message': 'Unauthorized to edit this post'}}, 403
+
+    form = PostForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        if form.data.get('title'):
+            post.title = form.data['title']
+        if form.data.get('text'):
+            post.text = form.data['text']
+
+        db.session.commit()
+
+        updated_post = post.to_dict()
+
+        return {'post': updated_post}, 200
+
+    return form.errors, 400

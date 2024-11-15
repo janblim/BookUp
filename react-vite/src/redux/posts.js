@@ -6,7 +6,8 @@ const POST_UP = 'posts/up'
 const DELETE_POST_UP = 'posts/up/delete'
 const GET_POST = 'posts/getPostById'
 const ADD_POST = 'posts/addPostByBookId'
-const DELETE_POST = 'post/delete'
+const DELETE_POST = 'posts/delete'
+const EDIT_POST = 'posts/edit'
 
 
 //Action creators
@@ -38,8 +39,10 @@ const deletePost = (post_id) => ({
     type: DELETE_POST,
     post_id
 })
-
-
+const editPost = (post) => ({
+    type: EDIT_POST,
+    post
+})
 
 
 //Thunks
@@ -123,6 +126,33 @@ export const deletePostThunk = (post_id) => async (dispatch) => {
     }
 }
 
+export const editPostThunk = (post, post_id) => async (dispatch) => {
+    let res;
+
+    let newPost = {
+        title: post.title,
+        text: post.text,
+    };
+
+    try {
+        res = await csrfFetch(`/api/posts/${post_id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newPost)
+        });
+    } catch (error) {
+        return await error.json();
+    }
+
+    if (res.ok) {
+        const editedPost = await res.json();
+        dispatch(editPost(editedPost));
+        return editedPost;
+    } else {
+        return res
+    }
+};
+
 //Initial state
 const initialState = {
     posts: {},
@@ -168,6 +198,12 @@ function postsReducer(state = initialState, action){
         case DELETE_POST: {
             new_state = {...state}
             new_state.post = {}
+            return new_state
+        }
+        case EDIT_POST: {
+            new_state = structuredClone(state)
+            new_state.post.text = action.post.post.text
+            new_state.post.title = action.post.post.title
             return new_state
         }
     default:

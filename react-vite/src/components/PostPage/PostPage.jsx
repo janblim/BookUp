@@ -14,6 +14,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeletePostModal from '../DeletePostModal';
 import CommentCard from '../CommentCard';
 import AddCommentModal from '../AddCommentModal';
+import EditPostModal from '../EditPostModal/EditPostModal';
 
 
 const PostPage = () => {
@@ -96,7 +97,11 @@ const PostPage = () => {
                             buttonText={'Delete'}
                             /> : null }
                             &nbsp;
-                        { user && user.id == post.user_id ? <button>Edit</button> : null}
+                        { user && user.id == post.user_id ?
+                            <OpenModalButton
+                            modalComponent={<EditPostModal/>}
+                            buttonText={'Edit'}
+                            /> : null}
                     </div>
                 </div>
                 <div id='post-title'>{post.title}</div>
