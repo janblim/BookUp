@@ -33,14 +33,20 @@
     display: flex;
 
 }
-#friend-name span {
+
+#friend-name span button {
+    border: 0;
+    background: none;
     font-size: 30px;
     margin-left: 15px;
+    padding: 5px;
 }
-#friend-name span:hover{
+
+#friend-name span button:hover  {
     cursor: pointer;
     color: rgb(253, 45, 45);
 }
+
 
 #friend-name button {
     margin-left: 15px

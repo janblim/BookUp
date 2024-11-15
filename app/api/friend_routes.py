@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 
 friend_route = Blueprint('friends', __name__)
 
-#Get all friends of user
+#Get all friends of current user
 @friend_route.route('/current')
 @login_required
 def get_friends():
@@ -18,6 +18,7 @@ def get_friends():
 
     return {'friends': friends_list}, 200
 
+#Get all friends of any user by id
 @friend_route.route('<int:user_id>')
 def get_user_friends(user_id):
     user = User.query.get(user_id)
@@ -29,6 +30,7 @@ def get_user_friends(user_id):
         friends_list.append(friend.to_dict())
     return {'friends': friends_list}, 200
 
+#add friend route
 @friend_route.route('/add/<int:friend_id>', methods=['POST'])
 @login_required
 def add_friend(friend_id):
@@ -52,3 +54,20 @@ def add_friend(friend_id):
     friend.friends.append(user)
     db.session.commit()
     return {'friend': friend.to_dict()}, 200
+
+#delete friend route
+@friend_route.route('/delete/<int:friend_id>', methods=['DELETE'])
+def delete_friend(friend_id):
+    user_id = current_user.id
+
+    user = User.query.get_or_404(user_id)
+    friend = User.query.get_or_404(friend_id)
+
+    #Remove friendship for both users
+    if friend in user.friends:
+        user.friends.remove(friend)
+        friend.friends.remove(user)
+        db.session.commit()
+
+        return ({'message': 'friend deleted'}), 200
+    return ({'message': 'friendship not found'}), 404

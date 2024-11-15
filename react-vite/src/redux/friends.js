@@ -22,8 +22,9 @@ const addFriend = (friend) => ({
     friend
 })
 
-const deleteFriend = () => ({
-    type: DELETE_FRIEND
+const deleteFriend = (friend_id) => ({
+    type: DELETE_FRIEND,
+    friend_id
 })
 const getUser = (user) => ({
     type: GET_USER,
@@ -78,7 +79,7 @@ export const deleteFriendThunk = (friend_id) => async(dispatch) => {
 
     if(res.ok){
         const data = await res.json()
-        dispatch(deleteFriend(data))
+        dispatch(deleteFriend(friend_id))
         return data
     }
     return res
@@ -127,7 +128,7 @@ function friendsReducer(state = initialState, action){
         }
         case DELETE_FRIEND: {
             new_state = structuredClone(state)
-            delete new_state['favBooks'][action.fav_id]
+            delete new_state.friends[new_state.friends.map(e => e.id).indexOf(action.friend_id)]
             console.log(new_state)
             return new_state
         }

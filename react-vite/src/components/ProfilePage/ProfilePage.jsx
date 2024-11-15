@@ -3,8 +3,10 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserFriendsThunk, getUserThunk, getFriendsThunk, addFriendThunk } from '../../redux/friends';
+import { getUserFriendsThunk, getUserThunk, getFriendsThunk, addFriendThunk, deleteFriendThunk } from '../../redux/friends';
 import { FaRegSmile } from "react-icons/fa";
+import DeleteFriendModal from '../DeleteFriendModal';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 
 const ProfilePage = () => {
     const {user_id} = useParams();
@@ -40,8 +42,13 @@ return isLoaded && Array.isArray(friends) && Array.isArray(currentFriends) && us
             <div>
                 <div id='friend-name'>
                 <h1>{user.username}</h1>
-                {currentFriends?.find((friend) => friend.id === user.id) ?
-                <span><FaRegSmile/></span>
+                {currentFriends?.find((friend) => friend?.id === user.id) ?
+                <span>
+                    <OpenModalButton
+                        modalComponent={<DeleteFriendModal friend={user}/>}
+                        buttonText={<FaRegSmile/>}
+                    />
+                </span>
                 :
                 currentUser.id === user.id ? null : <button onClick={(e) => addFriend(e, user.id)}>Add Friend</button>
                 }
