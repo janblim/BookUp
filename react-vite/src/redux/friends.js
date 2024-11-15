@@ -121,7 +121,7 @@ function friendsReducer(state = initialState, action){
 
         case ADD_FRIEND: {
             new_state = structuredClone(state)
-            new_state['favBooks'][action.favorite.fav.id] = action.favorite.fav
+            new_state.friends.push(action.friend.friend)
             console.log(new_state)
             return new_state
         }

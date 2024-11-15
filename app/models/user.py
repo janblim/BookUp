@@ -56,7 +56,7 @@ class User(db.Model, UserMixin):
             'picture': self.picture,
             'friends': [{'friend_id': friend.id} for friend in self.friends],
             'favBooks': [{'book_id': book.book_id} for book in self.favBooks],
-            # 'comments': [{'id': comment.id, 'score': comment.score} for comment in self.comments],
+            'comments': [{'id': comment.id, 'score': comment.score} for comment in self.comments],
             'posts': [{'id': post.id, 'score': post.score} for post in self.posts],
             'created_at': self.created_at,
             'updated_at': self.updated_at
