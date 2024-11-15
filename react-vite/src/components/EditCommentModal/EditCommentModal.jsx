@@ -1,6 +1,6 @@
 import "./EditCommentModal.css"
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useModal } from "../../context/Modal";
 import { editCommentThunk } from "../../redux/comments";
 

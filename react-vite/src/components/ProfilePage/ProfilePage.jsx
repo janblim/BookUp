@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserFriendsThunk, getUserThunk, getFriendsThunk, addFriendThunk, deleteFriendThunk } from '../../redux/friends';
+import { getUserFriendsThunk, getUserThunk, getFriendsThunk, addFriendThunk} from '../../redux/friends';
 import { FaRegSmile } from "react-icons/fa";
 import DeleteFriendModal from '../DeleteFriendModal';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';

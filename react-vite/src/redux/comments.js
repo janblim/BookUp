@@ -2,7 +2,6 @@ import { csrfFetch } from './csrf'
 
 //Action types
 const GET_COMMENTS = 'comments/getByPostId'
-const GET_USER_COMMENTS = 'comments/getById'
 const COMMENT_UP = 'comments/up'
 const DELETE_COMMENT_UP = 'comments/up/delete'
 const ADD_COMMENT = 'comments/add'
@@ -12,11 +11,6 @@ const EDIT_COMMENT = 'comments/edit'
 //Action creators
 const getComments = (comments) => ({
     type: GET_COMMENTS,
-    comments
-})
-
-const getUserComments = (comments) => ({
-    type: GET_USER_COMMENTS,
     comments
 })
 
