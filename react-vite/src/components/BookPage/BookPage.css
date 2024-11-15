@@ -47,7 +47,7 @@
 
 #book-texts{
     max-width: 600px;
-    max-height: 700px;
+    height: 700px;
     overflow-x: hidden;
     overflow-y: auto;
     display: flex;
@@ -59,6 +59,7 @@
 #book-desc {
     text-align: justify;
     max-height: 400px;
+    white-space: pre-wrap;
 }
 
 #book-title {

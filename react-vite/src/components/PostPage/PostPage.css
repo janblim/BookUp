@@ -47,6 +47,7 @@
     color:rgb(179, 179, 179);
     text-align: justify;
     margin-bottom: 10px;
+    white-space: pre-wrap;
 }
 
 #op-box {
