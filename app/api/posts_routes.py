@@ -23,6 +23,16 @@ def get_posts_by_id(book_id):
 
     return {'Posts': posts_list}, 200
 
+#Get all posts by user ID (for user profile)
+@post_route.route('/user/<int:user_id>')
+def get_posts_by_user_id(user_id):
+    posts = db.session.query(Post).filter(Post.user_id == user_id)
+    posts_list =[]
+    for post in posts:
+        post_dict = post.to_dict()
+        posts_list.append(post_dict)
+    return {'posts': posts_list}, 200
+
 #get post with op info and comments (for post page)
 @post_route.route('/post/<int:post_id>')
 def get_post(post_id):

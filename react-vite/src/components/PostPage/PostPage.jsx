@@ -58,6 +58,11 @@ const PostPage = () => {
             }
     }
 
+    const goToBook = (e, book_id) => {
+        e.preventDefault()
+        navigate(`/books/${book_id}`)
+    }
+
     useEffect(() => {
         dispatch(getPostThunk(post_id))
         .then(() => dispatch(getCommentsThunk(post_id)))
@@ -70,7 +75,7 @@ const PostPage = () => {
                 <div id='post-header-box'>
                     <div id='post-header'>
                         <div id='book-button'>
-                            <img src={post.book.cover} alt={post.book.title}></img>
+                            <img src={post.book.cover} alt={post.book.title} onClick={(e) => goToBook(e, post.book.id)}></img>
                         </div>
                         <div id='post-info-box'>
                             <div id='post-book-title-box'>

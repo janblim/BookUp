@@ -52,4 +52,10 @@
     margin-left: 15px
 }
 
-#remove-friend-button{}
+#user-posts-container {
+    margin-left: 80px;
+}
+
+#user-posts-container h2 {
+    margin-bottom: 20px;
+}

@@ -2,6 +2,7 @@ import { csrfFetch } from './csrf'
 
 //Action types
 const GET_POSTS = 'posts/getAllById'
+const GET_POSTS_BY_USER = 'posts/getPostsByUser'
 const POST_UP = 'posts/up'
 const DELETE_POST_UP = 'posts/up/delete'
 const GET_POST = 'posts/getPostById'
@@ -15,6 +16,12 @@ const getAllPosts = (posts) => ({
     type: GET_POSTS,
     posts
 })
+
+const getPostByUser = (posts) =>({
+    type: GET_POSTS_BY_USER,
+    posts
+})
+
 
 const getPost = (post) => ({
     type: GET_POST,
@@ -55,6 +62,17 @@ export const getAllPostsThunk = (book_id) => async(dispatch) => {
     if(res.ok){
         const posts = await res.json()
         dispatch(getAllPosts(posts))
+        return posts
+    }
+    return res
+}
+
+export const getPostsByUserThunk = (user_id) => async(dispatch) => {
+    const res = await csrfFetch(`/api/posts/user/${user_id}`)
+
+    if(res.ok){
+        const posts = await res.json()
+        dispatch(getPostByUser(posts))
         return posts
     }
     return res
@@ -165,6 +183,12 @@ function postsReducer(state = initialState, action){
         case GET_POSTS: {
             new_state = {...state}
             new_state.posts = action.posts.Posts
+            console.log(new_state)
+            return new_state
+        }
+        case GET_POSTS_BY_USER: {
+            new_state = {...state}
+            new_state.posts = action.posts.posts
             console.log(new_state)
             return new_state
         }
