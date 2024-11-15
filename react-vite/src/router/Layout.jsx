@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { ModalProvider, Modal } from "../context/Modal";
 import { thunkAuthenticate } from "../redux/session";
 import Navigation from "../components/Navigation/Navigation";
+import Footer from '../components/Footer';
+import SideBar from '../components/SideBar';
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -14,10 +16,14 @@ export default function Layout() {
 
   return (
     <>
-      <ModalProvider>
+      <ModalProvider >
         <Navigation />
-        {isLoaded && <Outlet />}
-        <Modal />
+        <div id='layout'>
+            <SideBar />
+            {isLoaded && <Outlet />}
+            <Modal />
+        </div>
+        <Footer />
       </ModalProvider>
     </>
   );

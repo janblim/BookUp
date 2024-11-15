@@ -1,0 +1,65 @@
+#profile-button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#fa-user-circle{
+    font-size: 30pt;
+    color: whitesmoke;
+    position: relative;
+    right: 3px;
+}
+
+.user-pic {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profile-dropdown {
+    right: 0;
+    background-color:#2a2438;
+    list-style-type: none;
+    border-radius: 10px;
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #5c5470;
+}
+.modal-buttons{
+    margin: 10px;
+    border: 10px;
+    border-radius: 10px;
+}
+.modal-buttons:hover{
+    cursor: pointer;
+    background: #352f44;
+}
+#visit-profile{
+    padding: 10px;
+    border-radius: 10px;
+}
+#visit-profile:hover{
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    background: #352f44;
+}
+
+#logout-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+#email{
+    padding: 10px;
+}
+
+.menu-dropdown div {
+    padding: 10px;
+    border-radius: 10px;
+}
+.menu-dropdown div:hover{
+    background: #352f44;
+    cursor: pointer;
+}

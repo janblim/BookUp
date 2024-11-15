@@ -1,0 +1,18 @@
+/* Footer Container */
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
+    height: 200px;
+    position: relative;
+    bottom: 0;
+    border-top: 1px solid #dbd8e3;
+    background-color: #2a2438;
+}
+
+.jan-links {
+    text-decoration: none;
+    color: whitesmoke
+}

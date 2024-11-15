@@ -1,0 +1,45 @@
+
+.new-book-modal{
+    padding: 10px;
+    border-radius: 10px;
+    background: #2a2438;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-book-form{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-book-form h2{
+    margin-top: 20px;
+}
+
+.new-book-form p {
+    margin: 10px;
+}
+
+.new-book-form textarea {
+    height: 180px;
+    width: 350px;
+}
+
+.new-book-form input {
+    width: 350px
+}
+
+.new-book-form button {
+    margin-top: 30px;
+    font-size: 16pt;
+    padding: 10px 125px 10px;
+}
+
+.error {
+    color: orange
+}

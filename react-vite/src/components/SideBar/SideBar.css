@@ -1,0 +1,124 @@
+/* Footer Container */
+.sidebar{
+    box-sizing: border-box;
+    height: 100vh;
+    width: 250px;
+    padding: 15px 1em;
+    background: #2a2438;
+    border-right: 1px solid #5c5470;
+
+    position: sticky;
+    top: 72px;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+.sidebar-close{
+    padding: 5px;
+    width: 50px;
+    position: sticky;
+    top: 72px;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap;
+}
+
+#sidebar ul{
+    list-style: none;
+  }
+#sidebar > ul > li:first-child{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+
+/* css for when a link is active */
+#sidebar ul li a.active{
+  color: skyblue;
+
+  .icon{
+    color: skyblue;
+  }
+}
+
+#sidebar a, #sidebar .dropdown-btn{
+  border-radius: .5em;
+  padding: .85em;
+  text-decoration: none;
+  color: whitesmoke;
+  display: flex;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.dropdown-btn{
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+#sidebar svg{
+  flex-shrink: 0;
+  font-size: 17pt;
+  color: whitesmoke;
+}
+#sidebar a span, #sidebar .dropdown-btn span{
+  flex-grow: 1;
+}
+
+/* Hover over menu items */
+#sidebar a:hover, #sidebar .dropdown-btn:hover{
+  background-color: #5c5470;
+}
+#sidebar .sub-menu{
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: 300ms ease-in-out;
+  padding-left: 2em;
+
+  > div{
+    overflow: hidden;
+  }
+}
+#sidebar .sub-menu-show{
+    grid-template-rows: 1fr;
+    padding-left: 2em;
+}
+.dropdown-btn svg{
+    transition: 200ms ease;
+}
+.menu-arrow{
+    font-size: 25pt;
+}
+.menu-arrow-rotate{
+    font-size: 25pt;
+    rotate: 180deg;
+}
+
+#toggle-btn{
+    padding: 7px;
+    border: none;
+    border-radius: .5em;
+    background: none;
+    cursor: pointer;
+    font-size: 20pt;
+    color: whitesmoke;
+
+    :is(svg){
+        transition: rotate 150ms ease;
+    }
+}
+
+.toggle-btn-rotate{
+    font-size: 20pt;
+    rotate: 180deg;
+}
+
+#toggle-btn:hover{
+  background-color: #5c5470;
+}

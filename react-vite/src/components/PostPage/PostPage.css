@@ -1,0 +1,79 @@
+#post-background {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#post-container {
+    width: 1100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#post-header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    min-width: 800px;
+}
+
+#post-info-box {
+    margin-left: 30px;
+}
+
+#book-button img{
+    height: 100px;
+}
+
+#post-buttons {
+    margin-top: 30px;
+    margin-right: 5px;
+}
+
+#post-book-title-box {
+    display: flex;
+}
+
+#post-title {
+    font-size: 20pt;
+    margin-top: 10px;
+}
+
+#post-text {
+    margin-top: 20px;
+    color:rgb(179, 179, 179);
+    text-align: justify;
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+}
+
+#op-box {
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+}
+
+#op-box span {
+    margin-left: 10px;
+}
+
+#comment-container {
+    border-top: 1px solid #5c5470;
+    overflow: hidden;
+    max-width: 1080px;
+    padding-top: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.no-comment{
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #5c5470;
+    margin-top: 15px;
+    padding-top: 40px;
+    font-size: 20pt;
+}
