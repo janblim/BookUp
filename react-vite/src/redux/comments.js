@@ -7,6 +7,7 @@ const COMMENT_UP = 'comments/up'
 const DELETE_COMMENT_UP = 'comments/up/delete'
 const ADD_COMMENT = 'comments/add'
 const DELETE_COMMENT = 'comments/delete'
+const EDIT_COMMENT = 'comments/edit'
 
 //Action creators
 const getComments = (comments) => ({
@@ -37,6 +38,11 @@ const addComment = (comment) => ({
 const deleteComment = (comment_id) => ({
     type: DELETE_COMMENT,
     comment_id
+})
+
+const editComment = (comment) => ({
+    type: EDIT_COMMENT,
+    comment
 })
 
 //Thunks
@@ -108,6 +114,31 @@ export const deleteCommentThunk = (comment_id) => async (dispatch) => {
         return res
     }
 }
+export const editCommentThunk = (comment, comment_id) => async (dispatch) => {
+    let res;
+
+    let newComment = {
+        text: comment.text,
+    };
+
+    try {
+        res = await csrfFetch(`/api/comments/${comment_id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newComment)
+        });
+    } catch (error) {
+        return await error.json();
+    }
+
+    if (res.ok) {
+        const editedComment = await res.json();
+        dispatch(editComment(editedComment));
+        return editedComment;
+    } else {
+        return res
+    }
+};
 
 //Initial state
 const initialState = {
@@ -147,6 +178,12 @@ function commentsReducer(state = initialState, action){
         case DELETE_COMMENT: {
             new_state = structuredClone(state)
             delete new_state.comments[new_state.comments.map(e => e.id).indexOf(action.comment_id)] //deletes where index is object with id of comment_id
+            return new_state
+        }
+        case EDIT_COMMENT: {
+            new_state = structuredClone(state)
+            new_state.comments[new_state.comments.map(e => e.id).indexOf(action.comment.comment.id)].title = action.comment.comment.title
+            new_state.comments[new_state.comments.map(e => e.id).indexOf(action.comment.comment.id)].text = action.comment.comment.text
             return new_state
         }
     default:

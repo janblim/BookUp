@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { commentUpThunk, deleteCommentUpThunk } from '../../redux/comments';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import DeleteCommentModal from '../DeleteCommentModal';
+import EditCommentModal from '../EditCommentModal';
 
 
 const CommentCard = ({comment}) => {
@@ -64,7 +65,11 @@ const CommentCard = ({comment}) => {
                             modalComponent={<DeleteCommentModal comment={comment}/>}
                             buttonText={'Delete'}
                         /> : null }
-                        { user && comment.user.id === user.id ? <button>Edit</button> : null }
+                        { user && comment.user.id === user.id ?
+                        <OpenModalButton
+                            modalComponent={<EditCommentModal comment={comment}/>}
+                            buttonText={'Edit'}
+                        /> : null }
                     </span>
                 </span>
             </div>

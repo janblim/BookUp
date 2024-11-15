@@ -72,7 +72,7 @@ def add_comment_up(comment_id, value):
 
     db.session.commit()
 
-    #return entire post to update state
+    #return entire comment to update state
     comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
     return {'message': 'Successfully voted', 'comment': comment.to_dict()}, 201
 
@@ -89,7 +89,7 @@ def delete_comment_up(comment_id):
     db.session.delete(up)
     db.session.commit()
 
-    #return entire post to update state
+    #return entire comment to update state
     comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
     return {'message': 'up was successfully deleted', 'comment': comment.to_dict()}, 200
 
@@ -103,8 +103,39 @@ def delete_comment(comment_id):
     if not comment:
         return {'error': 'Comment not found'}, 404
 
-    if comment.user_id == user['id']: #checks if post belongs to current user
+    if comment.user_id == user['id']: #checks if comment belongs to current user
         db.session.delete(comment)
         db.session.commit()
         return {'message': 'Comment deleted successfully'}, 200
     return {'error': 'Unauthorized to delete this comment'}, 401
+
+#edit comment
+@comment_route.route('/<int:comment_id>', methods=['PUT'])
+@login_required
+def editComment(comment_id):
+
+    user = current_user.to_dict()
+
+    comment = db.session.query(Comment).filter(Comment.id == comment_id).first()
+
+    if not comment:
+        return {'errors': {'message': 'Comment does not exist'}}, 404
+
+    if comment.user_id != user['id']:
+        return {'errors': {'message': 'Unauthorized to edit this comment'}}, 403
+
+    form = CommentForm()
+
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        if form.data.get('text'):
+            comment.text = form.data['text']
+
+        db.session.commit()
+
+        updated_comment = comment.to_dict()
+
+        return {'comment': updated_comment}, 200
+
+    return form.errors, 400
