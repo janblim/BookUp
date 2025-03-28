@@ -1,6 +1,6 @@
 # BookUp
 
-This is a prototype for my social-media website BookUp. BookUp is a website for users to make friends over their favorite books, like a virtual book-club. Users can discuss books, compile a list of favorite books, make friends, and vote on comments. You can create a new page about your favorite book, or you can simply start a discussion on an existing book.
+This is a prototype for my social-media website BookUp. BookUp is a website for users to make friends over their favorite books, like a virtual book-club. Users can discuss books, compile a list of favorite books, make friends, and vote on comments they like or dislike. You can create a new page about your favorite book, or you can simply start a discussion on an existing book.
 
 [Live Link](https://bookup-nhq9.onrender.com/)
 
